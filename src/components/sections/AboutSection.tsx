@@ -1,6 +1,15 @@
 "use client";
 
-import { Building2, Users, TrendingUp, Award } from "lucide-react";
+import {
+  Building2,
+  Users,
+  TrendingUp,
+  Award,
+  Shield,
+  Target,
+  HeartHandshake,
+  Clock,
+} from "lucide-react";
 
 export default function AboutSection() {
   return (
@@ -11,7 +20,9 @@ export default function AboutSection() {
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
         
-        {/* Heading */}
+        {/* ===================== */}
+        {/* WHO WE ARE (UNCHANGED) */}
+        {/* ===================== */}
         <div className="mb-12">
           <div className="w-14 h-[3px] bg-white mx-auto mb-3"></div>
           <h2 className="text-4xl md:text-5xl font-semibold text-white">
@@ -74,12 +85,102 @@ export default function AboutSection() {
 
         </div>
 
-        {/* Bottom Badge */}
-        <div className="mt-10">
+        <div className="mt-10 mb-20">
           <span className="inline-block px-5 py-2 bg-white/10 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-md">
             AU Serving Clients Nationwide Across Australia
           </span>
         </div>
+
+        {/* ===================== */}
+        {/* WHY CHOOSE US (NEW) */}
+        {/* ===================== */}
+
+        <div className="mb-14">
+          <div className="w-14 h-[3px] bg-white mx-auto mb-3"></div>
+          <h2 className="text-4xl md:text-5xl font-semibold text-white">
+            Why Choose Us
+          </h2>
+          <p className="text-gray-400 mt-3 text-sm md:text-base">
+            Your success is our priority
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
+            <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
+              <Shield size={22} className="text-white" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">
+              Trusted & Verified
+            </h3>
+            <p className="text-gray-400 text-sm">
+              All properties are thoroughly vetted and legally verified
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
+            <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
+              <Target size={22} className="text-white" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">
+              Premium Locations
+            </h3>
+            <p className="text-gray-400 text-sm">
+              Access to Australia’s most sought-after investment areas
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
+            <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
+              <HeartHandshake size={22} className="text-white" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">
+              Personalized Service
+            </h3>
+            <p className="text-gray-400 text-sm">
+              One-to-one consultation tailored to your goals
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
+            <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
+              <TrendingUp size={22} className="text-white" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">
+              High ROI
+            </h3>
+            <p className="text-gray-400 text-sm">
+              Properties selected for maximum return on investment
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
+            <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
+              <Award size={22} className="text-white" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">
+              15+ Years Experience
+            </h3>
+            <p className="text-gray-400 text-sm">
+              Industry expertise you can rely on
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
+            <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
+              <Clock size={22} className="text-white" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">
+              Fast Process
+            </h3>
+            <p className="text-gray-400 text-sm">
+              Streamlined procedures for quick transactions
+            </p>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
