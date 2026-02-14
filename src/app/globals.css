@@ -38,3 +38,31 @@ body {
   scrollbar-width: none;
 }
 
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.pin {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.8);
+  position: relative;
+}
+
+.pin::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.4);
+  animation: pulse 2.5s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
