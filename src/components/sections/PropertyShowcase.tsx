@@ -17,21 +17,26 @@ export default function PropertyShowcase() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 5000); // slower = luxury feel
     return () => clearInterval(interval);
   }, []);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
-
   const prevSlide = () =>
     setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
 
   return (
-    <section className="bg-black py-20">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        <div className="mb-12">
+    <section className="relative bg-black py-24 overflow-hidden">
+
+      {/* Soft fade from previous section */}
+      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent"></div>
+
+      <div className="max-w-6xl mx-auto px-6 text-center">
+
+        {/* Heading */}
+        <div className="mb-16">
           <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
-          <h2 className="text-3xl md:text-4xl font-medium text-white">
+          <h2 className="text-3xl md:text-4xl font-medium text-white tracking-wide">
             Property Showcase
           </h2>
           <p className="text-gray-400 mt-2 text-sm">
@@ -39,12 +44,16 @@ export default function PropertyShowcase() {
           </p>
         </div>
 
-        <div className="relative rounded-2xl overflow-hidden">
+        {/* Slider */}
+        <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+
           {images.map((img, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === current ? "opacity-100" : "opacity-0"
+              className={`absolute inset-0 transition-all duration-[2000ms] ${
+                index === current
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-105"
               }`}
               style={{
                 backgroundImage: `url(${img})`,
@@ -54,25 +63,32 @@ export default function PropertyShowcase() {
             />
           ))}
 
-          <div className="absolute inset-0 bg-black/40"></div>
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40"></div>
 
+          {/* Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 p-2 rounded-full hover:bg-white/20 transition"
+            className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md border border-white/10 p-3 rounded-full hover:bg-yellow-500 hover:text-black transition-all duration-300"
           >
-            <ChevronLeft size={18} className="text-white" />
+            <ChevronLeft size={20} className="text-white" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 p-2 rounded-full hover:bg-white/20 transition"
+            className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md border border-white/10 p-3 rounded-full hover:bg-yellow-500 hover:text-black transition-all duration-300"
           >
-            <ChevronRight size={18} className="text-white" />
+            <ChevronRight size={20} className="text-white" />
           </button>
 
-          <div className="h-[380px] md:h-[420px]"></div>
+          {/* Height */}
+          <div className="h-[420px] md:h-[520px]"></div>
         </div>
+
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent"></div>
     </section>
   );
 }

@@ -1,72 +1,107 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Properties", href: "/properties" },
-  { name: "About Us", href: "#about" },
+  { name: "About Us", href: "/about" },
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "#contact" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
   const pathname = usePathname();
+  const router = useRouter();
+
+  // Scroll background effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close mobile when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-black text-white z-50 shadow-md">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-black/80 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        
+
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-bold tracking-wide hover:text-yellow-400 transition"
+          className="text-lg md:text-xl font-semibold tracking-wide text-white hover:text-yellow-400 transition"
         >
           VRS Real Invest
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`relative group transition ${
-                pathname === link.href
-                  ? "text-yellow-400"
-                  : "hover:text-yellow-400"
-              }`}
-            >
-              {link.name}
+        <nav className="hidden md:flex items-center space-x-10">
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href === "/" && pathname === "/");
 
-              {/* Underline animation */}
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all group-hover:w-full"></span>
-            </Link>
-          ))}
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`relative text-sm tracking-wide transition ${
+                  isActive
+                    ? "text-yellow-400"
+                    : "text-white hover:text-yellow-400"
+                }`}
+              >
+                {link.name}
+
+                <span
+                  className={`absolute left-0 -bottom-2 h-[2px] bg-yellow-400 transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Button */}
         <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white hover:text-yellow-400 transition"
+          >
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-black border-t border-gray-800">
-          <div className="flex flex-col px-6 py-4 space-y-4">
+        <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
+          <div className="flex flex-col px-6 py-6 space-y-5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="hover:text-yellow-400 transition"
+                className="text-white hover:text-yellow-400 transition text-sm"
               >
                 {link.name}
               </Link>

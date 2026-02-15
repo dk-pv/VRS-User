@@ -10,9 +10,12 @@ export default function PublicLayout({
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen bg-black text-white">
+
+      {/* Remove global padding */}
+      <main className="min-h-screen bg-black text-white">
         {children}
       </main>
+
       <Footer />
       <FloatingIcons />
     </>
