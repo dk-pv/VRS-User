@@ -1,191 +1,3 @@
-// "use client";
-
-// import {
-//   Building2,
-//   Users,
-//   TrendingUp,
-//   Award,
-//   Shield,
-//   Target,
-//   HeartHandshake,
-//   Clock,
-// } from "lucide-react";
-
-// export default function AboutSection() {
-//   return (
-//     <section className="relative py-24 bg-gradient-to-b from-black via-[#050b1a] to-[#0a1428] overflow-hidden">
-
-//       {/* Background Pattern Glow */}
-//       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,60,255,0.08),transparent_60%)]"></div>
-
-//       <div className="relative max-w-6xl mx-auto px-6 text-center">
-
-//         {/* ===================== */}
-//         {/* WHO WE ARE (UNCHANGED) */}
-//         {/* ===================== */}
-//         <div className="mb-12">
-//           <div className="w-14 h-[3px] bg-white mx-auto mb-3"></div>
-//           <h2 className="text-4xl md:text-5xl font-semibold text-white">
-//             Who We Are
-//           </h2>
-//           <p className="text-gray-400 mt-3 max-w-3xl mx-auto text-sm md:text-base">
-//             VRS Real Invest is your trusted partner in real estate investment
-//             across Australia. With over 15 years of experience, we specialize
-//             in identifying premium investment opportunities that deliver
-//             exceptional returns.
-//           </p>
-//         </div>
-
-//         {/* Mission Card */}
-//         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-left mb-10">
-//           <h3 className="text-white font-semibold mb-2 text-lg">
-//             Our Mission
-//           </h3>
-//           <p className="text-gray-400 text-sm md:text-base">
-//             To empower investors with access to Australia’s most prestigious
-//             properties, providing expert guidance, transparent processes, and
-//             unparalleled service throughout every transaction.
-//           </p>
-//         </div>
-
-//         {/* Stats Grid */}
-//         <div className="grid md:grid-cols-2 gap-6">
-
-//           <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-//             <div className="bg-white/10 p-3 rounded-full mb-3">
-//               <Building2 size={22} className="text-white" />
-//             </div>
-//             <h4 className="text-2xl font-bold text-white">500+</h4>
-//             <p className="text-gray-400 mt-1 text-sm">Properties Sold</p>
-//           </div>
-
-//           <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-//             <div className="bg-white/10 p-3 rounded-full mb-3">
-//               <Users size={22} className="text-white" />
-//             </div>
-//             <h4 className="text-2xl font-bold text-white">1000+</h4>
-//             <p className="text-gray-400 mt-1 text-sm">Happy Clients</p>
-//           </div>
-
-//           <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-//             <div className="bg-white/10 p-3 rounded-full mb-3">
-//               <TrendingUp size={22} className="text-white" />
-//             </div>
-//             <h4 className="text-2xl font-bold text-white">$2B+</h4>
-//             <p className="text-gray-400 mt-1 text-sm">Total Sales</p>
-//           </div>
-
-//           <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-//             <div className="bg-white/10 p-3 rounded-full mb-3">
-//               <Award size={22} className="text-white" />
-//             </div>
-//             <h4 className="text-2xl font-bold text-white">15+</h4>
-//             <p className="text-gray-400 mt-1 text-sm">Years Experience</p>
-//           </div>
-
-//         </div>
-
-//         <div className="mt-10 mb-20">
-//           <span className="inline-block px-5 py-2 bg-white/10 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-md">
-//             AU Serving Clients Nationwide Across Australia
-//           </span>
-//         </div>
-
-//         {/* ===================== */}
-//         {/* WHY CHOOSE US (NEW) */}
-//         {/* ===================== */}
-
-//         <div className="mb-14">
-//           <div className="w-14 h-[3px] bg-white mx-auto mb-3"></div>
-//           <h2 className="text-4xl md:text-5xl font-semibold text-white">
-//             Why Choose Us
-//           </h2>
-//           <p className="text-gray-400 mt-3 text-sm md:text-base">
-//             Your success is our priority
-//           </p>
-//         </div>
-
-//         <div className="grid md:grid-cols-3 gap-6">
-
-//           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
-//             <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
-//               <Shield size={22} className="text-white" />
-//             </div>
-//             <h3 className="text-white font-semibold mb-2">
-//               Trusted & Verified
-//             </h3>
-//             <p className="text-gray-400 text-sm">
-//               All properties are thoroughly vetted and legally verified
-//             </p>
-//           </div>
-
-//           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
-//             <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
-//               <Target size={22} className="text-white" />
-//             </div>
-//             <h3 className="text-white font-semibold mb-2">
-//               Premium Locations
-//             </h3>
-//             <p className="text-gray-400 text-sm">
-//               Access to Australia’s most sought-after investment areas
-//             </p>
-//           </div>
-
-//           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
-//             <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
-//               <HeartHandshake size={22} className="text-white" />
-//             </div>
-//             <h3 className="text-white font-semibold mb-2">
-//               Personalized Service
-//             </h3>
-//             <p className="text-gray-400 text-sm">
-//               One-to-one consultation tailored to your goals
-//             </p>
-//           </div>
-
-//           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
-//             <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
-//               <TrendingUp size={22} className="text-white" />
-//             </div>
-//             <h3 className="text-white font-semibold mb-2">
-//               High ROI
-//             </h3>
-//             <p className="text-gray-400 text-sm">
-//               Properties selected for maximum return on investment
-//             </p>
-//           </div>
-
-//           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
-//             <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
-//               <Award size={22} className="text-white" />
-//             </div>
-//             <h3 className="text-white font-semibold mb-2">
-//               15+ Years Experience
-//             </h3>
-//             <p className="text-gray-400 text-sm">
-//               Industry expertise you can rely on
-//             </p>
-//           </div>
-
-//           <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
-//             <div className="bg-white/10 p-3 rounded-xl w-fit mb-4">
-//               <Clock size={22} className="text-white" />
-//             </div>
-//             <h3 className="text-white font-semibold mb-2">
-//               Fast Process
-//             </h3>
-//             <p className="text-gray-400 text-sm">
-//               Streamlined procedures for quick transactions
-//             </p>
-//           </div>
-
-//         </div>
-
-//       </div>
-//     </section>
-//   );
-// }
-
 "use client";
 
 import {
@@ -197,24 +9,25 @@ import {
   Target,
   HeartHandshake,
   Clock,
+  PlayCircle,
 } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section className="relative py-24 bg-gradient-to-b from-black via-[#050b1a] via-60% to-black overflow-hidden">
-      {/* Background Pattern Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,60,255,0.08),transparent_60%)]"></div>
+    <section className="relative bg-gradient-to-b from-black via-[#050b1a] to-black py-20 overflow-hidden">
+      {/* Subtle Background Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.05),transparent_70%)]"></div>
 
-      <div className="relative max-w-6xl mx-auto px-6 text-center">
+      <div className="relative max-w-7xl mx-auto px-6">
         {/* ===================== */}
         {/* WHO WE ARE */}
         {/* ===================== */}
-        <div className="mb-12">
-          <div className="w-14 h-[3px] bg-white mx-auto mb-3"></div>
-          <h2 className="text-4xl md:text-5xl font-semibold text-white">
+        <div className="text-center mb-16">
+          <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
+          <h2 className="text-3xl md:text-4xl font-medium text-white">
             Who We Are
           </h2>
-          <p className="text-gray-400 mt-3 max-w-3xl mx-auto text-sm md:text-base">
+          <p className="text-gray-400 mt-4 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
             VRS Real Invest is your trusted partner in real estate investment
             across Australia. With over 15 years of experience, we specialize in
             identifying premium investment opportunities that deliver
@@ -222,199 +35,136 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Mission Card */}
-        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-left mb-10">
-          <h3 className="text-white font-semibold mb-2 text-lg">Our Mission</h3>
-          <p className="text-gray-400 text-sm md:text-base">
+        {/* Mission */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 mb-16 backdrop-blur-sm">
+          <h3 className="text-white text-lg font-medium mb-3">Our Mission</h3>
+          <p className="text-gray-400 text-sm md:text-base leading-relaxed">
             To empower investors with access to Australia’s most prestigious
             properties, providing expert guidance, transparent processes, and
             unparalleled service throughout every transaction.
           </p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-            <div className="bg-white/10 p-3 rounded-full mb-3">
-              <Building2 size={22} className="text-white" />
-            </div>
-            <h4 className="text-2xl font-bold text-white">500+</h4>
-            <p className="text-gray-400 mt-1 text-sm">Properties Sold</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-            <div className="bg-white/10 p-3 rounded-full mb-3">
-              <Users size={22} className="text-white" />
-            </div>
-            <h4 className="text-2xl font-bold text-white">1000+</h4>
-            <p className="text-gray-400 mt-1 text-sm">Happy Clients</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-            <div className="bg-white/10 p-3 rounded-full mb-3">
-              <TrendingUp size={22} className="text-white" />
-            </div>
-            <h4 className="text-2xl font-bold text-white">$2B+</h4>
-            <p className="text-gray-400 mt-1 text-sm">Total Sales</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center">
-            <div className="bg-white/10 p-3 rounded-full mb-3">
-              <Award size={22} className="text-white" />
-            </div>
-            <h4 className="text-2xl font-bold text-white">15+</h4>
-            <p className="text-gray-400 mt-1 text-sm">Years Experience</p>
-          </div>
-        </div>
-
-        <div className="mt-10 mb-20">
-          <span className="inline-block px-5 py-2 bg-white/10 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-md">
-            AU Serving Clients Nationwide Across Australia
-          </span>
-        </div>
-
         {/* ===================== */}
-        {/* WHY CHOOSE US */}
+        {/* STATS */}
         {/* ===================== */}
-
-        <div className="mb-14">
-          <div className="w-14 h-[3px] bg-white mx-auto mb-3"></div>
-          <h2 className="text-4xl md:text-5xl font-semibold text-white">
-            Why Choose Us
-          </h2>
-          <p className="text-gray-400 mt-3 text-sm md:text-base">
-            Your success is our priority
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-4 gap-6 mb-20">
           {[
             {
-              icon: <Shield size={22} />,
-              title: "Trusted & Verified",
-              desc: "All properties are thoroughly vetted and legally verified",
+              icon: <Building2 size={20} />,
+              value: "500+",
+              label: "Properties Sold",
             },
             {
-              icon: <Target size={22} />,
-              title: "Premium Locations",
-              desc: "Access to Australia’s most sought-after investment areas",
+              icon: <Users size={20} />,
+              value: "1000+",
+              label: "Happy Clients",
             },
             {
-              icon: <HeartHandshake size={22} />,
-              title: "Personalized Service",
-              desc: "One-to-one consultation tailored to your goals",
+              icon: <TrendingUp size={20} />,
+              value: "$2B+",
+              label: "Total Sales",
             },
             {
-              icon: <TrendingUp size={22} />,
-              title: "High ROI",
-              desc: "Properties selected for maximum return on investment",
-            },
-            {
-              icon: <Award size={22} />,
-              title: "15+ Years Experience",
-              desc: "Industry expertise you can rely on",
-            },
-            {
-              icon: <Clock size={22} />,
-              title: "Fast Process",
-              desc: "Streamlined procedures for quick transactions",
+              icon: <Award size={20} />,
+              value: "15+",
+              label: "Years Experience",
             },
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left"
+              className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 transition"
             >
-              <div className="bg-white/10 p-3 rounded-xl w-fit mb-4 text-white">
+              <div className="bg-white/10 p-2 rounded-full w-fit mx-auto mb-3 text-yellow-500">
                 {item.icon}
               </div>
-              <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-              <p className="text-gray-400 text-sm">{item.desc}</p>
+              <h4 className="text-xl font-semibold text-white">{item.value}</h4>
+              <p className="text-gray-400 text-sm mt-1">{item.label}</p>
             </div>
           ))}
         </div>
 
         {/* ===================== */}
-        {/* NATIONWIDE COVERAGE */}
+        {/* WHY CHOOSE US */}
         {/* ===================== */}
+        <div className="text-center mb-14">
+          <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
+          <h2 className="text-3xl md:text-4xl font-medium text-white">
+            Why Choose Us
+          </h2>
+          <p className="text-gray-400 mt-2 text-sm">
+            Your success is our priority
+          </p>
+        </div>
 
-        <div className="mt-24">
-          <div className="mb-12 text-center">
-            <div className="w-14 h-[3px] bg-white mx-auto mb-3"></div>
-            <h2 className="text-4xl md:text-5xl font-semibold text-white">
-              Nationwide Coverage
+        <div className="grid md:grid-cols-3 gap-6 mb-24">
+          {[
+            { icon: <Shield size={20} />, title: "Trusted & Verified" },
+            { icon: <Target size={20} />, title: "Premium Locations" },
+            {
+              icon: <HeartHandshake size={20} />,
+              title: "Personalized Service",
+            },
+            { icon: <TrendingUp size={20} />, title: "High ROI" },
+            { icon: <Award size={20} />, title: "15+ Years Experience" },
+            { icon: <Clock size={20} />, title: "Fast Process" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="bg-gradient-to-br from-[#0c1220] to-[#0f1b2e] border border-white/10 rounded-2xl p-6 text-left hover:border-yellow-500/40 transition"
+            >
+              <div className="bg-white/10 p-2 rounded-lg w-fit mb-4 text-yellow-500">
+                {item.icon}
+              </div>
+              <h3 className="text-white font-medium">{item.title}</h3>
+            </div>
+          ))}
+        </div>
+
+        {/* ===================== */}
+        {/* DISCOVER VRS VIDEO */}
+        {/* ===================== */}
+        <div className="relative pt-16 border-t border-white/10">
+          <div className="text-center mb-10">
+            <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
+            <h2 className="text-3xl md:text-4xl font-medium text-white">
+              Discover VRS Real Invest
             </h2>
-            <p className="text-gray-400 mt-3 text-sm md:text-base">
-              Our presence across major Australian cities
+            <p className="text-gray-400 mt-2 text-sm">
+              Watch our story and mission
             </p>
           </div>
 
-          <div className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10">
-            {/* Background Map */}
+          {/* Clickable Video Thumbnail */}
+          <a
+            href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative block max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 group"
+          >
             <div
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition duration-700"
               style={{
-                backgroundImage: `url(https://images.pexels.com/photos/35884953/pexels-photo-35884953.jpeg)`,
+                backgroundImage:
+                  "url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c)",
               }}
             ></div>
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/30"></div>
-{/* Animated Pins - Balanced Across Full Map */}
-<div className="relative h-[420px]">
+            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition"></div>
 
-  {/* WESTERN AUSTRALIA */}
-  <div className="absolute left-[15%] top-[70%] animate-[float_3s_ease-in-out_infinite]"><div className="pin"></div></div>
-  <div className="absolute left-[20%] top-[60%] animate-[float_4s_ease-in-out_infinite]"><div className="pin"></div></div>
+            <div className="relative h-[400px] flex items-center justify-center">
+              <PlayCircle
+                size={70}
+                className="text-white opacity-80 group-hover:text-yellow-500 transition"
+              />
+            </div>
+          </a>
 
-  {/* NORTHERN TERRITORY */}
-  <div className="absolute left-[48%] top-[18%] animate-[float_3.5s_ease-in-out_infinite]"><div className="pin"></div></div>
-  <div className="absolute left-[55%] top-[45%] animate-[float_3.8s_ease-in-out_infinite]"><div className="pin"></div></div>
-
-  {/* SOUTH AUSTRALIA */}
-  <div className="absolute left-[45%] top-[70%] animate-[float_3.2s_ease-in-out_infinite]"><div className="pin"></div></div>
-
-  {/* VICTORIA */}
-  <div className="absolute left-[55%] top-[78%] animate-[float_3.6s_ease-in-out_infinite]"><div className="pin"></div></div>
-  <div className="absolute left-[50%] top-[75%] animate-[float_4s_ease-in-out_infinite]"><div className="pin"></div></div>
-
-  {/* TASMANIA */}
-  <div className="absolute left-[60%] top-[90%] animate-[float_4.2s_ease-in-out_infinite]"><div className="pin"></div></div>
-
-  {/* NEW SOUTH WALES */}
-  <div className="absolute left-[72%] top-[65%] animate-[float_3.4s_ease-in-out_infinite]"><div className="pin"></div></div>
-  <div className="absolute left-[75%] top-[58%] animate-[float_3.7s_ease-in-out_infinite]"><div className="pin"></div></div>
-
-  {/* QUEENSLAND */}
-  <div className="absolute left-[78%] top-[48%] animate-[float_3.1s_ease-in-out_infinite]"><div className="pin"></div></div>
-  <div className="absolute left-[82%] top-[35%] animate-[float_3.9s_ease-in-out_infinite]"><div className="pin"></div></div>
-  <div className="absolute left-[85%] top-[25%] animate-[float_4.1s_ease-in-out_infinite]"><div className="pin"></div></div>
-
-  {/* CENTRAL AUSTRALIA */}
-  <div className="absolute left-[55%] top-[50%] animate-[float_3.3s_ease-in-out_infinite]"><div className="pin"></div></div>
-  <div className="absolute left-[60%] top-[40%] animate-[float_3.6s_ease-in-out_infinite]"><div className="pin"></div></div>
-
-</div>
-
-            {/* Animated Pins */}
-             </div>
-
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            {[
-              "Perth",
-              "Adelaide",
-              "Melbourne",
-              "Sydney",
-              "Brisbane",
-              "Gold Coast",
-            ].map((city) => (
-              <button
-                key={city}
-                className="px-6 py-2 rounded-full border border-white/20 bg-white/5 text-white text-sm hover:bg-white/10 transition"
-              >
-                {city}
-              </button>
-            ))}
-          </div>
+          <p className="text-gray-400 mt-8 max-w-3xl mx-auto text-sm md:text-base text-center">
+            Learn about our commitment to excellence, our proven track record,
+            and how we help investors achieve their real estate investment goals
+            across Australia.
+          </p>
         </div>
       </div>
     </section>

@@ -64,7 +64,7 @@ export default function SecuredProperties() {
     const container = scrollRef.current;
     if (!container) return;
 
-    const speed = 0.5;
+    const speed = 0.3; // slower = luxury feel
 
     const animate = () => {
       if (!isPausedRef.current) {
@@ -86,7 +86,6 @@ export default function SecuredProperties() {
     const pauseScroll = () => {
       isPausedRef.current = true;
 
-      // ✅ FIX: safe clear
       if (pauseTimeoutRef.current) {
         clearTimeout(pauseTimeoutRef.current);
       }
@@ -116,45 +115,49 @@ export default function SecuredProperties() {
   }, []);
 
   return (
-    <section className="bg-black py-24">
-      <div className="w-full px-10">
-        <div className="text-center mb-16">
-          <div className="w-16 h-[3px] bg-white mx-auto mb-4"></div>
-          <h2 className="text-4xl md:text-5xl font-semibold text-white">
+    <section className="bg-black py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
+          <h2 className="text-3xl md:text-4xl font-medium text-white">
             Secured Properties
           </h2>
-          <p className="text-gray-400 mt-3">
+          <p className="text-gray-400 mt-2 text-sm">
             Successfully secured for our valued clients
           </p>
         </div>
 
+        {/* Scroll Container */}
         <div
           ref={scrollRef}
-          className="flex gap-10 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
+          className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
         >
           {securedProperties.map((property, index) => (
             <div
               key={index}
-              className="relative min-w-[500px] h-[500px] rounded-3xl overflow-hidden group flex-shrink-0"
+              className="relative min-w-[380px] md:min-w-[420px] h-[380px] rounded-2xl overflow-hidden group flex-shrink-0"
             >
+              {/* Image */}
               <div
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-700"
+                className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition duration-700"
                 style={{ backgroundImage: `url(${property.image})` }}
               ></div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              {/* Softer Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
-              <div className="absolute top-6 right-6 bg-white text-black px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2">
-                <CheckCircle size={16} />
+              {/* Badge */}
+              <div className="absolute top-4 right-4 bg-white text-black px-4 py-1.5 rounded-full text-xs font-medium flex items-center gap-1">
+                <CheckCircle size={14} />
                 Secured
               </div>
 
-              <div className="absolute bottom-8 left-8 text-white">
-                <h3 className="text-2xl font-semibold">
-                  {property.title}
-                </h3>
-                <div className="flex items-center gap-2 mt-2 text-gray-300">
-                  <MapPin size={16} />
+              {/* Bottom Info */}
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-lg font-medium">{property.title}</h3>
+                <div className="flex items-center gap-2 mt-1 text-gray-300 text-sm">
+                  <MapPin size={14} />
                   {property.location}
                 </div>
               </div>
