@@ -3,43 +3,79 @@
 // import { useEffect, useState } from "react";
 // import { ChevronDown } from "lucide-react";
 
-// const images = [
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/modern-houses.jpg",
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/big-modern-houses.jpg",
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/modern-beach-houses.webp",
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/cool-modern-houses.jpg",
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/Hillside-House-In-Indonesia.jpg",
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/Luxury-Vietnamese-Vill.jpg",
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/rammed-earth-house.jpg",
-//   "https://cdn.home-designing.com/wp-content/uploads/2023/04/Geometric-House-1.jpg",
-// ];
+// interface HeroData {
+//   type: "image" | "video";
+//   videoUrl?: string;
+//   images?: string[];
+// }
 
 // export default function HeroSection() {
+//   const [hero, setHero] = useState<HeroData | null>(null);
 //   const [current, setCurrent] = useState(0);
 
+//   // Fetch Hero Data
 //   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrent((prev) => (prev + 1) % images.length);
-//     }, 4000); // slower = luxury
+//     const fetchHero = async () => {
+//       try {
+//         const res = await fetch("http://localhost:5000/api/hero");
+//         const data = await res.json();
+//         setHero(data);
+//       } catch (error) {
+//         console.log("Hero fetch error", error);
+//       }
+//     };
 
-//     return () => clearInterval(interval);
+//     fetchHero();
 //   }, []);
+
+//   // Image Slider Auto Change
+//   useEffect(() => {
+//     if (hero?.type === "image" && hero.images?.length) {
+//       const interval = setInterval(() => {
+//         setCurrent((prev) => (prev + 1) % hero.images!.length);
+//       }, 4000);
+
+//       return () => clearInterval(interval);
+//     }
+//   }, [hero]);
+
+//   if (!hero) return null;
 
 //   return (
 //     <section className="relative w-full h-[100vh] overflow-hidden">
-//       {images.map((img, index) => (
-//         <div
-//           key={index}
-//           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ${
-//             index === current ? "opacity-100" : "opacity-0"
-//           }`}
-//           style={{ backgroundImage: `url(${img})` }}
-//         />
-//       ))}
+//       {/* IMAGE MODE */}
+//       {hero.type === "image" &&
+//         hero.images?.map((img, index) => (
+//           <div
+//             key={index}
+//             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ${
+//               index === current ? "opacity-100" : "opacity-0"
+//             }`}
+//             style={{ backgroundImage: `url(${img})` }}
+//           />
+//         ))}
 
-//       {/* Softer Overlay */}
+//       {/* VIDEO MODE */}
+//       {hero.type === "video" && hero.videoUrl && (
+//         <div className="absolute inset-0">
+//           <iframe
+//             className="w-full h-full object-cover"
+//             src={`https://www.youtube.com/embed/${getYoutubeId(
+//               hero.videoUrl,
+//             )}?autoplay=1&mute=1&controls=0&loop=1&playlist=${getYoutubeId(
+//               hero.videoUrl,
+//             )}`}
+//             title="Hero Video"
+//             frameBorder="0"
+//             allow="autoplay; fullscreen"
+//           ></iframe>
+//         </div>
+//       )}
+
+//       {/* Overlay */}
 //       <div className="absolute inset-0 bg-black/50"></div>
 
+//       {/* Content */}
 //       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
 //         <div className="w-12 h-[2px] bg-yellow-500 mb-6"></div>
 
@@ -73,6 +109,24 @@
 //   );
 // }
 
+// /**
+//  * Extract YouTube Video ID
+//  */
+// function getYoutubeId(url: string) {
+//   const regExp = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+//   const match = url.match(regExp);
+//   return match ? match[1] : "";
+// }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -82,7 +136,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 interface HeroData {
-  type: "image" | "video";
+  type?: "image" | "video";
   videoUrl?: string;
   images?: string[];
 }
@@ -91,11 +145,13 @@ export default function HeroSection() {
   const [hero, setHero] = useState<HeroData | null>(null);
   const [current, setCurrent] = useState(0);
 
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   // Fetch Hero Data
   useEffect(() => {
     const fetchHero = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/hero");
+        const res = await fetch(`${API_BASE_URL}/api/hero`);
         const data = await res.json();
         setHero(data);
       } catch (error) {
@@ -104,11 +160,11 @@ export default function HeroSection() {
     };
 
     fetchHero();
-  }, []);
+  }, [API_BASE_URL]);
 
-  // Image Slider Auto Change
+  // Image Slider
   useEffect(() => {
-    if (hero?.type === "image" && hero.images?.length) {
+    if (hero?.type === "image" && hero.images && hero.images.length > 0) {
       const interval = setInterval(() => {
         setCurrent((prev) => (prev + 1) % hero.images!.length);
       }, 4000);
@@ -117,14 +173,18 @@ export default function HeroSection() {
     }
   }, [hero]);
 
-  if (!hero) return null;
+  const hasImages =
+    hero?.type === "image" && hero.images && hero.images.length > 0;
+
+  const hasVideo =
+    hero?.type === "video" && hero.videoUrl && hero.videoUrl !== "";
 
   return (
-    <section className="relative w-full h-[100vh] overflow-hidden">
-      
+    <section className="relative w-full h-[100vh] overflow-hidden bg-black">
+
       {/* IMAGE MODE */}
-      {hero.type === "image" &&
-        hero.images?.map((img, index) => (
+      {hasImages &&
+        hero!.images!.map((img, index) => (
           <div
             key={index}
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ${
@@ -135,14 +195,14 @@ export default function HeroSection() {
         ))}
 
       {/* VIDEO MODE */}
-      {hero.type === "video" && hero.videoUrl && (
+      {hasVideo && (
         <div className="absolute inset-0">
           <iframe
             className="w-full h-full object-cover"
             src={`https://www.youtube.com/embed/${getYoutubeId(
-              hero.videoUrl
+              hero!.videoUrl!,
             )}?autoplay=1&mute=1&controls=0&loop=1&playlist=${getYoutubeId(
-              hero.videoUrl
+              hero!.videoUrl!,
             )}`}
             title="Hero Video"
             frameBorder="0"
@@ -192,8 +252,7 @@ export default function HeroSection() {
  * Extract YouTube Video ID
  */
 function getYoutubeId(url: string) {
-  const regExp =
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+  const regExp = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
   const match = url.match(regExp);
   return match ? match[1] : "";
 }
