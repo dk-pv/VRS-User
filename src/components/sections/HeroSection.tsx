@@ -60,7 +60,9 @@ export default function HeroSection() {
             }`}
             alt="hero"
           />
+
         ))}
+        
 
       {/* VIDEO MODE */}
       {hasVideo && (
