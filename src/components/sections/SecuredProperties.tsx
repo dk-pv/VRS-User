@@ -6,49 +6,41 @@ import { MapPin, CheckCircle } from "lucide-react";
 const securedProperties = [
   {
     title: "Grand Mansion Estate",
-    location: "Brisbane, QLD",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/modern-houses.jpg",
   },
   {
     title: "Contemporary Residence",
-    location: "Adelaide, SA",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/big-modern-houses.jpg",
   },
   {
     title: "Luxury Beach Villa",
-    location: "Gold Coast, QLD",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/modern-beach-houses.webp",
   },
   {
     title: "Modern Hillside Retreat",
-    location: "Melbourne, VIC",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/cool-modern-houses.jpg",
   },
   {
     title: "Hillside House",
-    location: "Jakarta, ID",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/Hillside-House-In-Indonesia.jpg",
   },
   {
     title: "Vietnam Luxury Villa",
-    location: "Hanoi, VN",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/Luxury-Vietnamese-Vill.jpg",
   },
   {
     title: "Rammed Earth Residence",
-    location: "Perth, WA",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/rammed-earth-house.jpg",
   },
   {
     title: "Geometric House",
-    location: "Sydney, NSW",
     image:
       "https://cdn.home-designing.com/wp-content/uploads/2023/04/Geometric-House-1.jpg",
   },
@@ -156,10 +148,7 @@ export default function SecuredProperties() {
               {/* Bottom Info */}
               <div className="absolute bottom-6 left-6 text-white">
                 <h3 className="text-lg font-medium">{property.title}</h3>
-                <div className="flex items-center gap-2 mt-1 text-gray-300 text-sm">
-                  <MapPin size={14} />
-                  {property.location}
-                </div>
+                
               </div>
             </div>
           ))}
