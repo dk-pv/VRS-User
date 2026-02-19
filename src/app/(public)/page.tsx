@@ -7,6 +7,7 @@ import PropertyShowcase from "@/components/sections/PropertyShowcase";
 import AboutSection from "@/components/sections/AboutSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import DiscoverVideoSection from "@/components/sections/DiscoverVideoSection";
+import TeamSection from "@/components/sections/TeamSection";
 
 export default function LandingPage() {
   const [activeSection, setActiveSection] = useState<
@@ -24,6 +25,7 @@ export default function LandingPage() {
           <PropertyShowcase />
           <DiscoverVideoSection />
           <AboutSection />
+          <TeamSection />
           <TestimonialsSection />
         </>
       )}
@@ -39,6 +41,7 @@ export default function LandingPage() {
         <>
           <DiscoverVideoSection />
           <AboutSection />
+          <TeamSection />
           <TestimonialsSection />
         </>
       )}
