@@ -38,6 +38,7 @@ export default async function BlogPage() {
   return (
     
     <main className="bg-black text-white min-h-screen pt-28">
+      <Navbar />
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
 

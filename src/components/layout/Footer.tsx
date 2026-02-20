@@ -21,7 +21,7 @@ export default function Footer() {
     {/* Column 1 */}
     <div>
       <h2 className="text-white text-xl font-semibold mb-3 tracking-wide">
-        VRS Real Invest
+        VRS RealInvest
       </h2>
 
       <p className="text-sm leading-relaxed text-gray-400">
@@ -93,7 +93,7 @@ export default function Footer() {
   {/* Bottom Divider */}
   <div className="border-t border-white/10 mt-6 pt-4 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
     <p className="text-gray-500">
-      © 2026 VRS Real Invest.
+      © 2026 VRS RealInvest.
     </p>
 
     <div className="flex gap-5 mt-2 md:mt-0">

@@ -1,13 +1,11 @@
-import AboutSection from "@/components/sections/AboutSection";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import TeamSection from "@/components/sections/TeamSection";
-export default function AboutPage() {
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+export default function ReviewPage() {
   return (
     <main className=" bg-black text-white min-h-screen">
       <Navbar />
-      <AboutSection />
-      <TeamSection/>
+      <TestimonialsSection/>
       <Footer />
     </main>
   );

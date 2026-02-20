@@ -11,6 +11,7 @@ const navLinks = [
   { name: "About Us", href: "/about" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
+  {name  : "Review" ,href: "/review" }
 ];
 
 export default function Navbar() {
@@ -50,7 +51,7 @@ export default function Navbar() {
           href="/"
           className="text-lg md:text-xl font-semibold tracking-wide text-white hover:text-yellow-400 transition"
         >
-          VRS Real Invest
+          VRS RealInvest
         </Link>
 
         {/* Desktop Menu */}
