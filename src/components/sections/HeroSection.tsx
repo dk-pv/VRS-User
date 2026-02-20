@@ -60,9 +60,7 @@ export default function HeroSection() {
             }`}
             alt="hero"
           />
-
         ))}
-        
 
       {/* VIDEO MODE */}
       {hasVideo && (
@@ -101,10 +99,17 @@ export default function HeroSection() {
         </p>
 
         <div className="mt-8 flex gap-4 flex-wrap justify-center">
-          <button className="bg-yellow-500 text-black px-6 py-2.5 text-sm rounded-sm font-medium hover:bg-yellow-400 transition">
-            Explore Properties
+          {/* Free Webinar - New Left Button */}
+          <button className="border border-yellow-500 text-yellow-500 px-6 py-2.5 text-sm rounded-sm font-medium hover:bg-yellow-500 hover:text-black transition">
+            Free Webinar
           </button>
 
+          {/* Updated Button */}
+          <button className="bg-yellow-500 text-black px-6 py-2.5 text-sm rounded-sm font-medium hover:bg-yellow-400 transition">
+            Explore Secured Properties
+          </button>
+
+          {/* Existing Consultation Button */}
           <button className="border border-yellow-500 text-yellow-500 px-6 py-2.5 text-sm rounded-sm font-medium hover:bg-yellow-500 hover:text-black transition">
             Free Consultation
           </button>
