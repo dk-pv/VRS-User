@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 
 interface HeroData {
   type?: "image" | "video";
@@ -12,6 +14,7 @@ interface HeroData {
 export default function HeroSection() {
   const [hero, setHero] = useState<HeroData | null>(null);
   const [current, setCurrent] = useState(0);
+  const router = useRouter();
 
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -105,7 +108,9 @@ export default function HeroSection() {
           </button>
 
           {/* Updated Button */}
-          <button className="bg-yellow-500 text-black px-6 py-2.5 text-sm rounded-sm font-medium hover:bg-yellow-400 transition">
+          <button 
+          onClick={() => router.push('/properties')}
+          className="bg-yellow-500 text-black px-6 py-2.5 text-sm rounded-sm font-medium hover:bg-yellow-400 transition">
             Explore Secured Properties
           </button>
 
