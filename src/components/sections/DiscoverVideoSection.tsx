@@ -77,7 +77,7 @@ export default function DiscoverVideoSection() {
       <div className="text-center mb-10">
         <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
         <h2 className="text-3xl md:text-4xl font-medium text-white">
-          Discover VRS Real Invest
+          Discover VRS RealInvest
         </h2>
         <p className="text-gray-400 mt-2 text-sm">
           Watch our story and mission
