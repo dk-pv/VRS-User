@@ -1,5 +1,5 @@
 import SecuredProperties from "@/components/sections/SecuredProperties";
-import PropertyShowcase from "@/components/sections/PropertyShowcase";
+import PropertyShowcase from "@/components/sections/WebinarSection";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 export default function PropertiesPage() {
