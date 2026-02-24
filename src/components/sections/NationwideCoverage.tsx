@@ -12,7 +12,7 @@ const cities = [
 export default function NationwideCoverage() {
   return (
     <section className="relative bg-black py-24 overflow-hidden">
-      
+            
       {/* Top Fade */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent"></div>
 
