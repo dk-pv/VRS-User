@@ -1,9 +1,18 @@
 "use client";
-
+const cities = [
+  { name: "Perth", left: "23%", top: "63%" },
+  { name: "Adelaide", left: "50%", top: "72%" },
+  { name: "Melbourne", left: "63%", top: "80%" },
+  { name: "Hobart", left: "66%", top: "92%" },
+  { name: "Canberra", left: "72%", top: "64%" },
+  { name: "Sydney", left: "75%", top: "58%" },
+  { name: "Gold Coast", left: "82%", top: "47%" },
+  { name: "Brisbane", left: "82%", top: "43%" },
+];
 export default function NationwideCoverage() {
   return (
     <section className="relative bg-black py-24 overflow-hidden">
-
+      
       {/* Top Fade */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black to-transparent"></div>
 
@@ -32,51 +41,34 @@ export default function NationwideCoverage() {
             }}
           ></div>
 
-          {/* Overlay */}
+          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/40"></div>
 
           {/* Pins */}
           <div className="relative h-[420px]">
 
-            {/* WA */}
-            <div className="absolute left-[18%] top-[65%] animate-[float_3s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
+            {cities.map((city, index) => (
+              <div
+                key={index}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ left: city.left, top: city.top }}
+              >
+                <div className="relative flex flex-col items-center">
 
-            {/* NT */}
-            <div className="absolute left-[48%] top-[25%] animate-[float_3.5s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
+                  {/* Pulse Ring */}
+                  <span className="absolute h-6 w-6 rounded-full bg-yellow-500/30 animate-ping"></span>
 
-            {/* SA */}
-            <div className="absolute left-[45%] top-[70%] animate-[float_3.2s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
+                  {/* Dot */}
+                  <span className="relative h-4 w-4 rounded-full bg-yellow-500 shadow-lg shadow-yellow-500/60 border border-white/40"></span>
 
-            {/* VIC */}
-            <div className="absolute left-[55%] top-[80%] animate-[float_3.8s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
+                  {/* Label */}
+                  <div className="mt-2 px-3 py-1 text-xs bg-black/85 text-white rounded-full border border-white/10 backdrop-blur-md whitespace-nowrap shadow-lg">
+                    {city.name}
+                  </div>
 
-            {/* NSW */}
-            <div className="absolute left-[75%] top-[60%] animate-[float_3.4s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
-
-            {/* QLD */}
-            <div className="absolute left-[82%] top-[35%] animate-[float_3.7s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
-
-            {/* TAS */}
-            <div className="absolute left-[60%] top-[90%] animate-[float_4s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
-
-            {/* Central */}
-            <div className="absolute left-[55%] top-[50%] animate-[float_3.3s_ease-in-out_infinite]">
-              <div className="pin"></div>
-            </div>
+                </div>
+              </div>
+            ))}
 
           </div>
         </div>
@@ -85,7 +77,6 @@ export default function NationwideCoverage() {
 
       {/* Bottom Fade */}
       <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent"></div>
-
     </section>
   );
 }
