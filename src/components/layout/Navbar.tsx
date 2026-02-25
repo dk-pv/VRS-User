@@ -11,7 +11,7 @@ const navLinks = [
   { name: "About Us", href: "/about" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
-  {name  : "Client Review" ,href: "/review" }
+  { name: "Client Review", href: "/review" },
 ];
 
 export default function Navbar() {
@@ -45,21 +45,19 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
         {/* Logo */}
         <Link
           href="/"
           className="text-lg md:text-xl font-semibold tracking-wide text-white hover:text-yellow-400 transition"
         >
-          VRS RealInvest
+          vrs realinvest
         </Link>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-10">
           {navLinks.map((link) => {
             const isActive =
-              pathname === link.href ||
-              (link.href === "/" && pathname === "/");
+              pathname === link.href || (link.href === "/" && pathname === "/");
 
             return (
               <Link

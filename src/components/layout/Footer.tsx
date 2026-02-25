@@ -12,21 +12,19 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="relative bg-gradient-to-b from-black via-[#050b1a] to-black text-gray-400 pt-12 pb-6 overflow-hidden">
-
       {/* Gold Top Border */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
-
         {/* Column 1 - Brand */}
         <div>
           <h2 className="text-white text-xl font-semibold mb-4 tracking-wide">
-            VRS RealInvest
+            vrs realinvest{" "}
           </h2>
 
           <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
-            Trusted real estate investment partner across Australia,
-            delivering premium opportunities with confidence.
+            Trusted real estate investment partner across Australia, delivering
+            premium opportunities with confidence.
           </p>
 
           <div className="flex gap-3 mt-6">
@@ -54,7 +52,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/properties" className="hover:text-yellow-500 transition">
+              <Link
+                href="/properties"
+                className="hover:text-yellow-500 transition"
+              >
                 Properties
               </Link>
             </li>
@@ -64,7 +65,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-yellow-500 transition">
+              <Link
+                href="/contact"
+                className="hover:text-yellow-500 transition"
+              >
                 Contact
               </Link>
             </li>
@@ -73,9 +77,7 @@ export default function Footer() {
 
         {/* Column 3 - Contact */}
         <div>
-          <h3 className="text-white font-semibold mb-4 text-base">
-            Contact
-          </h3>
+          <h3 className="text-white font-semibold mb-4 text-base">Contact</h3>
 
           <div className="flex items-center gap-3 mb-3 text-sm hover:text-yellow-500 transition">
             <Phone size={16} />
@@ -97,7 +99,7 @@ export default function Footer() {
       {/* Bottom Divider */}
       <div className="border-t border-white/10 mt-8 pt-5 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
         <p className="text-gray-500">
-          © 2026 VRS RealInvest. All rights reserved.
+          © 2026 vrs realinvest. All rights reserved.
         </p>
 
         <div className="flex gap-6 mt-3 md:mt-0">
