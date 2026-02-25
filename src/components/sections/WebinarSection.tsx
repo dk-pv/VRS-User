@@ -12,14 +12,15 @@ export default function WebinarSection() {
   useEffect(() => {
     const fetchWebinars = async () => {
       try {
-        const res = await fetch(`${API}/api/webinars/active`);
+        // ✅ Updated endpoint
+        const res = await fetch(`${API}/api/webinars`);
         if (!res.ok) {
           setLoading(false);
           return;
         }
 
         const data = await res.json();
-        setWebinars(Array.isArray(data) ? data : [data]);
+        setWebinars(data);
       } catch (error) {
         console.error(error);
       } finally {
@@ -48,89 +49,54 @@ export default function WebinarSection() {
           </p>
         </div>
 
-        {/* STACKED WEBINARS */}
         <div className="space-y-12">
-          {webinars.map((webinar, index) => {
-            const formattedDate = new Date(webinar.date).toLocaleDateString();
-            const formattedTime = new Date(webinar.date).toLocaleTimeString(
-              [],
-              {
-                hour: "2-digit",
-                minute: "2-digit",
-              },
-            );
+          {webinars.map((webinar) => (
+            <div
+              key={webinar._id}
+              className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#0b1320] to-[#050b1a] shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-12"
+            >
+              <h3 className="text-2xl md:text-3xl text-white font-semibold mb-6">
+                {webinar.title}
+              </h3>
 
-            const statusColor =
-              webinar.status === "live"
-                ? "bg-red-600 animate-pulse"
-                : webinar.status === "upcoming"
-                  ? "bg-yellow-500 text-black"
-                  : "bg-gray-600";
+              <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-gray-300 mb-10">
 
-            return (
-              <div
-                key={index}
-                className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#0b1320] to-[#050b1a] shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-12"
-              >
-                {/* Status Badge */}
-                <div
-                  className={`absolute top-6 right-6 text-xs px-4 py-1 rounded-full text-white ${statusColor}`}
-                >
-                  {(webinar.status || "upcoming").toUpperCase()}{" "}
+                {/* Day */}
+                <div className="flex items-center gap-2">
+                  <Calendar size={18} className="text-yellow-500" />
+                  <span className="font-medium text-white">
+                    {webinar.day}
+                  </span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl text-white font-semibold mb-6">
-                  {webinar.title}
-                </h3>
-
-                <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-gray-300 mb-10">
-                  <div className="flex items-center gap-2">
-                    <Calendar size={18} className="text-yellow-500" />
-                    <span>{formattedDate}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Clock size={18} className="text-yellow-500" />
-                    <span>{formattedTime}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Video size={18} className="text-yellow-500" />
-                    <span>Google Meet</span>
-                  </div>
+                {/* Time */}
+                <div className="flex items-center gap-2">
+                  <Clock size={18} className="text-yellow-500" />
+                  <span>{webinar.time}</span>
                 </div>
 
-                <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-sm md:text-base">
-                  {webinar.description}
-                </p>
-
-                {/* Buttons */}
-                {webinar.status !== "ended" && (
-                  <a
-                    href={webinar.meetLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-yellow-500/40"
-                  >
-                    {webinar.status === "live"
-                      ? "Join Webinar Now"
-                      : "Register / Join"}
-                  </a>
-                )}
-
-                {webinar.status === "ended" && webinar.recordingLink && (
-                  <a
-                    href={webinar.recordingLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300"
-                  >
-                    Watch Recording
-                  </a>
-                )}
+                {/* Platform */}
+                <div className="flex items-center gap-2">
+                  <Video size={18} className="text-yellow-500" />
+                  <span>Google Meet</span>
+                </div>
               </div>
-            );
-          })}
+
+              <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-sm md:text-base">
+                {webinar.description}
+              </p>
+
+              {/* Join Button */}
+              <a
+                href={webinar.meetLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-yellow-500/40"
+              >
+                Join Webinar
+              </a>
+            </div>
+          ))}
         </div>
       </div>
 
