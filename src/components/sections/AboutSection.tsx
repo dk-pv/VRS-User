@@ -6,6 +6,7 @@ import { CheckCircle, Shield, Target, TrendingUp } from "lucide-react";
 export default function AboutSection() {
   return (
     <section className="bg-gradient-to-b from-[#0f172a] to-black text-white">
+      
       {/* ================= HERO / FOUNDER ================= */}
       <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div className="w-full">
@@ -19,14 +20,13 @@ export default function AboutSection() {
           />
         </div>
 
-        <div>
+        <div className="max-w-xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Create Real Freedom with Smart Property Investing
           </h2>
 
           <p className="text-gray-300 text-lg leading-relaxed mb-6">
-            At{" "}
-            <span className="text-gold-400 font-semibold">VRS RealInvest</span>,
+            At <span className="text-yellow-400 font-semibold">VRS RealInvest</span>,
             we help busy professionals build wealth through strategic Australian
             real estate investing.
           </p>
@@ -39,9 +39,8 @@ export default function AboutSection() {
           </p>
 
           <p className="text-gray-400 leading-relaxed">
-            Led by{" "}
-            <span className="text-white font-semibold">Sudhesh K Valappil</span>
-            , we represent you — the buyer — and guide you from strategy to
+            Led by <span className="text-white font-semibold">Sudhesh K Valappil</span>,
+            we represent you — the buyer — and guide you from strategy to
             settlement.
           </p>
         </div>
@@ -49,7 +48,7 @@ export default function AboutSection() {
 
       {/* ================= STATS ================= */}
       <div className="bg-[#111827] py-14">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { number: "70+", label: "Sold Properties" },
             { number: "50+", label: "Happy Clients" },
@@ -137,10 +136,7 @@ export default function AboutSection() {
       {/* ================= MISSION ================= */}
       <SectionWrapper title="Our Mission">
         <p className="text-gray-300 text-lg leading-relaxed text-center">
-          To help{" "}
-          <span className="text-yellow-400 font-bold">
-            10,000 busy professionals
-          </span>
+          To help <span className="text-yellow-400 font-bold">10,000 busy professionals</span>
           grow long-term wealth through strategic real estate investments across
           Australia — with clarity, confidence, and a proven process.
         </p>
@@ -200,24 +196,42 @@ export default function AboutSection() {
           ))}
         </div>
       </SectionWrapper>
+
+      {/* ================= FINAL CTA ================= */}
+      <div className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-gradient-to-r from-[#0f1b2e] to-[#050b1a] border border-yellow-500/20 rounded-3xl p-10 md:p-16 text-center shadow-2xl">
+            <h3 className="text-2xl md:text-4xl text-white font-semibold mb-6">
+              Ready to Start Your Investment Journey?
+            </h3>
+
+            <p className="text-gray-400 mb-10 text-sm md:text-lg max-w-2xl mx-auto">
+              Partner with VRS RealInvest and secure premium, data-driven
+              property opportunities across Australia with clarity and
+              confidence.
+            </p>
+
+            <a
+              href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-yellow-500 text-black px-10 py-4 rounded-xl font-semibold hover:bg-yellow-400 transition duration-300"
+            >
+              Get Free Consultation
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
 /* ================= REUSABLE COMPONENTS ================= */
 
-function SectionWrapper({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function SectionWrapper({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-20">
-      <h3 className="text-3xl md:text-4xl font-bold mb-10 text-center">
-        {title}
-      </h3>
+    <div className="max-w-7xl mx-auto px-6 py-20">
+      <h3 className="text-3xl md:text-4xl font-bold mb-10 text-center">{title}</h3>
       {children}
     </div>
   );
@@ -236,15 +250,7 @@ function List({ items }: { items: string[] }) {
   );
 }
 
-function Feature({
-  icon,
-  title,
-  children,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  children: React.ReactNode;
-}) {
+function Feature({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
     <div className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition">
       <div className="text-yellow-400 mb-4">{icon}</div>
