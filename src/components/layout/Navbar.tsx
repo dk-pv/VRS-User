@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/app/logo/4.png";
 import { useState, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -20,7 +22,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const pathname = usePathname();
-  const router = useRouter();
 
   // Scroll background effect
   useEffect(() => {
@@ -47,24 +48,30 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-lg md:text-xl font-semibold tracking-wide text-white hover:text-yellow-400 transition"
-        >
-          vrs realinvest
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src={logo}
+            alt="VRS RealInvest Logo"
+            className="h-9 w-auto object-contain"
+            priority
+          />
+          <span className="hidden sm:block text-lg font-semibold tracking-wide text-white hover:text-yellow-400 transition">
+              VRS realinvest
+          </span>
         </Link>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-10">
           {navLinks.map((link) => {
             const isActive =
-              pathname === link.href || (link.href === "/" && pathname === "/");
+              pathname === link.href ||
+              (link.href === "/" && pathname === "/");
 
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative text-sm tracking-wide transition ${
+                className={`relative text-sm tracking-wide transition group ${
                   isActive
                     ? "text-yellow-400"
                     : "text-white hover:text-yellow-400"
