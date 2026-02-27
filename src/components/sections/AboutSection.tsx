@@ -1,192 +1,255 @@
 "use client";
 
-import {
-  Building2,
-  Users,
-  TrendingUp,
-  Award,
-  Shield,
-  Target,
-  HeartHandshake,
-  Clock,
-  Gem,
-  LineChart,
-  Briefcase,
-  Handshake,
-} from "lucide-react";
+import Image from "next/image";
+import { CheckCircle, Shield, Target, TrendingUp } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section className="relative bg-gradient-to-b from-black via-[#050b1a] to-black py-20 overflow-hidden">
-      {/* Subtle Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.05),transparent_70%)]"></div>
+    <section className="bg-gradient-to-b from-[#0f172a] to-black text-white">
+      {/* ================= HERO / FOUNDER ================= */}
+      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+        <div className="w-full">
+          <Image
+            src="https://tagmango.com/staticassets/-jpg-68-e1d436dafac6deeea15fa1a751be9c62.webp"
+            alt="Sudhesh K Valappil - Founder of VRS realinvest"
+            width={700}
+            height={900}
+            className="w-full h-auto rounded-2xl shadow-2xl object-contain"
+            priority
+          />
+        </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
-
-        {/* ===================== */}
-        {/* WHO WE ARE */}
-        {/* ===================== */}
-        <div className="text-center mb-16">
-          <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
-          <h2 className="text-3xl md:text-4xl font-medium text-white">
-            Who We Are
+        <div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Create Real Freedom with Smart Property Investing
           </h2>
-          <p className="text-gray-400 mt-4 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
-            VRS Real Invest is your trusted partner in real estate investment
-            across Australia. With over 15 years of experience, we specialize in
-            identifying premium investment opportunities that deliver
-            exceptional returns.
-          </p>
-        </div>
 
-        {/* Mission */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 mb-16 backdrop-blur-sm">
-          <h3 className="text-white text-lg font-medium mb-3">Our Mission</h3>
-          <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-            To empower investors with access to Australia’s most prestigious
-            properties, providing expert guidance, transparent processes, and
-            unparalleled service throughout every transaction.
-          </p>
-        </div>
-
-        {/* ===================== */}
-        {/* STATS */}
-        {/* ===================== */}
-        <div className="grid md:grid-cols-4 gap-6 mb-20">
-          {[
-            { icon: <Building2 size={20} />, value: "500+", label: "Properties Sold" },
-            { icon: <Users size={20} />, value: "1000+", label: "Happy Clients" },
-            { icon: <TrendingUp size={20} />, value: "$2B+", label: "Total Sales" },
-            { icon: <Award size={20} />, value: "15+", label: "Years Experience" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 transition"
-            >
-              <div className="bg-white/10 p-2 rounded-full w-fit mx-auto mb-3 text-yellow-500">
-                {item.icon}
-              </div>
-              <h4 className="text-xl font-semibold text-white">{item.value}</h4>
-              <p className="text-gray-400 text-sm mt-1">{item.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* ===================== */}
-        {/* WHY CHOOSE US */}
-        {/* ===================== */}
-        <div className="text-center mb-14">
-          <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
-          <h2 className="text-3xl md:text-4xl font-medium text-white">
-            Why Choose Us
-          </h2>
-          <p className="text-gray-400 mt-2 text-sm">
-            Your success is our priority
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 mb-24">
-          {[
-            { icon: <Shield size={20} />, title: "Trusted & Verified" },
-            { icon: <Target size={20} />, title: "Premium Locations" },
-            { icon: <HeartHandshake size={20} />, title: "Personalized Service" },
-            { icon: <TrendingUp size={20} />, title: "High ROI" },
-            { icon: <Award size={20} />, title: "15+ Years Experience" },
-            { icon: <Clock size={20} />, title: "Fast Process" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-gradient-to-br from-[#0c1220] to-[#0f1b2e] border border-white/10 rounded-2xl p-6 text-left hover:border-yellow-500/40 transition"
-            >
-              <div className="bg-white/10 p-2 rounded-lg w-fit mb-4 text-yellow-500">
-                {item.icon}
-              </div>
-              <h3 className="text-white font-medium">{item.title}</h3>
-            </div>
-          ))}
-        </div>
-
-        {/* ===================== */}
-        {/* OUR CORE VALUES */}
-        {/* ===================== */}
-        <div className="text-center mb-14">
-          <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
-          <h2 className="text-3xl md:text-4xl font-medium text-white">
-            Our Core Values
-          </h2>
-          <p className="text-gray-400 mt-2 text-sm">
-            Principles that guide every investment decision
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-6 mb-24">
-          {[
-            { icon: <Gem size={20} />, title: "Excellence" },
-            { icon: <Handshake size={20} />, title: "Integrity" },
-            { icon: <LineChart size={20} />, title: "Growth Focused" },
-            { icon: <Briefcase size={20} />, title: "Professionalism" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 transition"
-            >
-              <div className="text-yellow-500 mb-3 flex justify-center">
-                {item.icon}
-              </div>
-              <h4 className="text-white font-medium">{item.title}</h4>
-            </div>
-          ))}
-        </div>
-
-        {/* ===================== */}
-        {/* INVESTMENT APPROACH */}
-        {/* ===================== */}
-        <div className="text-center mb-14">
-          <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
-          <h2 className="text-3xl md:text-4xl font-medium text-white">
-            Our Investment Approach
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 mb-24">
-          {[
-            "Market Research & Analysis",
-            "Premium Property Selection",
-            "Risk Assessment & Strategy",
-            "Legal & Compliance Review",
-            "Acquisition & Negotiation",
-            "Ongoing Portfolio Support",
-          ].map((step, i) => (
-            <div
-              key={i}
-              className="bg-gradient-to-br from-[#0c1220] to-[#0f1b2e] border border-white/10 rounded-2xl p-6 text-center hover:border-yellow-500/40 transition"
-            >
-              <div className="text-yellow-500 font-semibold mb-2">
-                Step {i + 1}
-              </div>
-              <p className="text-gray-300 text-sm">{step}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* ===================== */}
-        {/* PREMIUM CTA */}
-        {/* ===================== */}
-        <div className="bg-gradient-to-r from-[#0f1b2e] to-[#050b1a] border border-yellow-500/20 rounded-3xl p-10 text-center">
-          <h3 className="text-2xl md:text-3xl text-white font-medium mb-4">
-            Ready to Start Your Investment Journey?
-          </h3>
-          <p className="text-gray-400 mb-8 text-sm md:text-base">
-            Partner with VRS Real Invest and secure premium real estate
-            opportunities today.
+          <p className="text-gray-300 text-lg leading-relaxed mb-6">
+            At{" "}
+            <span className="text-gold-400 font-semibold">VRS RealInvest</span>,
+            we help busy professionals build wealth through strategic Australian
+            real estate investing.
           </p>
 
-          <button className="bg-yellow-500 text-black px-8 py-3 rounded-lg font-medium hover:bg-yellow-400 transition">
-            Get Free Consultation
-          </button>
-        </div>
+          <p className="text-gray-300 text-lg leading-relaxed mb-6">
+            We’re a Buyer’s Agent and Real Estate Coaching team focused on one
+            thing: helping you purchase the right investment property with
+            clarity, confidence, and a low-risk approach — without wasting
+            months researching or making costly mistakes.
+          </p>
 
+          <p className="text-gray-400 leading-relaxed">
+            Led by{" "}
+            <span className="text-white font-semibold">Sudhesh K Valappil</span>
+            , we represent you — the buyer — and guide you from strategy to
+            settlement.
+          </p>
+        </div>
       </div>
+
+      {/* ================= STATS ================= */}
+      <div className="bg-[#111827] py-14">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { number: "70+", label: "Sold Properties" },
+            { number: "50+", label: "Happy Clients" },
+            { number: "250+", label: "5-Star Google Reviews" },
+            { number: "100+", label: "Free Webinars Conducted" },
+          ].map((stat, i) => (
+            <div key={i}>
+              <h3 className="text-4xl font-bold text-yellow-400">
+                {stat.number}
+              </h3>
+              <p className="text-gray-400 mt-2">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ================= WHO WE HELP ================= */}
+      <SectionWrapper title="Who We Help">
+        <List
+          items={[
+            "Busy professionals (medical, IT, engineering, business owners)",
+            "First-time investors who want guidance",
+            "Home owners building a long-term portfolio",
+            "Families seeking passive income and better lifestyle",
+          ]}
+        />
+      </SectionWrapper>
+
+      {/* ================= WHAT WE DO ================= */}
+      <SectionWrapper title="What We Do">
+        <List
+          items={[
+            "Strategy session based on your goals & borrowing capacity",
+            "Suburb & property research using data and fundamentals",
+            "Shortlisting only suitable opportunities",
+            "Risk checks, rental demand & growth drivers analysis",
+            "Negotiation & contract support",
+            "Ongoing guidance for smarter future decisions",
+          ]}
+        />
+      </SectionWrapper>
+
+      {/* ================= OUR APPROACH ================= */}
+      <SectionWrapper title="Our Approach (Simple, Practical, Low-Risk)">
+        <List
+          items={[
+            "Low-risk suburbs with strong owner-occupier demand",
+            "Strong rental fundamentals & tight vacancy rates",
+            "Growth backed by infrastructure & supply-demand data",
+            "Strategy-matched properties — not hype-driven picks",
+            "Every recommendation explained in plain English",
+          ]}
+        />
+      </SectionWrapper>
+
+      {/* ================= PROMISE ================= */}
+      <SectionWrapper title="Our Promise: Trust, Transparency & No Pressure">
+        <List
+          items={[
+            "Honest advice (even if that means telling you to wait)",
+            "Clear communication & regular updates",
+            "Professional documented processes",
+            "Your goals always come first",
+          ]}
+        />
+      </SectionWrapper>
+
+      {/* ================= WHO WE ARE ================= */}
+      <SectionWrapper title="Who We Are">
+        <p className="text-gray-300 leading-relaxed">
+          VRS RealInvest is an Australian buyer’s agency and real estate
+          coaching business led by Sudhesh K Valappil. We help busy
+          professionals and families build wealth and create passive income
+          through smart, low-risk property investment.
+        </p>
+
+        <p className="text-gray-300 mt-4 leading-relaxed">
+          We’re not selling properties — we represent you, the buyer. Our
+          approach is research-backed, numbers-driven, and focused on long-term
+          fundamentals like rental demand, vacancy rates, risk checks, and
+          growth drivers.
+        </p>
+      </SectionWrapper>
+
+      {/* ================= MISSION ================= */}
+      <SectionWrapper title="Our Mission">
+        <p className="text-gray-300 text-lg leading-relaxed text-center">
+          To help{" "}
+          <span className="text-yellow-400 font-bold">
+            10,000 busy professionals
+          </span>
+          grow long-term wealth through strategic real estate investments across
+          Australia — with clarity, confidence, and a proven process.
+        </p>
+      </SectionWrapper>
+
+      {/* ================= WHY CHOOSE US ================= */}
+      <SectionWrapper title="Why Choose Us">
+        <div className="grid md:grid-cols-2 gap-6">
+          <Feature icon={<Shield />} title="Trusted & Verified">
+            Transparent, compliant, and buyer-focused process.
+          </Feature>
+          <Feature icon={<Target />} title="Personalised Strategy">
+            Tailored to your age, goals, and financial position.
+          </Feature>
+          <Feature icon={<TrendingUp />} title="High ROI Focus">
+            Secure investment-grade assets with long-term performance.
+          </Feature>
+          <Feature icon={<CheckCircle />} title="10+ Years Experience">
+            Proven negotiation skills & market expertise.
+          </Feature>
+        </div>
+      </SectionWrapper>
+
+      {/* ================= CORE VALUES ================= */}
+      <SectionWrapper title="Our Core Values">
+        <List
+          items={[
+            "Excellence – High standards in research & service",
+            "Integrity – Doing what’s right always",
+            "Growth-Focused – Building long-term wealth",
+            "Professionalism – Clear process & communication",
+          ]}
+        />
+      </SectionWrapper>
+
+      {/* ================= INVESTMENT PROCESS ================= */}
+      <SectionWrapper title="Our Investment Approach">
+        <div className="space-y-6">
+          {[
+            "Understanding Your Requirements",
+            "Formalising the Agreement",
+            "Budget Confirmation & Loan Pre-Approval",
+            "Research & Due Diligence",
+            "Suburb Presentation",
+            "Property Sourcing",
+            "Negotiation & Contract Review",
+            "Building & Pest Inspection",
+            "Contingency Management",
+            "Settlement & Property Handover",
+          ].map((step, i) => (
+            <div key={i} className="flex items-start gap-4">
+              <div className="bg-yellow-400 text-black font-bold w-8 h-8 flex items-center justify-center rounded-full">
+                {i + 1}
+              </div>
+              <p className="text-gray-300">{step}</p>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
     </section>
+  );
+}
+
+/* ================= REUSABLE COMPONENTS ================= */
+
+function SectionWrapper({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="max-w-6xl mx-auto px-6 py-20">
+      <h3 className="text-3xl md:text-4xl font-bold mb-10 text-center">
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
+
+function List({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-4 max-w-3xl mx-auto">
+      {items.map((item, i) => (
+        <li key={i} className="flex items-start gap-3 text-gray-300">
+          <CheckCircle className="text-yellow-400 mt-1" size={18} />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Feature({
+  icon,
+  title,
+  children,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="bg-[#111827] p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition">
+      <div className="text-yellow-400 mb-4">{icon}</div>
+      <h4 className="text-xl font-semibold mb-2">{title}</h4>
+      <p className="text-gray-400">{children}</p>
+    </div>
   );
 }

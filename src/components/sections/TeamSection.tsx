@@ -25,45 +25,56 @@ export default function TeamSection() {
 
   if (teamMembers.length === 0) return null;
 
-  return (
-    <section className="bg-black py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <div className="w-12 h-[2px] bg-white mx-auto mb-4"></div>
-          <h2 className="text-3xl md:text-4xl font-medium text-white">
-            Meet Our Team
-          </h2>
-          <p className="text-gray-400 mt-2 text-sm">
-            Expert professionals dedicated to your success
-          </p>
-        </div>
+ return (
+  <section className="bg-gradient-to-b from-black to-[#0f172a] py-28">
+    <div className="max-w-7xl mx-auto px-6">
 
-        <div className="grid md:grid-cols-4 gap-6">
-          {teamMembers.map((member) => (
-            <div
-              key={member._id}
-              className="relative group rounded-2xl overflow-hidden border border-white/10"
-            >
-              <img
-                src={member.image}
-                className="w-full h-[300px] object-cover group-hover:scale-105 transition duration-700"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
-
-              <div className="absolute bottom-0 w-full p-5 text-center">
-                <h4 className="text-white font-medium">
-                  {member.name}
-                </h4>
-                <p className="text-gray-400 text-sm mb-2">
-                  {member.role}
-                </p>
-                <div className="w-8 h-[2px] bg-white mx-auto"></div>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Header */}
+      <div className="text-center mb-20">
+        <div className="w-16 h-[3px] bg-yellow-400 mx-auto mb-6"></div>
+        <h2 className="text-4xl md:text-5xl font-bold text-white">
+          Meet Our Team
+        </h2>
+        <p className="text-gray-400 mt-4 text-lg">
+          Experienced professionals dedicated to helping you create real freedom
+        </p>
       </div>
-    </section>
-  );
+
+      {/* Grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        {teamMembers.map((member) => (
+          <div
+            key={member._id}
+            className="relative group rounded-3xl overflow-hidden border border-white/10 
+                       hover:border-yellow-400/60 transition-all duration-500
+                       shadow-lg hover:shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
+          >
+            {/* Image */}
+            <img
+              src={member.image}
+              alt={member.name}
+              className="w-full h-[420px] object-cover 
+                         group-hover:scale-110 transition duration-700"
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t 
+                            from-black via-black/70 to-transparent"></div>
+
+            {/* Content */}
+            <div className="absolute bottom-0 w-full p-8 text-center">
+              <h4 className="text-white text-xl font-semibold tracking-wide">
+                {member.name}
+              </h4>
+              <p className="text-gray-400 text-base mt-2">
+                {member.role}
+              </p>
+              <div className="w-12 h-[2px] bg-yellow-400 mx-auto mt-4"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 }
