@@ -123,26 +123,26 @@ export default function SecuredProperties() {
   return (
     <>
       {/* ================= SECTION ================= */}
-      <section className="bg-black py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="w-12 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
-            <h2 className="text-3xl md:text-4xl font-medium text-white">
+      <section className="bg-black py-14">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <div className="w-10 h-[2px] bg-yellow-500 mx-auto mb-3"></div>
+            <h2 className="text-2xl md:text-3xl font-medium text-white">
               Secured Properties
             </h2>
-            <p className="text-gray-400 mt-2 text-sm">
+            <p className="text-gray-400 mt-1 text-xs md:text-sm">
               Successfully secured for our valued clients
             </p>
           </div>
 
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
+            className="flex gap-5 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
           >
             {securedProperties.map((property) => (
               <div
                 key={property._id}
-                className="relative min-w-[380px] md:min-w-[420px] h-[380px] rounded-2xl overflow-hidden group flex-shrink-0"
+                className="relative min-w-[320px] md:min-w-[340px] h-[300px] md:h-[320px] rounded-xl overflow-hidden group flex-shrink-0"
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition duration-700"
@@ -153,20 +153,20 @@ export default function SecuredProperties() {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                <div className="absolute top-4 right-4 bg-white text-black px-4 py-1.5 rounded-full text-xs font-medium flex items-center gap-1">
-                  <CheckCircle size={14} />
+                <div className="absolute top-3 right-3 bg-white text-black px-3 py-1 rounded-full text-[10px] font-medium flex items-center gap-1">
+                  <CheckCircle size={12} />
                   Secured
                 </div>
 
-                <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-lg font-medium">{property.title}</h3>
+                <div className="absolute bottom-5 left-5 text-white">
+                  <h3 className="text-base font-medium">{property.title}</h3>
 
                   <button
                     onClick={() => {
                       setSelectedProperty(property);
                       setCurrentImage(0);
                     }}
-                    className="mt-3 bg-yellow-500 text-black px-4 py-2 text-xs rounded-sm font-medium hover:bg-yellow-400 transition"
+                    className="mt-2 bg-yellow-500 text-black px-3 py-1.5 text-[11px] rounded-sm font-medium hover:bg-yellow-400 transition"
                   >
                     View Details
                   </button>
@@ -184,7 +184,7 @@ export default function SecuredProperties() {
           onClick={() => setSelectedProperty(null)}
         >
           <div
-            className="bg-[#111] max-w-5xl w-full rounded-2xl overflow-hidden relative"
+            className="bg-[#111] max-w-4xl w-full rounded-xl overflow-hidden relative"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -196,13 +196,13 @@ export default function SecuredProperties() {
             </button>
 
             {/* Gallery Slider */}
-            <div className="relative h-[400px]">
+            <div className="relative h-[320px] md:h-[340px]">
+              {" "}
               <img
                 src={selectedProperty.galleryImages[currentImage]}
                 className="w-full h-full object-cover"
                 alt="property"
               />
-
               {selectedProperty.galleryImages.length > 1 && (
                 <>
                   <button

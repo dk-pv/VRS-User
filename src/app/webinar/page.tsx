@@ -2,12 +2,18 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WebinarSection from "@/components/sections/WebinarSection";
 
-export default function webinar() {
+export default function WebinarPage() {
   return (
-    <main className=" bg-black text-white min-h-screen">
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      
       <Navbar />
-      <WebinarSection />
+
+      <main className="flex-1 pt-24">
+        <WebinarSection />
+      </main>
+
       <Footer />
-    </main>
+
+    </div>
   );
 }

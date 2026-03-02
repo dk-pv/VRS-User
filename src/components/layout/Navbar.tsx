@@ -23,7 +23,6 @@ export default function Navbar() {
 
   const pathname = usePathname();
 
-  // Scroll background effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -33,7 +32,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -46,22 +44,20 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src={logo}
             alt="VRS RealInvest Logo"
-            className="h-9 w-auto object-contain"
+            className="h-7 w-auto object-contain"
             priority
           />
-          <span className="hidden sm:block text-lg font-semibold tracking-wide text-white hover:text-yellow-400 transition">
-              VRS realinvest
-          </span>
+        
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-10">
+        <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -71,7 +67,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative text-sm tracking-wide transition group ${
+                className={`relative text-xs tracking-wide transition group ${
                   isActive
                     ? "text-yellow-400"
                     : "text-white hover:text-yellow-400"
@@ -80,7 +76,7 @@ export default function Navbar() {
                 {link.name}
 
                 <span
-                  className={`absolute left-0 -bottom-2 h-[2px] bg-yellow-400 transition-all duration-300 ${
+                  className={`absolute left-0 -bottom-1.5 h-[2px] bg-yellow-400 transition-all duration-300 ${
                     isActive ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -95,7 +91,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="text-white hover:text-yellow-400 transition"
           >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -103,7 +99,7 @@ export default function Navbar() {
       {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
-          <div className="flex flex-col px-6 py-6 space-y-5">
+          <div className="flex flex-col px-6 py-4 space-y-4">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

@@ -56,64 +56,65 @@ export default function WebinarSection() {
   if (loading || webinars.length === 0) return null;
 
   return (
-    <section className="relative bg-black py-16 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        {/* Section Header */}
-        <div className="mb-12">
-          <div className="w-10 h-[2px] bg-yellow-500 mx-auto mb-3"></div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-wide">
+    <section className="relative bg-black py-14 overflow-hidden">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="w-8 h-[2px] bg-yellow-500 mx-auto mb-2"></div>
+          <h2 className="text-xl md:text-2xl font-semibold text-white tracking-wide">
             Exclusive Investment Webinars
           </h2>
-          <p className="text-gray-400 mt-2 text-sm">
+          <p className="text-gray-400 mt-1 text-xs md:text-sm">
             Premium real estate insights across Australia
           </p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {webinars.map((webinar) => {
             const eventDate = new Date(webinar.startDateTime);
 
             return (
               <div
                 key={webinar._id}
-                className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#0b1320]/90 to-[#050b1a]/90 backdrop-blur-md shadow-[0_15px_40px_rgba(0,0,0,0.6)] p-8"
+                className="rounded-xl border border-white/10 bg-gradient-to-br from-[#0b1320]/90 to-[#050b1a]/90 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)] p-6"
               >
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl text-white font-semibold mb-4">
+                <h3 className="text-lg md:text-xl text-white font-semibold mb-3">
                   {webinar.title}
                 </h3>
 
                 {/* Date */}
-                <div className="flex items-center justify-center gap-2 mb-6 text-gray-300 text-sm">
-                  <Calendar size={16} className="text-yellow-500" />
+                <div className="flex items-center justify-center gap-2 mb-4 text-gray-300 text-xs md:text-sm">
+                  <Calendar size={14} className="text-yellow-500" />
                   <span className="font-medium text-white">
                     {formatDateOnly(eventDate, webinar.australiaTimeZone)}
                   </span>
                 </div>
 
-                {/* Timezone Grid */}
-                <div className="mb-6">
-                  <div className="flex items-center justify-center gap-2 mb-3 text-sm">
-                    <Clock size={16} className="text-yellow-500" />
+                {/* Timezones */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-center gap-2 mb-2 text-xs md:text-sm">
+                    <Clock size={14} className="text-yellow-500" />
                     <span className="text-white font-medium">
                       Across Australia
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs md:text-sm">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-[11px] md:text-xs">
                     {AU_TIMEZONES.map((zone) => {
                       const isBase = zone.tz === webinar.australiaTimeZone;
 
                       return (
                         <div
                           key={zone.tz}
-                          className={`rounded-lg py-2 px-3 transition-all duration-300 ${
+                          className={`rounded-md py-1.5 px-2 transition-all duration-300 ${
                             isBase
-                              ? "bg-yellow-500 text-black font-semibold shadow-lg"
+                              ? "bg-yellow-500 text-black font-semibold shadow-md"
                               : "bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10"
                           }`}
                         >
-                          {zone.label} – {formatTimeOnly(eventDate, zone.tz)}
+                          {zone.label} –{" "}
+                          {formatTimeOnly(eventDate, zone.tz)}
                         </div>
                       );
                     })}
@@ -121,13 +122,13 @@ export default function WebinarSection() {
                 </div>
 
                 {/* Platform */}
-                <div className="flex items-center justify-center gap-2 text-gray-400 text-sm mb-6">
-                  <Video size={16} className="text-yellow-500" />
+                <div className="flex items-center justify-center gap-2 text-gray-400 text-xs mb-4">
+                  <Video size={14} className="text-yellow-500" />
                   <span>Live on Google Meet</span>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-400 max-w-xl mx-auto mb-6 text-sm leading-relaxed">
+                <p className="text-gray-400 max-w-lg mx-auto mb-4 text-xs md:text-sm leading-relaxed">
                   {webinar.description}
                 </p>
 
@@ -136,7 +137,7 @@ export default function WebinarSection() {
                   href={webinar.meetLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-yellow-500/40 shadow-md"
+                  className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-5 py-2 rounded-md text-xs md:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-yellow-500/40 shadow-sm"
                 >
                   Join Webinar
                 </a>
