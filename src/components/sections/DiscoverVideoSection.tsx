@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { PlayCircle } from "lucide-react";
+import { PlayCircle, Volume2, VolumeX } from "lucide-react";
 
 export default function DiscoverVideoSection() {
   const API = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [data, setData] = useState<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,15 +37,30 @@ export default function DiscoverVideoSection() {
   const playVideo = () => {
     iframeRef.current?.contentWindow?.postMessage(
       '{"event":"command","func":"playVideo","args":""}',
-      "*"
+      "*",
     );
   };
 
   const pauseVideo = () => {
     iframeRef.current?.contentWindow?.postMessage(
       '{"event":"command","func":"pauseVideo","args":""}',
-      "*"
+      "*",
     );
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    if (!iframeRef.current) return;
+
+    const command = isMuted ? "unMute" : "mute";
+
+    iframeRef.current.contentWindow?.postMessage(
+      `{"event":"command","func":"${command}","args":""}`,
+      "*",
+    );
+
+    setIsMuted(!isMuted);
   };
 
   return (
@@ -65,7 +82,6 @@ export default function DiscoverVideoSection() {
         onClick={() => window.open(data.videoUrl, "_blank")}
       >
         <div className="relative w-full aspect-video">
-          {/* Video (Always Mounted) */}
           <iframe
             ref={iframeRef}
             src={embedUrl}
@@ -73,16 +89,22 @@ export default function DiscoverVideoSection() {
             allow="autoplay; encrypted-media"
           />
 
-          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition duration-300"></div>
 
-          {/* Play Icon */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <PlayCircle
               size={55}
               className="text-white opacity-80 group-hover:text-yellow-500 transition duration-300"
             />
           </div>
+
+          {/* Mute / Unmute Button */}
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm p-2 rounded-full text-white hover:bg-black/80 transition"
+          >
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+          </button>
         </div>
       </div>
 
