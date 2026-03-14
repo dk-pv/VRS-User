@@ -94,6 +94,10 @@ export default function HeroSection() {
             in the Right Location for the Right Price
           </span>
         </h1>
+        <p className="mt-5 text-gray-200 text-sm md:text-base max-w-2xl leading-relaxed">
+          We help busy professionals buy investment properties with strategy,
+          clarity, and confidence.
+        </p>
 
         <div className="mt-6 flex gap-3 flex-wrap justify-center">
           <button
