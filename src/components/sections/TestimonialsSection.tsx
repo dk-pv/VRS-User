@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import {
+  Star,
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 
 interface TextReview {
   _id: string;
@@ -24,7 +31,7 @@ export default function TestimonialsSection() {
   const [reviews, setReviews] = useState<TextReview[]>([]);
   const [videos, setVideos] = useState<VideoReview[]>([]);
   const [index, setIndex] = useState(0);
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [mutedVideos, setMutedVideos] = useState<{ [key: string]: boolean }>({});
 
   const getYoutubeId = (url: string): string | null => {
     const regExp =
@@ -35,52 +42,69 @@ export default function TestimonialsSection() {
 
   useEffect(() => {
     if (!API) return;
+
     const fetchText = async () => {
       const res = await fetch(`${API}/api/text-testimonials`);
       const data = await res.json();
       setReviews(data);
     };
-    fetchText();
-  }, [API]);
 
-  useEffect(() => {
-    if (!API) return;
     const fetchVideos = async () => {
       const res = await fetch(`${API}/api/video-testimonials`);
       const data = await res.json();
       setVideos(data);
+
+      // default mute
+      const muteState: any = {};
+      data.forEach((v: VideoReview) => {
+        muteState[v._id] = true;
+      });
+      setMutedVideos(muteState);
     };
+
+    fetchText();
     fetchVideos();
   }, [API]);
 
   useEffect(() => {
     if (reviews.length === 0) return;
+
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % reviews.length);
     }, 5000);
+
     return () => clearInterval(interval);
   }, [reviews]);
-
-  useEffect(() => {
-    if (activeVideo) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveVideo(null);
-    };
-
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [activeVideo]);
 
   const prevSlide = () =>
     setIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
 
   const nextSlide = () =>
     setIndex((prev) => (prev + 1) % reviews.length);
+
+  const sendCommand = (id: string, command: string) => {
+    const iframe = document.getElementById(id) as HTMLIFrameElement;
+
+    iframe?.contentWindow?.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: command,
+        args: [],
+      }),
+      "*"
+    );
+  };
+
+  const toggleMute = (videoId: string, iframeId: string) => {
+    const isMuted = mutedVideos[videoId];
+
+    sendCommand(iframeId, isMuted ? "unMute" : "mute");
+
+    setMutedVideos((prev) => ({
+      ...prev,
+      [videoId]: !isMuted,
+    }));
+  };
 
   return (
     <section className="relative bg-gradient-to-b from-black via-[#071224] to-black py-14 overflow-hidden">
@@ -167,40 +191,34 @@ export default function TestimonialsSection() {
               const videoId = getYoutubeId(video.youtubeLink);
               if (!videoId) return null;
 
+              const iframeId = `preview-${video._id}`;
+
               return (
                 <div
                   key={video._id}
-                  onClick={() => setActiveVideo(videoId)}
+                  onClick={() =>
+                    window.open(video.youtubeLink, "_blank")
+                  }
                   className="relative min-w-[320px] md:min-w-[340px] h-[360px] md:h-[380px] rounded-xl overflow-hidden border border-white/10 group flex-shrink-0 cursor-pointer"
                 >
                   <iframe
-                    id={`preview-${video._id}`}
+                    id={iframeId}
                     className="absolute inset-0 w-full h-full"
                     src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1&controls=0&rel=0&modestbranding=1&mute=1`}
                     allow="autoplay; encrypted-media"
                   />
 
+                  {/* Hover play */}
                   <div
                     className="absolute inset-0 z-20"
-                    onMouseEnter={() => {
-                      const iframe = document.getElementById(
-                        `preview-${video._id}`
-                      ) as HTMLIFrameElement;
-
-                      iframe?.contentWindow?.postMessage(
-                        '{"event":"command","func":"playVideo","args":""}',
-                        "*"
-                      );
-                    }}
+                    onMouseEnter={() => sendCommand(iframeId, "playVideo")}
                     onMouseLeave={() => {
-                      const iframe = document.getElementById(
-                        `preview-${video._id}`
-                      ) as HTMLIFrameElement;
-
-                      iframe?.contentWindow?.postMessage(
-                        '{"event":"command","func":"pauseVideo","args":""}',
-                        "*"
-                      );
+                      sendCommand(iframeId, "pauseVideo");
+                      sendCommand(iframeId, "mute");
+                      setMutedVideos((prev) => ({
+                        ...prev,
+                        [video._id]: true,
+                      }));
                     }}
                   />
 
@@ -210,29 +228,24 @@ export default function TestimonialsSection() {
                     <h4 className="font-medium text-base">{video.name}</h4>
                     <p className="text-gray-300 text-xs">{video.role}</p>
                   </div>
+
+                  {/* MUTE BUTTON */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMute(video._id, iframeId);
+                    }}
+                    className="absolute top-4 right-4 z-30 bg-black/60 p-2 rounded-full hover:bg-black/80 transition"
+                  >
+                    {mutedVideos[video._id] ? (
+                      <VolumeX size={18} className="text-white" />
+                    ) : (
+                      <Volume2 size={18} className="text-white" />
+                    )}
+                  </button>
                 </div>
               );
             })}
-          </div>
-        )}
-
-        {/* MODAL */}
-        {activeVideo && (
-          <div
-            className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50"
-            onClick={() => setActiveVideo(null)}
-          >
-            <div
-              className="w-[90%] md:w-[75%] h-[65vh]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <iframe
-                className="w-full h-full rounded-xl shadow-2xl"
-                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&controls=1&rel=0`}
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-            </div>
           </div>
         )}
       </div>
