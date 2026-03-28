@@ -13,12 +13,10 @@ import logo from "@/app/logo/4.png";
 export default function Footer() {
   return (
     <footer className="relative bg-gradient-to-b from-black via-[#050b1a] to-black text-gray-400 pt-8 pb-4 overflow-hidden">
-      
       {/* Gold Top Border */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
 
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6 items-start">
-
         {/* Column 1 - Brand */}
         <div className="space-y-3">
           <Image
@@ -30,8 +28,8 @@ export default function Footer() {
           />
 
           <p className="text-xs leading-snug text-gray-400 max-w-sm">
-            Trusted real estate investment partner across Australia,
-            delivering premium opportunities with clarity and confidence.
+            Trusted real estate investment partner across Australia, delivering
+            premium opportunities with clarity and confidence.
           </p>
 
           <div className="flex gap-2 pt-1">
@@ -66,9 +64,7 @@ export default function Footer() {
 
         {/* Column 2 - Quick Links */}
         <div className="space-y-3">
-          <h3 className="text-white font-semibold text-sm">
-            Quick Links
-          </h3>
+          <h3 className="text-white font-semibold text-sm">Quick Links</h3>
 
           <ul className="space-y-1.5 text-xs">
             <li>
@@ -77,7 +73,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/properties" className="hover:text-yellow-500 transition">
+              <Link
+                href="/properties"
+                className="hover:text-yellow-500 transition"
+              >
                 Properties
               </Link>
             </li>
@@ -87,7 +86,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-yellow-500 transition">
+              <Link
+                href="/contact"
+                className="hover:text-yellow-500 transition"
+              >
                 Contact
               </Link>
             </li>
@@ -96,9 +98,7 @@ export default function Footer() {
 
         {/* Column 3 - Contact */}
         <div className="space-y-3">
-          <h3 className="text-white font-semibold text-sm">
-            Contact
-          </h3>
+          <h3 className="text-white font-semibold text-sm">Contact</h3>
 
           <a
             href="tel:+61412864050"
@@ -130,9 +130,15 @@ export default function Footer() {
         </p>
 
         <div className="flex gap-4 mt-2 md:mt-0">
-          <Link href="#" className="hover:text-yellow-500 transition">
+          <a
+            href="https://docs.google.com/document/d/1NoNHhNR8QCH7IMJxi83KCQQhL9uwBhmD1NvbUKc62EI/edit?pli=1&tab=t.0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-500 transition"
+          >
             Privacy Policy
-          </Link>
+          </a>
+
           <Link href="#" className="hover:text-yellow-500 transition">
             Terms of Service
           </Link>
