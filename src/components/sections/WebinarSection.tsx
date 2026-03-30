@@ -86,7 +86,7 @@ export default function WebinarSection() {
                 {/* Platform */}
                 <div className="flex items-center justify-center gap-2 text-gray-400 text-xs mb-4">
                   <Video size={14} className="text-yellow-500" />
-                  <span>Live on Google Meet</span>
+                  <span>FREE Live Webinar</span>
                 </div>
 
                 {/* Description */}
@@ -101,7 +101,7 @@ export default function WebinarSection() {
                   rel="noopener noreferrer"
                   className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-5 py-2 rounded-md text-xs md:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-yellow-500/40 shadow-sm"
                 >
-                  Join Webinar
+                  Register Now
                 </a>
               </div>
             );
