@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "VRS Real Invest",
+  title: "Real Invest",
   description: "Premium real estate investment portfolio website",
 };
 
