@@ -32,10 +32,9 @@ export default function HomePage() {
       <NationwideCoverage />
       <TeamSection />
       <TestimonialsSection />
-
-      <section className="py-14 px-6 bg-black">
+      <section className="py-14 px-6 bg-[var(--background)]">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-[#0f1b2e] to-[#050b1a] border border-yellow-500/20 rounded-2xl p-8 md:p-12 text-center shadow-xl">
+          <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 md:p-12 text-center shadow-xl">
             <h3 className="text-xl md:text-3xl text-white font-semibold mb-4">
               Ready to Start Your Investment Journey?
             </h3>
@@ -49,7 +48,7 @@ export default function HomePage() {
               href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-yellow-500 text-black px-7 py-2.5 rounded-lg text-sm font-semibold hover:bg-yellow-400 transition duration-300"
+              className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-7 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition duration-300"
             >
               Get Free Consultation
             </a>

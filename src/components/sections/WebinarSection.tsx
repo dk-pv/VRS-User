@@ -26,11 +26,10 @@ export default function WebinarSection() {
     if (API) fetchWebinars();
   }, []);
 
-  // ✅ Convert 24hr time → AM/PM
+  // FORMAT TIME
   const formatTime = (time: string) => {
     const [hour, minute] = time.split(":");
     const h = parseInt(hour);
-
     const ampm = h >= 12 ? "PM" : "AM";
     const formattedHour = h % 12 || 12;
 
@@ -40,66 +39,75 @@ export default function WebinarSection() {
   if (loading || webinars.length === 0) return null;
 
   return (
-    <section className="relative bg-black py-14 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <div className="mb-8">
-          <div className="w-8 h-[2px] bg-yellow-500 mx-auto mb-2"></div>
-          <h2 className="text-xl md:text-2xl font-semibold text-white tracking-wide">
+    <section className="relative bg-[var(--background)] py-16 overflow-hidden">
+
+      {/* subtle glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.06),transparent_60%)] pointer-events-none" />
+
+      <div className="relative max-w-4xl mx-auto px-6 text-center">
+
+        {/* HEADER */}
+        <div className="mb-10">
+          <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mb-3"></div>
+
+          <h2 className="text-xl md:text-3xl font-medium text-white tracking-wide">
             Exclusive Investment Webinars
           </h2>
-          <p className="text-gray-400 mt-1 text-xs md:text-sm">
+
+          <p className="text-gray-400 mt-2 text-sm">
             Premium real estate insights across Australia
           </p>
         </div>
 
+        {/* CARDS */}
         <div className="space-y-6">
           {webinars.map((webinar) => {
             return (
               <div
                 key={webinar._id}
-                className="rounded-xl border border-white/10 bg-gradient-to-br from-[#0b1320]/90 to-[#050b1a]/90 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)] p-6"
+                className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.6)] p-6 md:p-7 transition hover:border-[var(--primary-gold)]/40"
               >
-                {/* Title */}
-                <h3 className="text-lg md:text-xl text-white font-semibold mb-3">
+                {/* TITLE */}
+                <h3 className="text-lg md:text-xl text-white font-medium mb-4">
                   {webinar.title}
                 </h3>
 
-                {/* Day */}
-                <div className="flex items-center justify-center gap-2 mb-3 text-gray-300 text-xs md:text-sm">
-                  <Calendar size={14} className="text-yellow-500" />
+                {/* DAY */}
+                <div className="flex items-center justify-center gap-2 mb-3 text-gray-300 text-sm">
+                  <Calendar size={14} className="text-[var(--primary-gold)]" />
                   <span className="font-medium text-white">
                     {webinar.day}
                   </span>
                 </div>
 
-                {/* Time + Timezone */}
-                <div className="flex items-center justify-center gap-2 mb-4 text-gray-300 text-xs md:text-sm">
-                  <Clock size={14} className="text-yellow-500" />
-                  <span className="text-white font-semibold">
+                {/* TIME */}
+                <div className="flex items-center justify-center gap-2 mb-4 text-gray-300 text-sm">
+                  <Clock size={14} className="text-[var(--primary-gold)]" />
+                  <span className="text-white font-medium">
                     {formatTime(webinar.time)}{" "}
-                    <span className="text-yellow-400">
+                    <span className="text-[var(--primary-gold)]">
                       {webinar.australiaTimeZone}
                     </span>
                   </span>
                 </div>
 
-                {/* Platform */}
+                {/* PLATFORM */}
                 <div className="flex items-center justify-center gap-2 text-gray-400 text-xs mb-4">
-                  <Video size={14} className="text-yellow-500" />
+                  <Video size={14} className="text-[var(--primary-gold)]" />
                   <span>FREE Live Webinar</span>
                 </div>
 
-                {/* Description */}
-                <p className="text-gray-400 max-w-lg mx-auto mb-4 text-xs md:text-sm leading-relaxed">
+                {/* DESCRIPTION */}
+                <p className="text-gray-400 max-w-lg mx-auto mb-5 text-sm leading-relaxed">
                   {webinar.description}
                 </p>
 
-                {/* Button */}
+                {/* BUTTON */}
                 <a
                   href={webinar.meetLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-5 py-2 rounded-md text-xs md:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-yellow-500/40 shadow-sm"
+                  className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-6 py-2.5 rounded-lg text-sm font-medium transition hover:opacity-90"
                 >
                   Register Now
                 </a>

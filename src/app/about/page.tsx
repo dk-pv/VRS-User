@@ -1,14 +1,22 @@
+"use client";
+
 import AboutSection from "@/components/sections/AboutSection";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TeamSection from "@/components/sections/TeamSection";
+
 export default function AboutPage() {
   return (
-    <main className=" bg-black text-white min-h-screen">
+    <div className="bg-[var(--background)] text-white min-h-screen flex flex-col">
       <Navbar />
-      <AboutSection />
-      <TeamSection/>
+
+      {/* ================= ABOUT ================= */}
+      <main className="flex-1 pt-10">
+        <AboutSection />
+        <TeamSection />
+      </main>
+
       <Footer />
-    </main>
+    </div>
   );
 }

@@ -12,83 +12,72 @@ import logo from "@/app/logo/4.png";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-black via-[#050b1a] to-black text-gray-400 pt-8 pb-4 overflow-hidden">
-      {/* Gold Top Border */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+    <footer className="relative bg-[var(--background)] text-gray-400 pt-7 pb-4 overflow-hidden">
+      {/* TOP LINE */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)]/50 to-transparent"></div>
 
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6 items-start">
-        {/* Column 1 - Brand */}
-        <div className="space-y-3">
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-5 items-start">
+        {/* COLUMN 1 */}
+        <div className="space-y-2.5">
           <Image
             src={logo}
             alt="VRS RealInvest Logo"
-            width={110}
+            width={105}
             height={35}
             className="object-contain"
           />
 
-          <p className="text-xs leading-snug text-gray-400 max-w-sm">
+          <p className="text-[12px] leading-snug text-gray-400 max-w-sm">
             Trusted real estate investment partner across Australia, delivering
             premium opportunities with clarity and confidence.
           </p>
 
           <div className="flex gap-2 pt-1">
-            <a
-              href="https://www.facebook.com/VRSrealinvest"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-yellow-500 hover:text-black transition"
-            >
-              <Facebook size={13} />
-            </a>
-
-            <a
-              href="https://www.instagram.com/vrsrealinvest/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-yellow-500 hover:text-black transition"
-            >
-              <Instagram size={13} />
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/sudhesh-k-valappil/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-yellow-500 hover:text-black transition"
-            >
-              <Linkedin size={13} />
-            </a>
+            {[Facebook, Instagram, Linkedin].map((Icon, i) => (
+              <a
+                key={i}
+                href="#"
+                className="w-7 h-7 bg-white/5 border border-[var(--card-border)] rounded-full flex items-center justify-center hover:bg-[var(--primary-gold)] hover:text-[#221F1F] transition"
+              >
+                <Icon size={13} />
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Column 2 - Quick Links */}
-        <div className="space-y-3">
-          <h3 className="text-white font-semibold text-sm">Quick Links</h3>
+        {/* COLUMN 2 */}
+        <div className="space-y-2.5">
+          <h3 className="text-white font-medium text-sm">Quick Links</h3>
 
-          <ul className="space-y-1.5 text-xs">
+          <ul className="space-y-1 text-[12px]">
             <li>
-              <Link href="/" className="hover:text-yellow-500 transition">
+              <Link
+                href="/"
+                className="hover:text-[var(--primary-gold)] transition"
+              >
                 Home
               </Link>
             </li>
             <li>
               <Link
                 href="/properties"
-                className="hover:text-yellow-500 transition"
+                className="hover:text-[var(--primary-gold)] transition"
               >
                 Properties
               </Link>
             </li>
             <li>
-              <Link href="/blog" className="hover:text-yellow-500 transition">
+              <Link
+                href="/blog"
+                className="hover:text-[var(--primary-gold)] transition"
+              >
                 Blog
               </Link>
             </li>
             <li>
               <Link
                 href="/contact"
-                className="hover:text-yellow-500 transition"
+                className="hover:text-[var(--primary-gold)] transition"
               >
                 Contact
               </Link>
@@ -96,49 +85,49 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Column 3 - Contact */}
-        <div className="space-y-3">
-          <h3 className="text-white font-semibold text-sm">Contact</h3>
+        {/* COLUMN 3 */}
+        <div className="space-y-2.5">
+          <h3 className="text-white font-medium text-sm">Contact</h3>
 
           <a
             href="tel:+61412864050"
-            className="flex items-center gap-2 text-xs hover:text-yellow-500 transition"
+            className="flex items-center gap-2 text-[12px] hover:text-[var(--primary-gold)] transition"
           >
             <Phone size={13} />
-            <span>+61 412 864 050</span>
+            +61 412 864 050
           </a>
 
           <a
             href="mailto:sudhesh@vrsrealinvest.com.au"
-            className="flex items-center gap-2 text-xs hover:text-yellow-500 transition"
+            className="flex items-center gap-2 text-[12px] hover:text-[var(--primary-gold)] transition"
           >
             <Mail size={13} />
-            <span>sudhesh@vrsrealinvest.com.au</span>
+            sudhesh@vrsrealinvest.com.au
           </a>
 
-          <div className="flex items-start gap-2 text-xs hover:text-yellow-500 transition">
+          <div className="flex items-start gap-2 text-[12px]">
             <MapPin size={13} />
-            <span>Serving clients across Australia</span>
+            Serving clients across Australia
           </div>
         </div>
       </div>
 
-      {/* Bottom Divider */}
-      <div className="border-t border-white/10 mt-4 pt-3 max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[11px]">
+      {/* BOTTOM */}
+      <div className="border-t border-[var(--card-border)] mt-3 pt-3 max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[11px]">
         <p className="text-gray-500">
-          © {new Date().getFullYear()} VRS realinvest. All rights reserved.
+          © {new Date().getFullYear()} VRS RealInvest. All rights reserved.
         </p>
 
         <div className="flex gap-4 mt-2 md:mt-0">
           <Link
             href="/privacy-policy"
-            className="hover:text-yellow-500 transition"
+            className="hover:text-[var(--primary-gold)] transition"
           >
             Privacy Policy
           </Link>
           <Link
             href="/terms-and-conditions"
-            className="hover:text-yellow-500 transition"
+            className="hover:text-[var(--primary-gold)] transition"
           >
             Terms & Conditions
           </Link>

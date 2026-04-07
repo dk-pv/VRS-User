@@ -54,7 +54,6 @@ export default function TestimonialsSection() {
       const data = await res.json();
       setVideos(data);
 
-      // default mute
       const muteState: any = {};
       data.forEach((v: VideoReview) => {
         muteState[v._id] = true;
@@ -107,53 +106,58 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-black via-[#071224] to-black py-14 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.04),transparent_70%)]"></div>
+    <section className="relative bg-[var(--background)] py-16 overflow-hidden">
 
-      <div className="relative max-w-6xl mx-auto px-6">
-        {/* TEXT TESTIMONIALS */}
-        <div className="text-center mb-10">
-          <div className="w-10 h-[2px] bg-yellow-500 mx-auto mb-3"></div>
+      <div className="max-w-6xl mx-auto px-6">
+
+        {/* ================= TEXT TESTIMONIALS ================= */}
+        <div className="text-center mb-12">
+          <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mb-3"></div>
+
           <h2 className="text-2xl md:text-3xl font-medium text-white">
             Client Testimonials
           </h2>
-          <p className="text-gray-400 mt-1 text-xs md:text-sm">
+
+          <p className="text-gray-400 mt-2 text-sm">
             What our satisfied clients say about us
           </p>
         </div>
 
         {reviews.length > 0 && (
-          <div className="relative overflow-hidden max-w-2xl mx-auto mb-16">
+          <div className="relative overflow-hidden max-w-2xl mx-auto mb-12">
             <div
               className="flex transition-transform duration-700"
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
               {reviews.map((review) => (
                 <div key={review._id} className="min-w-full px-3">
-                  <div className="relative bg-gradient-to-br from-[#0e1626] to-[#0b1320] border border-white/10 rounded-xl p-6 text-center">
+                  <div className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 text-center backdrop-blur-md">
+
                     <Quote
-                      className="absolute top-4 right-4 text-yellow-500 opacity-10"
+                      className="absolute top-4 right-4 text-[var(--primary-gold)] opacity-10"
                       size={40}
                     />
 
-                    <div className="flex justify-center gap-1 mb-3">
+                    {/* STARS */}
+                    <div className="flex justify-center gap-1 mb-4">
                       {[...Array(review.rating || 5)].map((_, i) => (
                         <Star
                           key={i}
                           size={14}
-                          className="text-yellow-500 fill-yellow-500"
+                          className="text-[var(--primary-gold)] fill-[var(--primary-gold)]"
                         />
                       ))}
                     </div>
 
-                    <p className="text-gray-300 mb-4 text-sm md:text-base">
+                    <p className="text-gray-300 mb-5 text-sm md:text-base leading-relaxed">
                       "{review.text}"
                     </p>
 
                     <h4 className="text-white font-medium text-sm md:text-base">
                       {review.name}
                     </h4>
-                    <p className="text-gray-500 text-xs">
+
+                    <p className="text-gray-500 text-xs mt-1">
                       {review.location}
                     </p>
                   </div>
@@ -161,32 +165,34 @@ export default function TestimonialsSection() {
               ))}
             </div>
 
+            {/* NAV BUTTONS */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-yellow-500/20 p-2 rounded-full transition"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 border border-[var(--card-border)] p-2 rounded-full transition"
             >
-              <ChevronLeft className="text-yellow-500" size={18} />
+              <ChevronLeft className="text-[var(--primary-gold)]" size={18} />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-yellow-500/20 p-2 rounded-full transition"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 border border-[var(--card-border)] p-2 rounded-full transition"
             >
-              <ChevronRight className="text-yellow-500" size={18} />
+              <ChevronRight className="text-[var(--primary-gold)]" size={18} />
             </button>
           </div>
         )}
 
-        {/* VIDEO TESTIMONIALS */}
-        <div className="text-center mb-10">
-          <div className="w-10 h-[2px] bg-yellow-500 mx-auto mb-3"></div>
+        {/* ================= VIDEO TESTIMONIALS ================= */}
+        <div className="text-center mb-8">
+          <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mb-3"></div>
+
           <h2 className="text-2xl md:text-3xl font-medium text-white">
             Video Testimonials
           </h2>
         </div>
 
         {videos.length > 0 && (
-          <div className="flex gap-5 overflow-x-auto pb-4">
+          <div className="flex gap-6 overflow-x-auto pb-4">
             {videos.map((video) => {
               const videoId = getYoutubeId(video.youtubeLink);
               if (!videoId) return null;
@@ -196,10 +202,8 @@ export default function TestimonialsSection() {
               return (
                 <div
                   key={video._id}
-                  onClick={() =>
-                    window.open(video.youtubeLink, "_blank")
-                  }
-                  className="relative min-w-[320px] md:min-w-[340px] h-[360px] md:h-[380px] rounded-xl overflow-hidden border border-white/10 group flex-shrink-0 cursor-pointer"
+                  onClick={() => window.open(video.youtubeLink, "_blank")}
+                  className="relative min-w-[320px] md:min-w-[340px] h-[360px] md:h-[380px] rounded-2xl overflow-hidden border border-[var(--card-border)] group flex-shrink-0 cursor-pointer"
                 >
                   <iframe
                     id={iframeId}
@@ -208,7 +212,7 @@ export default function TestimonialsSection() {
                     allow="autoplay; encrypted-media"
                   />
 
-                  {/* Hover play */}
+                  {/* HOVER PLAY */}
                   <div
                     className="absolute inset-0 z-20"
                     onMouseEnter={() => sendCommand(iframeId, "playVideo")}
@@ -222,8 +226,10 @@ export default function TestimonialsSection() {
                     }}
                   />
 
+                  {/* OVERLAY */}
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
 
+                  {/* TEXT */}
                   <div className="absolute bottom-5 left-5 text-white z-10">
                     <h4 className="font-medium text-base">{video.name}</h4>
                     <p className="text-gray-300 text-xs">{video.role}</p>

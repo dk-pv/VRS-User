@@ -36,63 +36,79 @@ export default async function BlogPage() {
   const posts = await getBlogs();
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
-      
+    <div className="min-h-screen bg-[var(--background)] text-white flex flex-col">
+
       <Navbar />
 
-      <main className="flex-1 ">
-        <section className="py-20">
-          <div className="max-w-6xl mx-auto px-6">
+      <main className="flex-1">
 
-            {/* Hero */}
-            <div className="text-center mb-16">
-              <div className="w-10 h-[2px] bg-yellow-500 mx-auto mb-4"></div>
-              <h1 className="text-3xl md:text-5xl font-light tracking-wide leading-tight">
-                Market Insights & Investment Intelligence
-              </h1>
-              <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-sm md:text-base">
-                Expert perspectives, strategic investment insights, and
-                premium real estate analysis tailored for sophisticated investors.
-              </p>
-            </div>
+        {/* ================= HERO ================= */}
+        <section className="py-24 px-6 text-center relative overflow-hidden">
 
-            {/* Blog Grid */}
+          {/* subtle glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
+
+          <div className="relative max-w-3xl mx-auto">
+            <div className="w-12 h-[2px] bg-[var(--primary-gold)] mx-auto mb-5" />
+
+            <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-tight">
+              Market Insights & Investment Intelligence
+            </h1>
+
+            <p className="text-gray-400 mt-5 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+              Expert perspectives, strategic investment insights, and
+              premium real estate analysis tailored for sophisticated investors.
+            </p>
+          </div>
+        </section>
+
+        {/* ================= BLOG GRID ================= */}
+        <section className="pb-20 px-6">
+          <div className="max-w-6xl mx-auto">
+
             {posts.length > 0 ? (
               <div className="grid md:grid-cols-3 gap-8">
+
                 {posts.map((post) => (
                   <Link
                     key={post._id}
                     href={`/blog/${post.slug}`}
-                    className="group block border border-white/10 rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md hover:border-yellow-500/40 transition duration-500"
+                    className="group block rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-md transition duration-500 hover:border-[var(--primary-gold)]/40"
                   >
+
+                    {/* IMAGE */}
                     <div className="relative overflow-hidden">
                       <img
                         src={post.image}
                         alt={post.title}
                         className="w-full h-60 object-cover group-hover:scale-105 transition duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     </div>
 
+                    {/* CONTENT */}
                     <div className="p-6">
+
                       <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">
                         {new Date(post.createdAt).toLocaleDateString()}
                       </p>
 
-                      <h2 className="text-lg font-light mb-3 group-hover:text-yellow-500 transition">
+                      <h2 className="text-lg font-medium mb-3 group-hover:text-[var(--primary-gold)] transition">
                         {post.title}
                       </h2>
 
-                      <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                      <p className="text-gray-400 text-sm leading-relaxed mb-5">
                         {post.excerpt}
                       </p>
 
-                      <span className="text-yellow-500 text-sm font-medium tracking-wide">
+                      <span className="text-[var(--primary-gold)] text-sm font-medium tracking-wide">
                         Continue Reading →
                       </span>
                     </div>
                   </Link>
                 ))}
+
               </div>
             ) : (
               <div className="flex items-center justify-center min-h-[40vh] text-gray-500 text-sm">
@@ -102,6 +118,7 @@ export default async function BlogPage() {
 
           </div>
         </section>
+
       </main>
 
       <Footer />

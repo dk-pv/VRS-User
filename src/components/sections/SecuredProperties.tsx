@@ -16,11 +16,8 @@ interface SecuredProperty {
 }
 
 export default function SecuredProperties() {
-  const [securedProperties, setSecuredProperties] = useState<SecuredProperty[]>(
-    [],
-  );
-  const [selectedProperty, setSelectedProperty] =
-    useState<SecuredProperty | null>(null);
+  const [securedProperties, setSecuredProperties] = useState<SecuredProperty[]>([]);
+  const [selectedProperty, setSelectedProperty] = useState<SecuredProperty | null>(null);
   const [currentImage, setCurrentImage] = useState<number>(0);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -55,10 +52,7 @@ export default function SecuredProperties() {
       if (!isPausedRef.current) {
         container.scrollLeft += speed;
 
-        if (
-          container.scrollLeft + container.clientWidth >=
-          container.scrollWidth
-        ) {
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
           container.scrollLeft = 0;
         }
       }
@@ -85,13 +79,8 @@ export default function SecuredProperties() {
     container.addEventListener("mousedown", pauseScroll);
 
     return () => {
-      if (animationRef.current !== null) {
-        cancelAnimationFrame(animationRef.current);
-      }
-
-      if (pauseTimeoutRef.current) {
-        clearTimeout(pauseTimeoutRef.current);
-      }
+      if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
 
       container.removeEventListener("wheel", pauseScroll);
       container.removeEventListener("touchstart", pauseScroll);
@@ -102,9 +91,7 @@ export default function SecuredProperties() {
   // ================= ESC CLOSE =================
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedProperty(null);
-      }
+      if (e.key === "Escape") setSelectedProperty(null);
     };
 
     window.addEventListener("keydown", handleEsc);
@@ -113,52 +100,55 @@ export default function SecuredProperties() {
 
   // ================= BODY SCROLL LOCK =================
   useEffect(() => {
-    if (selectedProperty) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = selectedProperty ? "hidden" : "auto";
   }, [selectedProperty]);
 
   return (
     <>
       {/* ================= SECTION ================= */}
-      <section className="bg-black py-14">
+      <section className="bg-[var(--background)] py-16">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <div className="w-10 h-[2px] bg-yellow-500 mx-auto mb-3"></div>
+
+          {/* HEADER */}
+          <div className="text-center mb-10">
+            <div className="w-12 h-[2px] bg-[var(--primary-gold)] mx-auto mb-4"></div>
+
             <h2 className="text-2xl md:text-3xl font-medium text-white">
               Secured Properties
             </h2>
-            <p className="text-gray-400 mt-1 text-xs md:text-sm">
+
+            <p className="text-gray-400 mt-2 text-sm">
               Successfully secured for our valued clients
             </p>
           </div>
 
+          {/* SCROLLER */}
           <div
             ref={scrollRef}
-            className="flex gap-5 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
+            className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
           >
             {securedProperties.map((property) => (
               <div
                 key={property._id}
-                className="relative min-w-[320px] md:min-w-[340px] h-[300px] md:h-[320px] rounded-xl overflow-hidden group flex-shrink-0"
+                className="relative min-w-[320px] md:min-w-[340px] h-[300px] md:h-[320px] rounded-2xl overflow-hidden group flex-shrink-0"
               >
+                {/* IMAGE */}
                 <div
                   className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition duration-700"
-                  style={{
-                    backgroundImage: `url(${property.coverImage})`,
-                  }}
+                  style={{ backgroundImage: `url(${property.coverImage})` }}
                 />
 
+                {/* OVERLAY */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                <div className="absolute top-3 right-3 bg-white text-black px-3 py-1 rounded-full text-[10px] font-medium flex items-center gap-1">
+                {/* BADGE */}
+                <div className="absolute top-4 right-4 bg-[var(--primary-gold)] text-[#221F1F] px-3 py-1 rounded-full text-[10px] font-medium flex items-center gap-1 shadow-md">
                   <CheckCircle size={12} />
                   Secured
                 </div>
 
-                <div className="absolute bottom-5 left-5 text-white">
+                {/* CONTENT */}
+                <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-base font-medium">{property.title}</h3>
 
                   <button
@@ -166,7 +156,7 @@ export default function SecuredProperties() {
                       setSelectedProperty(property);
                       setCurrentImage(0);
                     }}
-                    className="mt-2 bg-yellow-500 text-black px-3 py-1.5 text-[11px] rounded-sm font-medium hover:bg-yellow-400 transition"
+                    className="mt-3 bg-[var(--primary-gold)] text-[#221F1F] px-4 py-1.5 text-[11px] rounded-md font-medium hover:opacity-90 transition"
                   >
                     View Details
                   </button>
@@ -180,29 +170,29 @@ export default function SecuredProperties() {
       {/* ================= MODAL ================= */}
       {selectedProperty && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-6"
+          className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-6"
           onClick={() => setSelectedProperty(null)}
         >
           <div
-            className="bg-[#111] max-w-4xl w-full rounded-xl overflow-hidden relative"
+            className="bg-[var(--card-bg)] border border-[var(--card-border)] max-w-4xl w-full rounded-2xl overflow-hidden relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
+            {/* CLOSE */}
             <button
               onClick={() => setSelectedProperty(null)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl font-bold backdrop-blur-md transition"
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl backdrop-blur-md transition"
             >
               ✕
             </button>
 
-            {/* Gallery Slider */}
-            <div className="relative h-[320px] md:h-[340px]">
-              {" "}
+            {/* IMAGE */}
+            <div className="relative h-[320px] md:h-[360px]">
               <img
                 src={selectedProperty.galleryImages[currentImage]}
                 className="w-full h-full object-cover"
                 alt="property"
               />
+
               {selectedProperty.galleryImages.length > 1 && (
                 <>
                   <button
@@ -210,10 +200,10 @@ export default function SecuredProperties() {
                       setCurrentImage((prev) =>
                         prev === 0
                           ? selectedProperty.galleryImages.length - 1
-                          : prev - 1,
+                          : prev - 1
                       )
                     }
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-md"
                   >
                     ‹
                   </button>
@@ -222,10 +212,10 @@ export default function SecuredProperties() {
                     onClick={() =>
                       setCurrentImage(
                         (prev) =>
-                          (prev + 1) % selectedProperty.galleryImages.length,
+                          (prev + 1) % selectedProperty.galleryImages.length
                       )
                     }
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-md"
                   >
                     ›
                   </button>
@@ -233,7 +223,7 @@ export default function SecuredProperties() {
               )}
             </div>
 
-            {/* Details */}
+            {/* DETAILS */}
             <div className="p-8 text-white space-y-6">
               <h2 className="text-2xl font-medium">{selectedProperty.title}</h2>
 
@@ -241,10 +231,10 @@ export default function SecuredProperties() {
                 {selectedProperty.description}
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-700">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-[var(--card-border)]">
                 <div>
                   <p className="text-gray-400 text-sm">Secured Price</p>
-                  <p className="text-yellow-500 text-lg font-semibold">
+                  <p className="text-[var(--primary-gold)] text-lg font-semibold">
                     {selectedProperty.securedPrice}
                   </p>
                 </div>
@@ -257,7 +247,7 @@ export default function SecuredProperties() {
                 </div>
 
                 <div>
-                  <p className="text-gray-400 text-sm">Current value</p>
+                  <p className="text-gray-400 text-sm">Current Value</p>
                   <p className="text-white text-lg font-semibold">
                     {selectedProperty.currentPrice}
                   </p>

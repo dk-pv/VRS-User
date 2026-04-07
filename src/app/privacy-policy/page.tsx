@@ -3,22 +3,29 @@ import Navbar from "@/components/layout/Navbar";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-gray-300">
-      
+    <div className="flex flex-col min-h-screen bg-[var(--background)] text-gray-300">
       <Navbar />
 
-      <main className="flex-1 px-6 pt-28 pb-16">
-        <div className="max-w-4xl mx-auto space-y-6">
+      {/* ================= HERO ================= */}
+      <section className="pt-28 pb-12 px-6 text-center relative overflow-hidden">
+        {/* subtle glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
 
-          <h1 className="text-3xl font-bold text-white">
+        <div className="relative max-w-3xl mx-auto">
+          <div className="w-12 h-[2px] bg-[var(--primary-gold)] mx-auto mb-4" />
+
+          <h1 className="text-3xl md:text-4xl font-medium text-white">
             Privacy Policy
           </h1>
 
-          <p className="text-sm text-gray-500">
-            VRS RealInvest Pty Ltd 
-          </p>
+          <p className="text-gray-500 text-sm mt-3">VRS RealInvest Pty Ltd</p>
+        </div>
+      </section>
 
-          <p className="text-sm leading-relaxed">
+      {/* ================= CONTENT ================= */}
+      <main className="flex-1 px-6 pb-20">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <p className="text-sm leading-relaxed text-gray-400">
             At VRS RealInvest Pty Ltd, we respect your privacy and are committed
             to protecting your personal information.
           </p>
@@ -80,7 +87,6 @@ export default function PrivacyPolicy() {
               Phone: +61 412 864 050
             </p>
           </Section>
-
         </div>
       </main>
 
@@ -89,11 +95,16 @@ export default function PrivacyPolicy() {
   );
 }
 
+/* ================= SECTION ================= */
+
 function Section({ title, children }: any) {
   return (
-    <div className="space-y-2">
-      <h2 className="text-lg font-semibold text-yellow-500">{title}</h2>
-      <div className="text-sm leading-relaxed">{children}</div>
+    <div className="space-y-3 border border-[var(--card-border)] bg-[var(--card-bg)] rounded-xl p-5 md:p-6">
+      <h2 className="text-base md:text-lg font-medium text-[var(--primary-gold)]">
+        {title}
+      </h2>
+
+      <div className="text-sm leading-relaxed text-gray-400">{children}</div>
     </div>
   );
 }

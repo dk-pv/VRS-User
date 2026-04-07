@@ -11,8 +11,7 @@ export default function PublicLayout({
     <>
       <Navbar />
 
-      {/* Remove global padding */}
-      <main className="min-h-screen bg-black text-white">
+      <main className="min-h-screen bg-[var(--background)] text-white">
         {children}
       </main>
 
