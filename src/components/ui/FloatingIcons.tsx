@@ -1,33 +1,170 @@
+// "use client";
+
+// import { useState } from "react";
+// import { Calendar, MessageCircle, Mail, X } from "lucide-react";
+
+// export default function FloatingAssistant() {
+//   const [open, setOpen] = useState(false);
+
+//   return (
+//     <div className="fixed bottom-6 right-6 z-[999]">
+
+//       {/* ================= CHAT PANEL ================= */}
+//       <div
+//         className={`absolute bottom-16 right-0 w-[300px] rounded-2xl 
+//         bg-[var(--card-bg)] border border-[var(--card-border)]
+//         shadow-[0_20px_60px_rgba(0,0,0,0.7)]
+//         backdrop-blur-xl overflow-hidden
+//         transition-all duration-300
+//         ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5 pointer-events-none"}
+//         `}
+//       >
+
+//         {/* HEADER */}
+//         <div className="px-4 py-3 border-b border-[var(--card-border)] flex items-center justify-between">
+//           <div>
+//             <p className="text-sm text-white font-medium">
+//               VRS Assistant
+//             </p>
+//             <p className="text-[10px] text-gray-400">
+//               How can we help you?
+//             </p>
+//           </div>
+
+//           <button onClick={() => setOpen(false)}>
+//             <X size={16} className="text-gray-400 hover:text-white" />
+//           </button>
+//         </div>
+
+//         {/* MESSAGE */}
+//         <div className="px-4 py-4 space-y-3 text-sm">
+
+//           <div className="bg-white/5 border border-[var(--card-border)] rounded-xl p-3">
+//             👋 Welcome! Choose an option below to get started.
+//           </div>
+
+//           {/* ACTIONS */}
+//           <div className="space-y-2">
+
+//             <a
+//               href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
+//               target="_blank"
+//               className="flex items-center gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50 transition"
+//             >
+//               <Calendar size={16} className="text-[var(--primary-gold)]" />
+//               <span>Book Consultation</span>
+//             </a>
+
+//             <a
+//               href="https://wa.me/61412864050"
+//               target="_blank"
+//               className="flex items-center gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50 transition"
+//             >
+//               <MessageCircle size={16} className="text-[var(--primary-gold)]" />
+//               <span>Chat on WhatsApp</span>
+//             </a>
+
+//             <a
+//               href="/contact"
+//               className="flex items-center gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50 transition"
+//             >
+//               <Mail size={16} className="text-[var(--primary-gold)]" />
+//               <span>Send Enquiry</span>
+//             </a>
+
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* ================= FLOATING BUTTON ================= */}
+//       <button
+//         onClick={() => setOpen(!open)}
+//         className="relative w-14 h-14 rounded-full flex items-center justify-center
+//         bg-[var(--primary-gold)] text-[#221F1F]
+//         shadow-[0_12px_30px_rgba(231,200,156,0.35)]
+//         transition duration-300 hover:scale-105"
+//       >
+
+//         {/* icon */}
+//         <div className="text-xl">
+//           {open ? "×" : "💬"}
+//         </div>
+
+//         {/* pulse glow */}
+//         <span className="absolute inset-0 rounded-full bg-[var(--primary-gold)]/30 blur-lg animate-pulse" />
+//       </button>
+
+//     </div>
+//   );
+// }
+
 "use client";
 
-import { Calendar, MessageCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Calendar, MessageCircle, Mail, X } from "lucide-react";
 
-export default function FloatingIcons() {
+export default function FloatingAssistant() {
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="fixed bottom-8 right-8 flex flex-col gap-5 z-[999]">
+    <div className="fixed bottom-6 right-6 z-[999]">
 
-      {/* Calendar */}
-      <a
-        href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative w-14 h-14 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-[0_10px_30px_rgba(255,215,0,0.35)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 animate-float"
+      <div
+        className={`absolute bottom-16 right-0 w-[300px] rounded-2xl 
+        bg-[var(--card-bg)] border border-[var(--card-border)]
+        shadow-[0_20px_60px_rgba(0,0,0,0.7)]
+        backdrop-blur-xl overflow-hidden
+        transition-all duration-300
+        ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5 pointer-events-none"}`}
       >
-        <span className="absolute inset-0 rounded-full bg-yellow-500/30 blur-xl animate-pulse"></span>
-        <Calendar className="relative text-black" size={22} />
-      </a>
+        <div className="px-4 py-3 border-b border-[var(--card-border)] flex justify-between">
+          <div>
+            <p className="text-sm text-white">VRS Assistant</p>
+            <p className="text-[10px] text-gray-400">How can we help you?</p>
+          </div>
 
-      {/* WhatsApp */}
-      <a
-        href="https://wa.me/61412864050"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative w-14 h-14 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-[0_10px_30px_rgba(34,197,94,0.35)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 animate-float"
+          <button onClick={() => setOpen(false)}>
+            <X size={16} className="text-gray-400 hover:text-white" />
+          </button>
+        </div>
+
+        <div className="px-4 py-4 space-y-3 text-sm">
+          <div className="bg-white/5 border border-[var(--card-border)] rounded-xl p-3">
+            👋 Welcome! Choose an option below.
+          </div>
+
+          <a href="#" className="flex gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50">
+            <Calendar size={16} />
+            Book Consultation
+          </a>
+
+          <a href="#" className="flex gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50">
+            <MessageCircle size={16} />
+            WhatsApp
+          </a>
+
+          <a href="/contact" className="flex gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50">
+            <Mail size={16} />
+            Enquiry
+          </a>
+        </div>
+      </div>
+
+      <button
+        onClick={() => setOpen(!open)}
+        className="relative w-14 h-14 rounded-full flex items-center justify-center
+        bg-[var(--primary-gold)] text-[#221F1F]
+        shadow-[0_12px_30px_rgba(231,200,156,0.35)]"
       >
-        <span className="absolute inset-0 rounded-full bg-green-500/30 blur-xl animate-pulse"></span>
-        <MessageCircle className="relative text-white" size={22} />
-      </a>
-
+        {open ? <X size={18} /> : <MessageCircle size={18} />}
+      </button>
     </div>
   );
 }

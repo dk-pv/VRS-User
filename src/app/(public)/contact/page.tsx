@@ -1,32 +1,34 @@
 "use client";
-import { useEffect, useRef } from "react";
+
+import { useEffect, useRef, useState } from "react";
 
 export default function ContactPage() {
   const lineRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     const el = lineRef.current;
     if (!el) return;
+
     el.style.width = "0px";
+
     const timer = setTimeout(() => {
       el.style.transition = "width 0.9s cubic-bezier(0.22, 1, 0.36, 1)";
       el.style.width = "60px";
     }, 120);
+
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <main className="pt-8 bg-[var(--background)] text-white min-h-screen relative overflow-hidden">
 
-      {/* ===== PREMIUM BACKGROUND ===== */}
+      {/* BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* radial glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)]" />
-        
-        {/* soft vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,rgba(0,0,0,0.6))]" />
-
-        {/* grid */}
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -39,7 +41,7 @@ export default function ContactPage() {
 
       <section className="relative py-20">
 
-        {/* ===== HEADER ===== */}
+        {/* HEADER */}
         <div className="text-center mb-20 px-6">
 
           <div
@@ -65,30 +67,29 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* ===== FORM ===== */}
+        {/* FORM */}
         <div className="max-w-5xl mx-auto px-4 md:px-6">
 
           <div className="relative group">
 
-            {/* ===== CORNER ACCENTS ===== */}
             {[
               "top-0 left-0 border-t border-l",
               "top-0 right-0 border-t border-r",
               "bottom-0 left-0 border-b border-l",
               "bottom-0 right-0 border-b border-r",
-            ].map((pos, i) => (
+            ].map((pos) => (
               <div
-                key={i}
+                key={pos}
                 className={`absolute ${pos} w-8 h-8 border-[var(--primary-gold)]/40 transition group-hover:border-[var(--primary-gold)]`}
               />
             ))}
 
-            {/* ===== SHIMMER EFFECT ===== */}
+            {/* SHIMMER */}
             <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
               <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(231,200,156,0.15),transparent)] opacity-0 group-hover:opacity-100 animate-[shine_3s_linear_infinite]" />
             </div>
 
-            {/* ===== GLASS CARD ===== */}
+            {/* CARD */}
             <div
               className="rounded-2xl overflow-hidden relative border border-[var(--card-border)] transition duration-500 group-hover:border-[var(--primary-gold)]/40"
               style={{
@@ -99,39 +100,27 @@ export default function ContactPage() {
                 backdropFilter: "blur(14px)",
               }}
             >
-
-              {/* GOLD TOP LINE */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-2/3 bg-gradient-to-r from-transparent via-[var(--primary-gold)]/60 to-transparent" />
 
-              <iframe
-                src="https://login.calzolconnect.com/widget/form/6935360ed20b3"
-                className="w-full h-[750px] md:h-[850px] block"
-                style={{ border: "none" }}
-                title="Enquiry Form"
-              />
+              {mounted && (
+                <iframe
+                  src="https://login.calzolconnect.com/widget/form/6935360ed20b3"
+                  className="w-full h-[750px] md:h-[850px]"
+                  style={{ border: "none" }}
+                  title="Enquiry Form"
+                />
+              )}
             </div>
           </div>
 
-          {/* ===== TRUST NOTE ===== */}
           <div className="mt-10 text-center">
             <p className="text-gray-500 text-[11px] tracking-[0.25em] uppercase">
               Your enquiry is handled with complete discretion
             </p>
-
-            {/* subtle gold underline */}
             <div className="mt-3 w-20 h-[1px] mx-auto bg-[var(--primary-gold)]/30" />
           </div>
         </div>
       </section>
-
-      {/* ===== SHIMMER KEYFRAME ===== */}
-      <style jsx>{`
-        @keyframes shine {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-      `}</style>
-
     </main>
   );
 }
