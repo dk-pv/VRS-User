@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import React from "react";
 
 interface Blog {
   _id: string;
@@ -27,11 +28,103 @@ async function getBlog(slug: string): Promise<Blog | null> {
   }
 }
 
-// ✅ METADATA
-export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
-): Promise<Metadata> {
+// ✅ FORMAT FUNCTION (IMPROVED)
+function formatBlogContent(content: string): React.ReactNode[] {
+  const lines = content.split("\n");
+  const elements: React.ReactNode[] = [];
+  let listItems: string[] = [];
 
+  const formatInline = (text: string) => {
+    // 🔗 Convert links
+    let formatted = text.replace(
+      /(https?:\/\/[^\s]+)/g,
+      '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+    );
+
+    // ⭐ Bold (**text**)
+    formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+    return formatted;
+  };
+
+  lines.forEach((line, i) => {
+    const trimmed = line.trim();
+
+    // 👉 Bullet list
+    if (trimmed.startsWith("•") || trimmed.startsWith("-")) {
+      listItems.push(trimmed.replace(/^[-•]\s*/, ""));
+      return;
+    }
+
+    // 👉 Flush list
+    if (listItems.length > 0) {
+      elements.push(
+        <ul key={`ul-${i}`} className="list-disc pl-5 my-4">
+          {listItems.map((item, idx) => (
+            <li
+              key={idx}
+              dangerouslySetInnerHTML={{
+                __html: formatInline(item),
+              }}
+            />
+          ))}
+        </ul>
+      );
+      listItems = [];
+    }
+
+    // 👉 Empty line → spacing
+    if (!trimmed) {
+      elements.push(<div key={i} className="h-4" />);
+      return;
+    }
+
+    // 👉 Heading (## Title)
+    if (trimmed.startsWith("## ")) {
+      elements.push(
+        <h2 key={i} className="text-xl md:text-2xl font-semibold mt-8 mb-3">
+          {trimmed.replace("## ", "")}
+        </h2>
+      );
+      return;
+    }
+
+    // 👉 Normal paragraph
+    elements.push(
+      <p
+        key={i}
+        dangerouslySetInnerHTML={{
+          __html: formatInline(trimmed),
+        }}
+      />
+    );
+  });
+
+  // 👉 Final list flush
+  if (listItems.length > 0) {
+    elements.push(
+      <ul key="last-ul" className="list-disc pl-5 my-4">
+        {listItems.map((item, idx) => (
+          <li
+            key={idx}
+            dangerouslySetInnerHTML={{
+              __html: formatInline(item),
+            }}
+          />
+        ))}
+      </ul>
+    );
+  }
+
+  return elements;
+}
+
+// ✅ METADATA
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const blog = await getBlog(slug);
 
@@ -50,10 +143,11 @@ export async function generateMetadata(
 }
 
 // ✅ PAGE
-export default async function BlogDetail(
-  { params }: { params: Promise<{ slug: string }> }
-) {
-
+export default async function BlogDetail({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const blog = await getBlog(slug);
 
@@ -67,15 +161,11 @@ export default async function BlogDetail(
 
   return (
     <main className="bg-[var(--background)] text-white min-h-screen">
-
-      {/* ================= HERO ================= */}
+      {/* HERO */}
       <section className="pt-28 pb-16 px-6 text-center relative overflow-hidden">
-
-        {/* subtle gold glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
 
         <div className="relative max-w-3xl mx-auto">
-
           <Link
             href="/blog"
             className="text-[var(--primary-gold)] text-sm mb-6 inline-block hover:underline"
@@ -93,7 +183,7 @@ export default async function BlogDetail(
         </div>
       </section>
 
-      {/* ================= IMAGE ================= */}
+      {/* IMAGE */}
       <section className="px-6 mb-16">
         <div className="max-w-5xl mx-auto">
           <img
@@ -104,23 +194,21 @@ export default async function BlogDetail(
         </div>
       </section>
 
-      {/* ================= CONTENT ================= */}
+      {/* CONTENT */}
       <section className="px-6 pb-24">
         <div className="max-w-3xl mx-auto">
-
           <article
-            className="prose prose-invert max-w-none 
+            className="prose prose-invert max-w-none
             prose-headings:text-white 
             prose-p:text-gray-300 
             prose-strong:text-white 
             prose-a:text-[var(--primary-gold)] 
             prose-li:text-gray-300"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
-
+          >
+            {formatBlogContent(blog.content)}
+          </article>
         </div>
       </section>
-
     </main>
   );
 }
