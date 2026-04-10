@@ -63,7 +63,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative text-[12px] tracking-widest uppercase font-medium transition ${
+                className={`relative group text-[12px] tracking-widest uppercase font-medium transition ${
                   isActive
                     ? "text-[var(--primary-gold)]"
                     : "text-white/80 hover:text-white"
