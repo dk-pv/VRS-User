@@ -36,6 +36,7 @@ body {
     Helvetica,
     Arial,
     sans-serif;
+  animation: pageEnter 0.6s ease;
 }
 
 /* ============================= */
@@ -179,8 +180,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-
-
 /* ============================= */
 /* SHIMMER ANIMATION */
 /* ============================= */
@@ -194,5 +193,28 @@ body {
   }
 }
 
+/* ================= PAGE TRANSITION ================= */
+
+body {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.page-exit {
+  opacity: 0;
+  transform: scale(0.98);
+  filter: blur(8px);
+}
 
 
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}

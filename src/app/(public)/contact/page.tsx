@@ -1,11 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import PageLoader from "@/components/common/PageLoader";
 
 export default function ContactPage() {
   const lineRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
 
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  // ✅ loader states
+  const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
+
+  // ================= HEADER LINE =================
   useEffect(() => {
     setMounted(true);
 
@@ -22,105 +31,141 @@ export default function ContactPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  // ================= SCROLL ANIMATION =================
+  useEffect(() => {
+    const el = formRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.25 },
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // ================= LOADER EXIT =================
+  useEffect(() => {
+    if (!loading) {
+      const t1 = setTimeout(() => setShowLoader(false), 400);
+      return () => clearTimeout(t1);
+    }
+  }, [loading]);
+
+  // ✅ fallback (never stuck)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      setShowLoader(false);
+    }, 6000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <main className="pt-8 bg-[var(--background)] text-white min-h-screen relative overflow-hidden">
+    <>
+      {/* ✅ Loader */}
+      <PageLoader visible={showLoader} />
 
-      {/* BACKGROUND */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,rgba(0,0,0,0.6))]" />
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-      </div>
-
-      <section className="relative py-20">
-
-        {/* HEADER */}
-        <div className="text-center mb-20 px-6">
-
+      <main className="pt-6 bg-[var(--background)] text-white min-h-screen relative overflow-hidden">
+        {/* BACKGROUND */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,rgba(0,0,0,0.6))]" />
           <div
-            ref={lineRef}
-            className="h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-8"
-            style={{ width: 0 }}
+            className="absolute inset-0 opacity-[0.02]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
+              backgroundSize: "80px 80px",
+            }}
           />
+        </div>
 
-          <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--primary-gold)]/70 mb-4 font-light">
-            Premium Property Investment
-          </p>
+        <section className="relative py-16">
+          {/* HEADER */}
+          <div className="text-center mb-14 px-6">
+            <div
+              ref={lineRef}
+              className="h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-6"
+              style={{ width: 0 }}
+            />
 
-          <h1 className="text-4xl md:text-6xl font-light tracking-[0.15em] mb-6">
-            Get In Touch
-          </h1>
+            <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--primary-gold)]/70 mb-3 font-light">
+              Premium Property Investment
+            </p>
 
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-[1px] w-10 bg-white/10" />
+            <h1 className="text-3xl md:text-5xl font-light tracking-[0.12em] mb-4">
+              Get In Touch
+            </h1>
+
             <p className="text-gray-500 text-xs tracking-[0.25em] uppercase">
               Let's begin the conversation
             </p>
-            <div className="h-[1px] w-10 bg-white/10" />
           </div>
-        </div>
 
-        {/* FORM */}
-        <div className="max-w-5xl mx-auto px-4 md:px-6">
-
-          <div className="relative group">
-
-            {[
-              "top-0 left-0 border-t border-l",
-              "top-0 right-0 border-t border-r",
-              "bottom-0 left-0 border-b border-l",
-              "bottom-0 right-0 border-b border-r",
-            ].map((pos) => (
-              <div
-                key={pos}
-                className={`absolute ${pos} w-8 h-8 border-[var(--primary-gold)]/40 transition group-hover:border-[var(--primary-gold)]`}
-              />
-            ))}
-
-            {/* SHIMMER */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-              <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(231,200,156,0.15),transparent)] opacity-0 group-hover:opacity-100 animate-[shine_3s_linear_infinite]" />
-            </div>
-
-            {/* CARD */}
+          {/* FORM */}
+          <div className="max-w-3xl mx-auto px-4">
             <div
-              className="rounded-2xl overflow-hidden relative border border-[var(--card-border)] transition duration-500 group-hover:border-[var(--primary-gold)]/40"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%)",
-                boxShadow:
-                  "0 0 0 1px rgba(231,200,156,0.12), 0 40px 100px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.06)",
-                backdropFilter: "blur(14px)",
-              }}
+              ref={formRef}
+              className={`relative group transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                visible
+                  ? "opacity-100 translate-y-0 scale-100 blur-0"
+                  : "opacity-0 translate-y-16 scale-[0.96] blur-sm"
+              }`}
             >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-2/3 bg-gradient-to-r from-transparent via-[var(--primary-gold)]/60 to-transparent" />
-
-              {mounted && (
-                <iframe
-                  src="https://login.calzolconnect.com/widget/form/6935360ed20b3"
-                  className="w-full h-[750px] md:h-[850px]"
-                  style={{ border: "none" }}
-                  title="Enquiry Form"
+              {/* CORNERS */}
+              {[
+                "top-0 left-0 border-t border-l",
+                "top-0 right-0 border-t border-r",
+                "bottom-0 left-0 border-b border-l",
+                "bottom-0 right-0 border-b border-r",
+              ].map((pos) => (
+                <div
+                  key={pos}
+                  className={`absolute ${pos} w-6 h-6 border-[var(--primary-gold)]/40 transition duration-500 ${
+                    visible ? "opacity-100 scale-100" : "opacity-0 scale-75"
+                  }`}
                 />
-              )}
+              ))}
+
+              {/* GLOW */}
+              <div
+                className={`absolute -inset-2 rounded-2xl bg-[var(--primary-gold)]/10 blur-2xl transition-all duration-1000 ${
+                  visible ? "opacity-60" : "opacity-0"
+                }`}
+              />
+
+              {/* CARD */}
+              <div className="rounded-2xl overflow-hidden relative border border-[var(--card-border)]">
+                {mounted && (
+                  <iframe
+                    src="https://login.calzolconnect.com/widget/form/6935360ed20b3"
+                    className="w-full h-[520px] md:h-[600px]"
+                    style={{ border: "none" }}
+                    title="Enquiry Form"
+                    onLoad={() => setLoading(false)} // ✅ KEY
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* FOOT */}
+            <div className="mt-8 text-center">
+              <p className="text-gray-500 text-[11px] tracking-[0.25em] uppercase">
+                Your enquiry is handled with complete discretion
+              </p>
+              <div className="mt-2 w-16 h-[1px] mx-auto bg-[var(--primary-gold)]/30" />
             </div>
           </div>
-
-          <div className="mt-10 text-center">
-            <p className="text-gray-500 text-[11px] tracking-[0.25em] uppercase">
-              Your enquiry is handled with complete discretion
-            </p>
-            <div className="mt-3 w-20 h-[1px] mx-auto bg-[var(--primary-gold)]/30" />
-          </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </>
   );
 }
