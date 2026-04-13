@@ -55,7 +55,7 @@ export default function Navbar() {
         </Link>
 
         {/* DESKTOP */}
-        <nav className="hidden md:flex items-center space-x-10">
+        <nav className="hidden md:flex items-center space-x-12">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
 
@@ -63,27 +63,30 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative group text-[12px] tracking-widest uppercase font-medium transition ${
+                className={`relative group font-body text-[11px] tracking-[0.22em] uppercase transition-all duration-300 ${
                   isActive
                     ? "text-[var(--primary-gold)]"
-                    : "text-white/80 hover:text-white"
+                    : "text-white/70 hover:text-white"
                 }`}
               >
-                {link.name}
+                {/* TEXT */}
+                <span className="relative z-10">{link.name}</span>
 
                 {/* PREMIUM UNDERLINE */}
                 <span
-                  className={`absolute left-0 -bottom-2 h-[2px] bg-gradient-to-r from-[var(--primary-gold)] to-transparent transition-all duration-500 ${
+                  className={`absolute left-0 -bottom-2 h-[1.5px] bg-gradient-to-r from-[var(--primary-gold)] via-[var(--primary-gold)]/70 to-transparent transition-all duration-500 ${
                     isActive
                       ? "w-full opacity-100"
                       : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                   }`}
                 />
+
+                {/* HOVER GLOW LINE */}
+                <span className="absolute left-0 bottom-0 w-0 h-[6px] bg-[var(--primary-gold)]/10 blur-md transition-all duration-500 group-hover:w-full"></span>
               </Link>
             );
           })}
         </nav>
-
         {/* MOBILE BUTTON */}
         <div className="md:hidden">
           <button

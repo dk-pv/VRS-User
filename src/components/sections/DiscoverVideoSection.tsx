@@ -37,14 +37,14 @@ export default function DiscoverVideoSection() {
   const playVideo = () => {
     iframeRef.current?.contentWindow?.postMessage(
       '{"event":"command","func":"playVideo","args":""}',
-      "*",
+      "*"
     );
   };
 
   const pauseVideo = () => {
     iframeRef.current?.contentWindow?.postMessage(
       '{"event":"command","func":"pauseVideo","args":""}',
-      "*",
+      "*"
     );
   };
 
@@ -57,60 +57,89 @@ export default function DiscoverVideoSection() {
 
     iframeRef.current.contentWindow?.postMessage(
       `{"event":"command","func":"${command}","args":""}`,
-      "*",
+      "*"
     );
 
     setIsMuted(!isMuted);
   };
 
   return (
-    <section className="relative py-14 border-t border-white/10">
-      <div className="text-center mb-8">
-        <div className="w-10 h-[2px] bg-yellow-500 mx-auto mb-3"></div>
-        <h2 className="text-xl md:text-3xl font-medium text-white">
-          Discover VRS Realinvest
-        </h2>
-        <p className="text-gray-400 mt-1 text-xs md:text-sm">
-          Watch our story and mission
-        </p>
-      </div>
+    <section className="relative py-16 overflow-hidden bg-[var(--background)] border-t border-[var(--card-border)]">
 
-      <div
-        className="relative max-w-3xl mx-auto rounded-2xl overflow-hidden border border-white/10 group cursor-pointer"
-        onMouseEnter={playVideo}
-        onMouseLeave={pauseVideo}
-        onClick={() => window.open(data.videoUrl, "_blank")}
-      >
-        <div className="relative w-full aspect-video">
-          <iframe
-            ref={iframeRef}
-            src={embedUrl}
-            className="absolute inset-0 w-full h-full"
-            allow="autoplay; encrypted-media"
-          />
+      {/* Glow Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
 
-          <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition duration-300"></div>
+      <div className="relative max-w-4xl mx-auto px-6 text-center">
 
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <PlayCircle
-              size={55}
-              className="text-white opacity-80 group-hover:text-yellow-500 transition duration-300"
-            />
-          </div>
+        {/* HEADER */}
+        <div className="mb-12">
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-5 opacity-80"></div>
 
-          {/* Mute / Unmute Button */}
-          <button
-            onClick={toggleMute}
-            className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm p-2 rounded-full text-white hover:bg-black/80 transition"
-          >
-            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-          </button>
+          <h2 className="font-heading text-xl md:text-3xl font-medium text-white tracking-[-0.01em]">
+            Discover VRS Realinvest
+          </h2>
+
+          <p className="font-body text-gray-400 mt-3 text-[11px] tracking-[0.18em] uppercase">
+            Watch our story and mission
+          </p>
+
+          {/* extra glow line */}
+          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mt-6 opacity-70"></div>
         </div>
-      </div>
 
-      <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-xs md:text-sm text-center px-4">
-        Learn about our commitment to excellence and our proven track record.
-      </p>
+        {/* VIDEO CARD */}
+        <div
+          className="relative max-w-3xl mx-auto rounded-2xl overflow-hidden border border-[var(--card-border)] 
+          group cursor-pointer 
+          shadow-[0_25px_80px_rgba(0,0,0,0.8)] 
+          hover:shadow-[0_30px_90px_rgba(0,0,0,0.9)] 
+          hover:scale-[1.01]
+          transition-all duration-500"
+          onMouseEnter={playVideo}
+          onMouseLeave={pauseVideo}
+          onClick={() => window.open(data.videoUrl, "_blank")}
+        >
+          <div className="relative w-full aspect-video">
+
+            {/* Video */}
+            <iframe
+              ref={iframeRef}
+              src={embedUrl}
+              className="absolute inset-0 w-full h-full transition-transform duration-[1200ms] group-hover:scale-105"
+              allow="autoplay; encrypted-media"
+            />
+
+            {/* Cinematic Overlay */}
+            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/30 transition duration-500"></div>
+
+            {/* Glow Layer */}
+            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none 
+            bg-[radial-gradient(circle_at_center,rgba(231,200,156,0.15),transparent_70%)]" />
+
+            {/* Play Icon */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <PlayCircle
+                size={60}
+                className="text-white opacity-80 group-hover:text-[var(--primary-gold)] transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+              />
+            </div>
+
+            {/* Mute Button */}
+            <button
+              onClick={toggleMute}
+              className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm p-2.5 rounded-full text-white hover:bg-black/80 transition"
+            >
+              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
+          </div>
+        </div>
+
+        {/* DESCRIPTION */}
+        <p className="font-body text-gray-400 mt-8 max-w-xl mx-auto text-[11px] md:text-sm text-center px-4 tracking-wide text-white/80">
+          Learn about our commitment to excellence and our proven track record.
+        </p>
+
+      </div>
     </section>
   );
 }

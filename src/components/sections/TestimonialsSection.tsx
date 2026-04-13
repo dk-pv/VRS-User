@@ -31,7 +31,10 @@ export default function TestimonialsSection() {
   const [reviews, setReviews] = useState<TextReview[]>([]);
   const [videos, setVideos] = useState<VideoReview[]>([]);
   const [index, setIndex] = useState(0);
-  const [mutedVideos, setMutedVideos] = useState<{ [key: string]: boolean }>({});
+  const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
+  const [mutedVideos, setMutedVideos] = useState<{ [key: string]: boolean }>(
+    {},
+  );
 
   const getYoutubeId = (url: string): string | null => {
     const regExp =
@@ -78,8 +81,7 @@ export default function TestimonialsSection() {
   const prevSlide = () =>
     setIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
 
-  const nextSlide = () =>
-    setIndex((prev) => (prev + 1) % reviews.length);
+  const nextSlide = () => setIndex((prev) => (prev + 1) % reviews.length);
 
   const sendCommand = (id: string, command: string) => {
     const iframe = document.getElementById(id) as HTMLIFrameElement;
@@ -90,7 +92,7 @@ export default function TestimonialsSection() {
         func: command,
         args: [],
       }),
-      "*"
+      "*",
     );
   };
 
@@ -106,19 +108,17 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="relative bg-[var(--background)] py-16 overflow-hidden">
-
+    <section className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 text-center backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
       <div className="max-w-6xl mx-auto px-6">
-
         {/* ================= TEXT TESTIMONIALS ================= */}
         <div className="text-center mb-12">
           <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mb-3"></div>
 
-          <h2 className="text-2xl md:text-3xl font-medium text-white">
+          <h2 className="font-heading text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
             Client Testimonials
           </h2>
 
-          <p className="text-gray-400 mt-2 text-sm">
+          <p className="font-body text-gray-400 mt-3 text-[11px] tracking-[0.18em] uppercase">
             What our satisfied clients say about us
           </p>
         </div>
@@ -131,8 +131,7 @@ export default function TestimonialsSection() {
             >
               {reviews.map((review) => (
                 <div key={review._id} className="min-w-full px-3">
-                  <div className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 text-center backdrop-blur-md">
-
+                  <div className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 text-center backdrop-blur-md min-h-[260px] flex flex-col justify-between">
                     <Quote
                       className="absolute top-4 right-4 text-[var(--primary-gold)] opacity-10"
                       size={40}
@@ -149,15 +148,36 @@ export default function TestimonialsSection() {
                       ))}
                     </div>
 
-                    <p className="text-gray-300 mb-5 text-sm md:text-base leading-relaxed">
-                      "{review.text}"
-                    </p>
+                    <div className="mb-6">
+                      <p
+                        className={`font-body text-gray-300 text-sm md:text-base leading-relaxed tracking-wide transition-all duration-300 ${
+                          expanded[review._id] ? "" : "line-clamp-4"
+                        }`}
+                      >
+                        "{review.text}"
+                      </p>
 
-                    <h4 className="text-white font-medium text-sm md:text-base">
+                      {/* READ MORE */}
+                      {review.text.length > 120 && (
+                        <button
+                          onClick={() =>
+                            setExpanded((prev) => ({
+                              ...prev,
+                              [review._id]: !prev[review._id],
+                            }))
+                          }
+                          className="mt-2 text-[var(--primary-gold)] text-[10px] font-body tracking-[0.2em] uppercase hover:opacity-80 transition"
+                        >
+                          {expanded[review._id] ? "Show Less" : "Read More"}
+                        </button>
+                      )}
+                    </div>
+
+                    <h4 className="font-heading text-white font-medium text-sm md:text-base tracking-tight">
                       {review.name}
                     </h4>
 
-                    <p className="text-gray-500 text-xs mt-1">
+                    <p className="font-body text-gray-500 text-[10px] mt-2 tracking-[0.15em] uppercase">
                       {review.location}
                     </p>
                   </div>
@@ -184,9 +204,9 @@ export default function TestimonialsSection() {
 
         {/* ================= VIDEO TESTIMONIALS ================= */}
         <div className="text-center mb-8">
-          <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mb-3"></div>
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-5 opacity-80"></div>
 
-          <h2 className="text-2xl md:text-3xl font-medium text-white">
+          <h2 className="font-heading text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
             Video Testimonials
           </h2>
         </div>
@@ -231,8 +251,12 @@ export default function TestimonialsSection() {
 
                   {/* TEXT */}
                   <div className="absolute bottom-5 left-5 text-white z-10">
-                    <h4 className="font-medium text-base">{video.name}</h4>
-                    <p className="text-gray-300 text-xs">{video.role}</p>
+                    <h4 className="font-heading text-base font-medium tracking-tight">
+                      {video.name}
+                    </h4>
+                    <p className="font-body text-gray-300 text-[10px] tracking-[0.15em] uppercase">
+                      {video.role}
+                    </p>
                   </div>
 
                   {/* MUTE BUTTON */}

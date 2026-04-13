@@ -33,13 +33,13 @@ export default function TeamSection() {
 
         {/* HEADER */}
         <div className="text-center mb-12">
-          <div className="w-12 h-[2px] bg-[var(--primary-gold)] mx-auto mb-4"></div>
+          <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-6 opacity-80"></div>
 
-          <h2 className="text-3xl md:text-4xl font-medium text-white">
+          <h2 className="font-heading text-3xl md:text-4xl font-medium text-white tracking-[-0.01em]">
             Meet Our Team
           </h2>
 
-          <p className="text-gray-400 mt-3 text-sm md:text-base">
+          <p className="font-body text-gray-400 mt-4 text-[11px] md:text-sm tracking-[0.18em] uppercase">
             Experienced professionals dedicated to helping you create real freedom
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function TeamSection() {
                 border border-[var(--card-border)]
                 bg-[var(--card-bg)]
                 transition-all duration-500
-                hover:border-[var(--primary-gold)]/40"
+                hover:border-[var(--primary-gold)]/40 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7)]"
               >
                 {/* IMAGE */}
                 <img
@@ -70,15 +70,15 @@ export default function TeamSection() {
 
                 {/* CONTENT */}
                 <div className="absolute bottom-0 w-full p-5 text-center">
-                  <h4 className="text-white text-lg font-medium">
+                  <h4 className="font-heading text-white text-lg font-medium tracking-tight">
                     {member.name}
                   </h4>
 
-                  <p className="text-gray-400 mt-1 text-sm">
+                  <p className="font-body text-gray-400 mt-2 text-[11px] tracking-[0.15em] uppercase">
                     {member.role}
                   </p>
 
-                  <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mt-3"></div>
+                  <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mt-4 opacity-80"></div>
                 </div>
               </div>
             ))}
