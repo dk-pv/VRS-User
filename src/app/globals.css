@@ -211,3 +211,18 @@ body.page-exit {
     filter: blur(0);
   }
 }
+
+
+
+
+/* ============================= */
+
+
+.vrs-bg {
+  background-image: url("/VRS-BG.jpg");
+  background-repeat: repeat;      /* 🔥 KEY FIX */
+  background-size: auto;          /* 🔥 NO ZOOM */
+  background-position: top left;
+  position: relative;
+}
+

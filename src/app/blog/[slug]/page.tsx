@@ -153,14 +153,14 @@ export default async function BlogDetail({
 
   if (!blog) {
     return (
-      <main className="bg-[var(--background)] text-white min-h-screen flex items-center justify-center">
+      <main className=" text-white min-h-screen flex items-center justify-center">
         <h1>Blog not found</h1>
       </main>
     );
   }
 
   return (
-    <main className="bg-[var(--background)] text-white min-h-screen">
+    <main className="text-white min-h-screen">
       {/* HERO */}
       <section className="pt-28 pb-16 px-6 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />

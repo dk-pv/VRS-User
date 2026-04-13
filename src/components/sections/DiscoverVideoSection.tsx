@@ -37,14 +37,14 @@ export default function DiscoverVideoSection() {
   const playVideo = () => {
     iframeRef.current?.contentWindow?.postMessage(
       '{"event":"command","func":"playVideo","args":""}',
-      "*"
+      "*",
     );
   };
 
   const pauseVideo = () => {
     iframeRef.current?.contentWindow?.postMessage(
       '{"event":"command","func":"pauseVideo","args":""}',
-      "*"
+      "*",
     );
   };
 
@@ -57,20 +57,18 @@ export default function DiscoverVideoSection() {
 
     iframeRef.current.contentWindow?.postMessage(
       `{"event":"command","func":"${command}","args":""}`,
-      "*"
+      "*",
     );
 
     setIsMuted(!isMuted);
   };
 
   return (
-    <section className="relative py-16 overflow-hidden bg-[var(--background)] border-t border-[var(--card-border)]">
-
+    <section className="relative py-16 overflow-hidden">
       {/* Glow Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto px-6 text-center">
-
         {/* HEADER */}
         <div className="mb-12">
           <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-5 opacity-80"></div>
@@ -100,7 +98,6 @@ export default function DiscoverVideoSection() {
           onClick={() => window.open(data.videoUrl, "_blank")}
         >
           <div className="relative w-full aspect-video">
-
             {/* Video */}
             <iframe
               ref={iframeRef}
@@ -113,8 +110,10 @@ export default function DiscoverVideoSection() {
             <div className="absolute inset-0 bg-black/60 group-hover:bg-black/30 transition duration-500"></div>
 
             {/* Glow Layer */}
-            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none 
-            bg-[radial-gradient(circle_at_center,rgba(231,200,156,0.15),transparent_70%)]" />
+            <div
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none 
+            bg-[radial-gradient(circle_at_center,rgba(231,200,156,0.15),transparent_70%)]"
+            />
 
             {/* Play Icon */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -138,7 +137,6 @@ export default function DiscoverVideoSection() {
         <p className="font-body text-gray-400 mt-8 max-w-xl mx-auto text-[11px] md:text-sm text-center px-4 tracking-wide text-white/80">
           Learn about our commitment to excellence and our proven track record.
         </p>
-
       </div>
     </section>
   );

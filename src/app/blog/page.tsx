@@ -36,7 +36,7 @@ export default async function BlogPage() {
   const posts = await getBlogs();
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-white flex flex-col">
+    <div className="min-h-screen  text-white flex flex-col">
 
       <Navbar />
 

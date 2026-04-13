@@ -108,8 +108,8 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="relative bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 text-center backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="relative py-20 text-center">
+      <div className="px-6 md:px-10 lg:px-20">
         {/* ================= TEXT TESTIMONIALS ================= */}
         <div className="text-center mb-12">
           <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mb-3"></div>

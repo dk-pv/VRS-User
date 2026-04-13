@@ -28,9 +28,8 @@ export default function TeamSection() {
   const isScrollable = teamMembers.length > 4;
 
   return (
-    <section className="bg-[var(--background)] py-16">
-      <div className="max-w-6xl mx-auto px-6">
-
+    <section className="py-20 md:py-24">
+      <div className="px-6 md:px-10 lg:px-20">
         {/* HEADER */}
         <div className="text-center mb-12">
           <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-6 opacity-80"></div>
@@ -40,10 +39,10 @@ export default function TeamSection() {
           </h2>
 
           <p className="font-body text-gray-400 mt-4 text-[11px] md:text-sm tracking-[0.18em] uppercase">
-            Experienced professionals dedicated to helping you create real freedom
+            Experienced professionals dedicated to helping you create real
+            freedom
           </p>
         </div>
-
         {/* SCROLL / GRID */}
         {isScrollable ? (
           <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
@@ -111,9 +110,7 @@ export default function TeamSection() {
                     {member.name}
                   </h4>
 
-                  <p className="text-gray-400 mt-1 text-sm">
-                    {member.role}
-                  </p>
+                  <p className="text-gray-400 mt-1 text-sm">{member.role}</p>
 
                   <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mt-3"></div>
                 </div>

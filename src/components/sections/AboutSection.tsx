@@ -5,7 +5,7 @@ import { CheckCircle, Shield, Target, TrendingUp } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section className="bg-[var(--background)] text-white">
+    <section className=" text-white">
       <div className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         {/* IMAGE */}
         <div className="w-full flex justify-center md:justify-start">

@@ -54,7 +54,7 @@ export default function HomePage() {
           <TeamSection />
           <TestimonialsSection />
 
-          <section className="py-14 px-6 bg-[var(--background)]">
+          <section className="py-14 px-6">
             <div className="max-w-4xl mx-auto">
               <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 md:p-12 text-center shadow-xl">
                 <h3 className="text-xl md:text-3xl text-white font-semibold mb-4">

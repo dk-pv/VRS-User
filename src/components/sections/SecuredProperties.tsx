@@ -16,8 +16,11 @@ interface SecuredProperty {
 }
 
 export default function SecuredProperties() {
-  const [securedProperties, setSecuredProperties] = useState<SecuredProperty[]>([]);
-  const [selectedProperty, setSelectedProperty] = useState<SecuredProperty | null>(null);
+  const [securedProperties, setSecuredProperties] = useState<SecuredProperty[]>(
+    [],
+  );
+  const [selectedProperty, setSelectedProperty] =
+    useState<SecuredProperty | null>(null);
   const [currentImage, setCurrentImage] = useState<number>(0);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -52,7 +55,10 @@ export default function SecuredProperties() {
       if (!isPausedRef.current) {
         container.scrollLeft += speed;
 
-        if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
+        if (
+          container.scrollLeft + container.clientWidth >=
+          container.scrollWidth
+        ) {
           container.scrollLeft = 0;
         }
       }
@@ -79,7 +85,8 @@ export default function SecuredProperties() {
     container.addEventListener("mousedown", pauseScroll);
 
     return () => {
-      if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
+      if (animationRef.current !== null)
+        cancelAnimationFrame(animationRef.current);
       if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
 
       container.removeEventListener("wheel", pauseScroll);
@@ -106,9 +113,11 @@ export default function SecuredProperties() {
   return (
     <>
       {/* ================= SECTION ================= */}
-      <section className="bg-[var(--background)] py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="relative py-20 overflow-hidden">
+        {/* ✅ FULL WIDTH GLOW */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_10%)] pointer-events-none" />
 
+        <div className="relative px-6 md:px-10 lg:px-20">
           {/* HEADER */}
           <div className="text-center mb-10">
             <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-6 opacity-80"></div>
@@ -125,7 +134,7 @@ export default function SecuredProperties() {
           {/* SCROLLER */}
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
+            className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing pl-6 pr-6 md:pl-10 md:pr-10"
           >
             {securedProperties.map((property) => (
               <div
@@ -149,7 +158,9 @@ export default function SecuredProperties() {
 
                 {/* CONTENT */}
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="font-heading text-base font-medium tracking-tight">{property.title}</h3>
+                  <h3 className="font-heading text-base font-medium tracking-tight">
+                    {property.title}
+                  </h3>
 
                   <button
                     onClick={() => {
@@ -200,7 +211,7 @@ export default function SecuredProperties() {
                       setCurrentImage((prev) =>
                         prev === 0
                           ? selectedProperty.galleryImages.length - 1
-                          : prev - 1
+                          : prev - 1,
                       )
                     }
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-md"
@@ -212,7 +223,7 @@ export default function SecuredProperties() {
                     onClick={() =>
                       setCurrentImage(
                         (prev) =>
-                          (prev + 1) % selectedProperty.galleryImages.length
+                          (prev + 1) % selectedProperty.galleryImages.length,
                       )
                     }
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-md"
@@ -225,7 +236,9 @@ export default function SecuredProperties() {
 
             {/* DETAILS */}
             <div className="p-8 text-white space-y-6">
-              <h2 className="font-heading text-2xl font-medium tracking-tight">{selectedProperty.title}</h2>
+              <h2 className="font-heading text-2xl font-medium tracking-tight">
+                {selectedProperty.title}
+              </h2>
 
               <p className="text-gray-300 leading-relaxed">
                 {selectedProperty.description}

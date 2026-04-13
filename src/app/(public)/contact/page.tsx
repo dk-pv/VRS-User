@@ -73,7 +73,7 @@ export default function ContactPage() {
       {/* ✅ Loader */}
       <PageLoader visible={showLoader} />
 
-      <main className="pt-6 bg-[var(--background)] text-white min-h-screen relative overflow-hidden">
+      <main className="pt-6  text-white min-h-screen relative overflow-hidden">
         {/* BACKGROUND */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)]" />

@@ -14,7 +14,7 @@ const states = [
 
 export default function NationwideCoverage() {
   return (
-    <section className="relative bg-[var(--background)] py-14 md:py-16 overflow-hidden">
+    <section className="relative  py-14 md:py-16 overflow-hidden">
       <div className="max-w-4xl mx-auto px-4">
         {/* HEADING */}
         <div className="text-center mb-8">

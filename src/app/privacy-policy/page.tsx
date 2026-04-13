@@ -3,7 +3,7 @@ import Navbar from "@/components/layout/Navbar";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)] text-gray-300">
+    <div className="flex flex-col min-h-screen  text-gray-300">
       <Navbar />
 
       {/* ================= HERO ================= */}

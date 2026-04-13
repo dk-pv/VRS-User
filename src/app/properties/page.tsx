@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function PropertiesPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-white flex flex-col">
+    <div className="min-h-screen  text-white flex flex-col">
       <Navbar />
 
       {/* ================= HERO / HEADER ================= */}
