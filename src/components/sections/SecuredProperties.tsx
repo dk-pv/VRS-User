@@ -115,7 +115,7 @@ export default function SecuredProperties() {
       {/* ================= SECTION ================= */}
       <section className="relative py-20 overflow-hidden">
         {/* ✅ FULL WIDTH GLOW */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(231,200,156,0.15)] via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t  via-black/20 to-transparent" />
 
         <div className="relative px-6 md:px-10 lg:px-20">
           {/* HEADER */}
