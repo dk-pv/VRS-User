@@ -76,8 +76,10 @@ export default function ContactPage() {
       <main className="pt-6  text-white min-h-screen relative overflow-hidden">
         {/* BACKGROUND */}
         <div className="absolute inset-0 pointer-events-none">
+          {/* GOLD GLOW */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,rgba(0,0,0,0.6))]" />
+
+          {/* GRID (optional) */}
           <div
             className="absolute inset-0 opacity-[0.02]"
             style={{

@@ -1,20 +1,16 @@
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
-
 export default function TermsPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)] text-gray-300">
-      <Navbar />
-
+    <>
+      {" "}
       {/* ================= HERO ================= */}
       <section className="pt-28 pb-12 px-6 text-center relative overflow-hidden">
         {/* subtle glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
 
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative px-6 md:px-10 lg:px-20 text-center">
           <div className="w-12 h-[2px] bg-[var(--primary-gold)] mx-auto mb-4" />
 
-         <h1 className="font-heading text-4xl md:text-5xl font-medium text-white tracking-[-0.015em]">
+          <h1 className="font-heading text-4xl md:text-5xl font-medium text-white tracking-[-0.015em]">
             Terms & Conditions
           </h1>
 
@@ -24,9 +20,8 @@ export default function TermsPage() {
           </p>
         </div>
       </section>
-
       {/* ================= CONTENT ================= */}
-      <main className="flex-1 px-6 pb-20 font-body">
+      <main className="px-6 md:px-10 lg:px-20 pb-24 font-body">
         <div className="max-w-4xl mx-auto space-y-8">
           <Section title="1. Introduction">
             <p>
@@ -147,9 +142,7 @@ export default function TermsPage() {
           </Section>
         </div>
       </main>
-
-      <Footer />
-    </div>
+    </>
   );
 }
 
@@ -157,8 +150,7 @@ export default function TermsPage() {
 
 function Section({ title, children }: any) {
   return (
-    <div className="space-y-3 border border-[var(--card-border)] bg-[var(--card-bg)] rounded-xl p-5 md:p-6 hover:border-[var(--primary-gold)]/30 transition">
-      
+    <div className="space-y-3 border border-[var(--card-border)] bg-[var(--card-bg)]/80 backdrop-blur-sm rounded-xl p-5 md:p-6 hover:border-[var(--primary-gold)]/30 transition">
       <h2 className="font-heading text-lg md:text-xl font-medium text-[var(--primary-gold)] tracking-wide">
         {title}
       </h2>
@@ -166,7 +158,6 @@ function Section({ title, children }: any) {
       <div className="text-sm md:text-base leading-relaxed text-gray-400 tracking-wide">
         {children}
       </div>
-
     </div>
   );
 }

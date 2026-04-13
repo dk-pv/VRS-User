@@ -115,13 +115,11 @@ export default function SecuredProperties() {
       {/* ================= SECTION ================= */}
       <section className="relative py-20 overflow-hidden">
         {/* ✅ FULL WIDTH GLOW */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_10%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(231,200,156,0.15)] via-black/20 to-transparent" />
 
         <div className="relative px-6 md:px-10 lg:px-20">
           {/* HEADER */}
           <div className="text-center mb-10">
-            <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-6 opacity-80"></div>
-
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
               Secured Properties
             </h2>

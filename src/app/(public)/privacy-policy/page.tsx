@@ -1,29 +1,28 @@
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
+"use client";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="flex flex-col min-h-screen  text-gray-300">
-      <Navbar />
-
+    <>
       {/* ================= HERO ================= */}
-      <section className="pt-28 pb-12 px-6 text-center relative overflow-hidden">
-        {/* subtle glow */}
+      <section className="pt-32 md:pt-36 pb-16 px-6 text-center relative overflow-hidden">
+        {/* glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
 
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative px-6 md:px-10 lg:px-20 text-center">
           <div className="w-12 h-[2px] bg-[var(--primary-gold)] mx-auto mb-4" />
 
           <h1 className="font-heading text-4xl md:text-5xl font-medium text-white tracking-[-0.015em]">
             Privacy Policy
           </h1>
 
-          <p className="font-body text-gray-500 text-sm mt-3 tracking-wide">VRS RealInvest Pty Ltd</p>
+          <p className="font-body text-gray-500 text-sm mt-3 tracking-wide">
+            VRS RealInvest Pty Ltd
+          </p>
         </div>
       </section>
 
       {/* ================= CONTENT ================= */}
-      <main className="flex-1 px-6 pb-20 font-body">
+      <main className="px-6 md:px-10 lg:px-20 pb-24 font-body text-gray-300">
         <div className="max-w-4xl mx-auto space-y-8">
           <p className="text-sm md:text-base leading-relaxed text-gray-400 tracking-wide">
             At VRS RealInvest Pty Ltd, we respect your privacy and are committed
@@ -89,9 +88,7 @@ export default function PrivacyPolicy() {
           </Section>
         </div>
       </main>
-
-      <Footer />
-    </div>
+    </>
   );
 }
 
@@ -99,8 +96,7 @@ export default function PrivacyPolicy() {
 
 function Section({ title, children }: any) {
   return (
-    <div className="space-y-3 border border-[var(--card-border)] bg-[var(--card-bg)] rounded-xl p-5 md:p-6 hover:border-[var(--primary-gold)]/30 transition">
-      
+    <div className="space-y-3 border border-[var(--card-border)] bg-[var(--card-bg)]/80 backdrop-blur-sm rounded-xl p-5 md:p-6 hover:border-[var(--primary-gold)]/30 transition">
       <h2 className="font-heading text-lg md:text-xl font-medium text-[var(--primary-gold)] tracking-wide">
         {title}
       </h2>
@@ -108,7 +104,6 @@ function Section({ title, children }: any) {
       <div className="text-sm md:text-base leading-relaxed text-gray-400 tracking-wide">
         {children}
       </div>
-
     </div>
   );
 }

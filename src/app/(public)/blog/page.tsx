@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
 
 interface BlogPost {
   _id: string;
@@ -22,7 +20,7 @@ async function getBlogs(): Promise<BlogPost[]> {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/blog`,
-      { cache: "no-store" }
+      { cache: "no-store" },
     );
 
     if (!res.ok) return [];
@@ -37,14 +35,9 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen  text-white flex flex-col">
-
-      <Navbar />
-
       <main className="flex-1">
-
         {/* ================= HERO ================= */}
         <section className="py-24 px-6 text-center relative overflow-hidden">
-
           {/* subtle glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
 
@@ -56,8 +49,8 @@ export default async function BlogPage() {
             </h1>
 
             <p className="text-gray-400 mt-5 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-              Expert perspectives, strategic investment insights, and
-              premium real estate analysis tailored for sophisticated investors.
+              Expert perspectives, strategic investment insights, and premium
+              real estate analysis tailored for sophisticated investors.
             </p>
           </div>
         </section>
@@ -65,17 +58,14 @@ export default async function BlogPage() {
         {/* ================= BLOG GRID ================= */}
         <section className="pb-20 px-6">
           <div className="max-w-6xl mx-auto">
-
             {posts.length > 0 ? (
               <div className="grid md:grid-cols-3 gap-8">
-
                 {posts.map((post) => (
                   <Link
                     key={post._id}
                     href={`/blog/${post.slug}`}
                     className="group block rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-md transition duration-500 hover:border-[var(--primary-gold)]/40"
                   >
-
                     {/* IMAGE */}
                     <div className="relative overflow-hidden">
                       <img
@@ -89,7 +79,6 @@ export default async function BlogPage() {
 
                     {/* CONTENT */}
                     <div className="p-6">
-
                       <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">
                         {new Date(post.createdAt).toLocaleDateString()}
                       </p>
@@ -108,20 +97,15 @@ export default async function BlogPage() {
                     </div>
                   </Link>
                 ))}
-
               </div>
             ) : (
               <div className="flex items-center justify-center min-h-[40vh] text-gray-500 text-sm">
                 No blog articles available.
               </div>
             )}
-
           </div>
         </section>
-
       </main>
-
-      <Footer />
     </div>
   );
 }
