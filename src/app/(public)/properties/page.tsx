@@ -1,5 +1,3 @@
-"use client";
-
 import SecuredProperties from "@/components/sections/SecuredProperties";
 
 export default function PropertiesPage() {
