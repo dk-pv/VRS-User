@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 // ✅ Import fonts
 import { Playfair_Display, Montserrat } from "next/font/google";
@@ -34,12 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${montserrat.variable}`}
-    >
-      {/* ✅ Apply Montserrat properly */}
+    <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
       <body className={montserrat.className}>
+        <ScrollToTop />
         {children}
       </body>
     </html>

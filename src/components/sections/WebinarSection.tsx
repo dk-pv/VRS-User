@@ -41,7 +41,7 @@ export default function WebinarSection() {
   return (
     <section className="relative py-16 overflow-hidden">
       {/* subtle glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.06),transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto px-6 text-center">
         {/* HEADER */}
