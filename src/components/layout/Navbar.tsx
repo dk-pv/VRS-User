@@ -43,13 +43,13 @@ export default function Navbar() {
       {/* GOLD GRADIENT LINE */}
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)]/50 to-transparent opacity-70" />
 
-      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="w-full pl-4 pr-6 lg:pl-8 lg:pr-12 py-3 flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="flex items-center">
           <Image
             src={logo}
             alt="VRS RealInvest"
-            className="h-8 w-auto object-contain transition duration-300 hover:opacity-90"
+            className="h-10 w-auto object-contain transition duration-300 hover:opacity-90"
             priority
           />
         </Link>

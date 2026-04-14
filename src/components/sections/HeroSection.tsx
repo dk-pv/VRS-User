@@ -150,9 +150,9 @@ export default function HeroSection({ onLoaded }: { onLoaded?: () => void }) {
             rel="noopener noreferrer"
           >
             <button
-              className="px-9 py-3 text-[11px] font-body font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C]/40 text-[#E7C89C] 
-              hover:border-[#E7C89C] hover:bg-[#E7C89C] hover:text-[#221F1F] 
-              transition-all duration-300 hover:scale-[1.03]"
+              className="px-9 py-3 text-[11px] font-body font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
+            hover:bg-[#E7C89C] hover:text-[#221F1F] 
+            transition-all duration-300 hover:scale-[1.03]"
             >
               Consultation
             </button>

@@ -140,12 +140,12 @@ export default function FloatingAssistant() {
             👋 Welcome! Choose an option below.
           </div>
 
-          <a href="#" className="flex gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50">
+          <a href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657" className="flex gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50">
             <Calendar size={16} />
             Book Consultation
           </a>
 
-          <a href="#" className="flex gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50">
+          <a href="https://wa.me/61412864050" target="_blank" rel="noopener noreferrer" className="flex gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50">
             <MessageCircle size={16} />
             WhatsApp
           </a>
