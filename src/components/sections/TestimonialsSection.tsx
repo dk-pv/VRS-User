@@ -114,11 +114,11 @@ export default function TestimonialsSection() {
         <div className="text-center mb-12">
           <div className="w-10 h-[2px] bg-[var(--primary-gold)] mx-auto mb-3"></div>
 
-          <h2 className="font-heading text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
+          <h2 className=" text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
             Client Testimonials
           </h2>
 
-          <p className="font-body text-gray-400 mt-3 text-[11px] tracking-[0.18em] uppercase">
+          <p className="text-gray-400 mt-3 text-[11px] tracking-[0.18em] uppercase">
             What our satisfied clients say about us
           </p>
         </div>
@@ -150,7 +150,7 @@ export default function TestimonialsSection() {
 
                     <div className="mb-6">
                       <p
-                        className={`font-body text-gray-300 text-sm md:text-base leading-relaxed tracking-wide transition-all duration-300 ${
+                        className={` text-gray-300 text-sm md:text-base leading-relaxed tracking-wide transition-all duration-300 ${
                           expanded[review._id] ? "" : "line-clamp-4"
                         }`}
                       >
@@ -166,18 +166,18 @@ export default function TestimonialsSection() {
                               [review._id]: !prev[review._id],
                             }))
                           }
-                          className="mt-2 text-[var(--primary-gold)] text-[10px] font-body tracking-[0.2em] uppercase hover:opacity-80 transition"
+                          className="mt-2 text-[var(--primary-gold)] text-[10px] tracking-[0.2em] uppercase hover:opacity-80 transition"
                         >
                           {expanded[review._id] ? "Show Less" : "Read More"}
                         </button>
                       )}
                     </div>
 
-                    <h4 className="font-heading text-white font-medium text-sm md:text-base tracking-tight">
+                    <h4 className=" text-white font-medium text-sm md:text-base tracking-tight">
                       {review.name}
                     </h4>
 
-                    <p className="font-body text-gray-500 text-[10px] mt-2 tracking-[0.15em] uppercase">
+                    <p className=" text-gray-500 text-[10px] mt-2 tracking-[0.15em] uppercase">
                       {review.location}
                     </p>
                   </div>
@@ -206,7 +206,7 @@ export default function TestimonialsSection() {
         <div className="text-center mb-8">
           <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-5 opacity-80"></div>
 
-          <h2 className="font-heading text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
+          <h2 className=" text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
             Video Testimonials
           </h2>
         </div>
@@ -251,10 +251,10 @@ export default function TestimonialsSection() {
 
                   {/* TEXT */}
                   <div className="absolute bottom-5 left-5 text-white z-10">
-                    <h4 className="font-heading text-base font-medium tracking-tight">
+                    <h4 className="text-base font-medium tracking-tight">
                       {video.name}
                     </h4>
-                    <p className="font-body text-gray-300 text-[10px] tracking-[0.15em] uppercase">
+                    <p className="text-gray-300 text-[10px] tracking-[0.15em] uppercase">
                       {video.role}
                     </p>
                   </div>

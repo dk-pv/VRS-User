@@ -15,8 +15,10 @@
   --card-border: rgba(231, 200, 156, 0.2);
 
   /* ✅ Fonts */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Montserrat', sans-serif;
+  /* --font-heading: 'Playfair Display', serif; */
+
+  --font-heading: "Cormorant Garamond", serif;
+  --font-body: "Montserrat", sans-serif;
 }
 
 /* ============================= */
@@ -41,9 +43,18 @@ body {
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ✅ Headings Global Font */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
+}
+
+h1 {
+  letter-spacing: 0.5px;
+  font-weight: 500;
 }
 
 /* ============================= */
@@ -89,9 +100,15 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================= */
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .animate-float {
@@ -185,8 +202,12 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================= */
 
 @keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* ============================= */
@@ -212,17 +233,12 @@ body.page-exit {
   }
 }
 
-
-
-
 /* ============================= */
-
 
 .vrs-bg {
   background-image: url("/VRS-BG.jpg");
-  background-repeat: repeat;      /* 🔥 KEY FIX */
-  background-size: auto;          /* 🔥 NO ZOOM */
+  background-repeat: repeat; /* 🔥 KEY FIX */
+  background-size: auto; /* 🔥 NO ZOOM */
   background-position: top left;
   position: relative;
 }
-

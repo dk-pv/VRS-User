@@ -117,17 +117,17 @@ export default function HeroSection({ onLoaded }: { onLoaded?: () => void }) {
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#E7C89C] to-transparent mb-12 mx-auto opacity-80" />
 
           {/* Heading */}
-          <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-[-0.015em] text-gold-gradient">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-[-0.015em] text-gold-gradient">
             Buy Investment Property in Australia with the Right Strategy
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-8 font-body text-[#E7C89C] text-xs md:text-sm font-medium tracking-[0.25em] uppercase">
+          <p className="mt-8  text-[#E7C89C] text-xs md:text-sm font-medium tracking-[0.25em] uppercase">
             Create real freedom through smart property investing
           </p>
 
           {/* Description */}
-          <p className="mt-6 font-body text-gray-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed tracking-wide">
+          <p className="mt-6  text-gray-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed tracking-wide">
             We help busy professionals buy high-growth investment properties in
             Australia with strategy, clarity, and confidence
           </p>
@@ -137,7 +137,7 @@ export default function HeroSection({ onLoaded }: { onLoaded?: () => void }) {
         <div className="mt-14 flex gap-6 flex-wrap justify-center">
           <button
             onClick={() => router.push("/webinar")}
-            className="px-9 py-3 text-[11px] font-body font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
+            className="px-9 py-3 text-[11px]  font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
             hover:bg-[#E7C89C] hover:text-[#221F1F] 
             transition-all duration-300 hover:scale-[1.03]"
           >
@@ -150,7 +150,7 @@ export default function HeroSection({ onLoaded }: { onLoaded?: () => void }) {
             rel="noopener noreferrer"
           >
             <button
-              className="px-9 py-3 text-[11px] font-body font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
+              className="px-9 py-3 text-[11px]  font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
             hover:bg-[#E7C89C] hover:text-[#221F1F] 
             transition-all duration-300 hover:scale-[1.03]"
             >

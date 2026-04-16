@@ -120,11 +120,11 @@ export default function SecuredProperties() {
         <div className="relative px-6 md:px-10 lg:px-20">
           {/* HEADER */}
           <div className="text-center mb-10">
-            <h2 className="font-heading text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
+            <h1 className="text-2xl md:text-3xl font-medium text-white tracking-[-0.01em]">
               Secured Properties
-            </h2>
+            </h1>
 
-            <p className="font-body text-gray-400 mt-3 text-[11px] tracking-[0.2em] uppercase">
+            <p className=" text-gray-400 mt-3 text-[11px] tracking-[0.2em] uppercase">
               Successfully secured for our valued clients
             </p>
           </div>
@@ -149,14 +149,14 @@ export default function SecuredProperties() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
                 {/* BADGE */}
-                <div className="absolute top-4 right-4 bg-[var(--primary-gold)] text-[#221F1F] px-3 py-1 rounded-full text-[10px] font-body font-medium tracking-wide uppercase flex items-center gap-1 shadow-md">
+                <div className="absolute top-4 right-4 bg-[var(--primary-gold)] text-[#221F1F] px-3 py-1 rounded-full text-[10px]  font-medium tracking-wide uppercase flex items-center gap-1 shadow-md">
                   <CheckCircle size={12} />
                   Secured
                 </div>
 
                 {/* CONTENT */}
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="font-heading text-base font-medium tracking-tight">
+                  <h3 className=" text-base font-medium tracking-tight">
                     {property.title}
                   </h3>
 
@@ -165,7 +165,7 @@ export default function SecuredProperties() {
                       setSelectedProperty(property);
                       setCurrentImage(0);
                     }}
-                    className="mt-3 bg-[var(--primary-gold)] text-[#221F1F] px-5 py-1.5 text-[10px] rounded-md font-body font-medium tracking-[0.18em] uppercase hover:opacity-90 transition"
+                    className="mt-3 bg-[var(--primary-gold)] text-[#221F1F] px-5 py-1.5 text-[10px] rounded-md  font-medium tracking-[0.18em] uppercase hover:opacity-90 transition"
                   >
                     View Details
                   </button>
@@ -234,7 +234,7 @@ export default function SecuredProperties() {
 
             {/* DETAILS */}
             <div className="p-8 text-white space-y-6">
-              <h2 className="font-heading text-2xl font-medium tracking-tight">
+              <h2 className=" text-2xl font-medium tracking-tight">
                 {selectedProperty.title}
               </h2>
 
@@ -245,21 +245,21 @@ export default function SecuredProperties() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-[var(--card-border)]">
                 <div>
                   <p className="text-gray-400 text-sm">Secured Price</p>
-                  <p className="text-[var(--primary-gold)] text-lg font-body font-semibold tracking-wide">
+                  <p className="text-[var(--primary-gold)] text-lg  font-semibold tracking-wide">
                     {selectedProperty.securedPrice}
                   </p>
                 </div>
 
                 <div>
                   <p className="text-gray-400 text-sm">Market Value</p>
-                  <p className="text-white text-lg font-body font-semibold tracking-wide">
+                  <p className="text-white text-lg  font-semibold tracking-wide">
                     {selectedProperty.marketPrice}
                   </p>
                 </div>
 
                 <div>
                   <p className="text-gray-400 text-sm">Current Value</p>
-                  <p className="text-white text-lg font-body font-semibold tracking-wide">
+                  <p className="text-white text-lg  font-semibold tracking-wide">
                     {selectedProperty.currentPrice}
                   </p>
                 </div>

@@ -34,11 +34,11 @@ export default function TeamSection() {
         <div className="text-center mb-12">
           <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-6 opacity-80"></div>
 
-          <h2 className="font-heading text-3xl md:text-4xl font-medium text-white tracking-[-0.01em]">
+          <h2 className=" text-3xl md:text-4xl font-medium text-white tracking-[-0.01em]">
             Meet Our Team
           </h2>
 
-          <p className="font-body text-gray-400 mt-4 text-[11px] md:text-sm tracking-[0.18em] uppercase">
+          <p className=" text-gray-400 mt-4 text-[11px] md:text-sm tracking-[0.18em] uppercase">
             Experienced professionals dedicated to helping you create real
             freedom
           </p>
@@ -69,11 +69,11 @@ export default function TeamSection() {
 
                 {/* CONTENT */}
                 <div className="absolute bottom-0 w-full p-5 text-center">
-                  <h4 className="font-heading text-white text-lg font-medium tracking-tight">
+                  <h4 className=" text-white text-lg font-medium tracking-tight">
                     {member.name}
                   </h4>
 
-                  <p className="font-body text-gray-400 mt-2 text-[11px] tracking-[0.15em] uppercase">
+                  <p className=" text-gray-400 mt-2 text-[11px] tracking-[0.15em] uppercase">
                     {member.role}
                   </p>
 

@@ -40,11 +40,11 @@ export default function TermsPage() {
             <div className="relative px-6 md:px-10 lg:px-20 text-center">
               <div className="w-12 h-[2px] bg-[var(--primary-gold)] mx-auto mb-4" />
 
-              <h1 className="font-heading text-4xl md:text-5xl font-medium text-white tracking-[-0.015em]">
+              <h1 className=" text-4xl md:text-5xl font-medium text-white tracking-[-0.015em]">
                 Terms & Conditions
               </h1>
 
-              <p className="font-body text-gray-500 text-sm mt-3 tracking-wide">
+              <p className=" text-gray-500 text-sm mt-3 tracking-wide">
                 VRS RealInvest Pty Ltd <br />
                 Effective Date: 27 March 2026
               </p>
@@ -52,7 +52,7 @@ export default function TermsPage() {
           </section>
 
           {/* ================= CONTENT ================= */}
-          <main className="px-6 md:px-10 lg:px-20 pb-24 font-body">
+          <main className="px-6 md:px-10 lg:px-20 pb-24 ">
             <div className="max-w-4xl mx-auto space-y-8">
               <Section title="1. Introduction">
                 <p>
@@ -188,7 +188,7 @@ export default function TermsPage() {
 function Section({ title, children }: any) {
   return (
     <div className="space-y-3 border border-[var(--card-border)] bg-[var(--card-bg)]/80 backdrop-blur-sm rounded-xl p-5 md:p-6 hover:border-[var(--primary-gold)]/30 transition">
-      <h2 className="font-heading text-lg md:text-xl font-medium text-[var(--primary-gold)] tracking-wide">
+      <h2 className=" text-lg md:text-xl font-medium text-[var(--primary-gold)] tracking-wide">
         {title}
       </h2>
 

@@ -1,12 +1,9 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import ScrollToTop from "@/components/common/ScrollToTop";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 
-// ✅ Import fonts
-import { Playfair_Display, Montserrat } from "next/font/google";
-
-// ✅ Configure fonts
-const playfair = Playfair_Display({
+const playfair = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-heading",

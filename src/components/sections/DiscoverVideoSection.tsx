@@ -73,11 +73,11 @@ export default function DiscoverVideoSection() {
         <div className="mb-12">
           <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[var(--primary-gold)] to-transparent mx-auto mb-5 opacity-80"></div>
 
-          <h2 className="font-heading text-xl md:text-3xl font-medium text-white tracking-[-0.01em]">
+          <h2 className="text-xl md:text-3xl font-medium text-white tracking-[-0.01em]">
             Discover VRS Realinvest
           </h2>
 
-          <p className="font-body text-gray-400 mt-3 text-[11px] tracking-[0.18em] uppercase">
+          <p className=" text-gray-400 mt-3 text-[11px] tracking-[0.18em] uppercase">
             Watch our story and mission
           </p>
 
@@ -134,7 +134,7 @@ export default function DiscoverVideoSection() {
         </div>
 
         {/* DESCRIPTION */}
-        <p className="font-body text-gray-400 mt-8 max-w-xl mx-auto text-[11px] md:text-sm text-center px-4 tracking-wide text-white/80">
+        <p className=" text-gray-400 mt-8 max-w-xl mx-auto text-[11px] md:text-sm text-center px-4 tracking-wide text-white/80">
           Learn about our commitment to excellence and our proven track record.
         </p>
       </div>
