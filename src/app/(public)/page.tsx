@@ -72,7 +72,7 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-7 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition duration-300"
                 >
-                  Get Free Consultation
+                  Get Consultation
                 </a>
               </div>
             </div>
