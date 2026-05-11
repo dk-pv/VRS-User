@@ -16,8 +16,33 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Real Invest",
-  description: "Premium real estate investment portfolio website",
+  metadataBase: new URL("https://vrsrealinvest.com.au"),
+
+  title: {
+    default: "VRS Real Invest",
+    template: "%s | VRS Real Invest",
+  },
+
+  description: "Premium real estate investment portfolio website in Australia.",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    title: "VRS Real Invest",
+    description:
+      "Premium real estate investment portfolio website in Australia.",
+    url: "https://vrsrealinvest.com.au",
+    siteName: "VRS Real Invest",
+    locale: "en_AU",
+    type: "website",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {
