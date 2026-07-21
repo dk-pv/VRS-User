@@ -12,7 +12,10 @@ interface Blog {
   metaTitle?: string;
   metaDescription?: string;
   createdAt: string;
+  updatedAt?: string;
 }
+
+const SITE_URL = "https://vrsrealinvest.com.au";
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
@@ -130,14 +133,36 @@ export async function generateMetadata({
 
   if (!blog) return { title: "Blog Not Found" };
 
+  const canonical = `/blog/${blog.slug}`;
+  const description = blog.metaDescription || blog.excerpt;
+
   return {
     title: blog.metaTitle || blog.title,
-    description: blog.metaDescription || blog.excerpt,
+    description,
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title: blog.title,
-      description: blog.excerpt,
-      images: [blog.image],
+      description,
+      url: `${SITE_URL}${canonical}`,
+      siteName: "VRS Real Invest",
+      locale: "en_AU",
       type: "article",
+      publishedTime: blog.createdAt,
+      modifiedTime: blog.updatedAt || blog.createdAt,
+      images: [
+        {
+          url: blog.image,
+          alt: blog.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description,
+      images: [blog.image],
     },
   };
 }
@@ -159,8 +184,41 @@ export default async function BlogDetail({
     );
   }
 
+  // ✅ ARTICLE STRUCTURED DATA (schema.org/Article)
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.title,
+    description: blog.metaDescription || blog.excerpt,
+    image: blog.image,
+    datePublished: blog.createdAt,
+    dateModified: blog.updatedAt || blog.createdAt,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${blog.slug}`,
+    },
+    author: {
+      "@type": "Organization",
+      name: "VRS Real Invest",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "VRS Real Invest",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+  };
+
   return (
     <main className="text-white min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+
       {/* HERO */}
       <section className="pt-28 pb-16 px-6 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
