@@ -25,10 +25,6 @@ export const metadata: Metadata = {
 
   description: "Premium real estate investment portfolio website in Australia.",
 
-  alternates: {
-    canonical: "/",
-  },
-
   openGraph: {
     title: "VRS Real Invest",
     description:
