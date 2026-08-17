@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import React from "react";
 
@@ -131,7 +132,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const blog = await getBlog(slug);
 
-  if (!blog) return { title: "Blog Not Found" };
+  // notFound() must fire here, not just in the page body: app/loading.tsx puts a
+  // Suspense boundary above this route, so the 200 shell is flushed before the
+  // page renders and the status can no longer be changed. Metadata resolves
+  // before that flush, so this is what makes the response a real HTTP 404.
+  if (!blog) notFound();
 
   const canonical = `/blog/${blog.slug}`;
   const description = blog.metaDescription || blog.excerpt;
@@ -176,13 +181,9 @@ export default async function BlogDetail({
   const { slug } = await params;
   const blog = await getBlog(slug);
 
-  if (!blog) {
-    return (
-      <main className=" text-white min-h-screen flex items-center justify-center">
-        <h1>Blog not found</h1>
-      </main>
-    );
-  }
+  // Unknown or unpublished slug → real HTTP 404 via app/not-found.tsx,
+  // instead of a 200 "Blog not found" page (Soft 404).
+  if (!blog) notFound();
 
   // ✅ ARTICLE STRUCTURED DATA (schema.org/Article)
   const articleJsonLd = {

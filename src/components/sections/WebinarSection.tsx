@@ -7,7 +7,6 @@ const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function WebinarSection() {
   const [webinars, setWebinars] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchWebinars = async () => {
@@ -18,8 +17,6 @@ export default function WebinarSection() {
         setWebinars(data);
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -36,8 +33,9 @@ export default function WebinarSection() {
     return `${formattedHour}:${minute} ${ampm}`;
   };
 
-  if (loading || webinars.length === 0) return null;
-
+  // The section header always renders so /webinar has real server-side content
+  // (it previously returned null until the client fetch resolved, leaving the
+  // page empty for crawlers). Only the cards below depend on fetched data.
   return (
     <section className="relative py-16 overflow-hidden">
       {/* subtle glow */}

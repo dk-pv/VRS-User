@@ -5,66 +5,50 @@ import SecuredProperties from "@/components/sections/SecuredProperties";
 import PageLoader from "@/components/common/PageLoader";
 
 export default function PropertiesPage() {
-  const [loading, setLoading] = useState(true);
+  // PageLoader is a fixed full-screen overlay, so page content renders (and
+  // server-renders) underneath it instead of being gated behind `loading`.
+  // 1300ms preserves the previous 800ms + 500ms loader timing exactly.
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 800); // same as About
-
+    const timer = setTimeout(() => setShowLoader(false), 1300);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (!loading) {
-      const t = setTimeout(() => {
-        setShowLoader(false);
-      }, 500); // smooth fade out
-
-      return () => clearTimeout(t);
-    }
-  }, [loading]);
 
   return (
     <>
       {/* LOADER */}
       <PageLoader visible={showLoader} />
 
-      {/* PAGE CONTENT */}
-      {!loading && (
-        <>
-          {/* ================= PROPERTIES ================= */}
-          <main className="pt-10">
-            <SecuredProperties />
-          </main>
+      {/* ================= PROPERTIES ================= */}
+      <main className="pt-10">
+        <SecuredProperties />
+      </main>
 
-          {/* ================= CTA ================= */}
-          <section className="px-6 py-20">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 md:p-12 shadow-xl">
-                <h3 className="text-xl md:text-2xl font-medium text-white mb-3">
-                  Looking for the Right Investment?
-                </h3>
+      {/* ================= CTA ================= */}
+      <section className="px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 md:p-12 shadow-xl">
+            <h3 className="text-xl md:text-2xl font-medium text-white mb-3">
+              Looking for the Right Investment?
+            </h3>
 
-                <p className="text-gray-400 text-sm md:text-base mb-6 max-w-xl mx-auto">
-                  Speak with our experts and discover tailored property
-                  opportunities that match your goals.
-                </p>
+            <p className="text-gray-400 text-sm md:text-base mb-6 max-w-xl mx-auto">
+              Speak with our experts and discover tailored property
+              opportunities that match your goals.
+            </p>
 
-                <a
-                  href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-6 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition"
-                >
-                  Get Consultation
-                </a>
-              </div>
-            </div>
-          </section>
-        </>
-      )}
+            <a
+              href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-6 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition"
+            >
+              Get Consultation
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -3,6 +3,10 @@ import { MetadataRoute } from "next";
 const BASE_URL = "https://vrsrealinvest.com.au";
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+// Regenerate hourly so newly published blogs appear without a redeploy, and so a
+// sitemap generated while the API was unreachable repairs itself on the next pass.
+export const revalidate = 3600;
+
 interface Blog {
   slug: string;
   createdAt: string;
@@ -14,27 +18,30 @@ interface SecuredProperty {
   updatedAt?: string;
 }
 
-// Same fetch pattern used in blog/page.tsx for server-side data fetching.
-async function getBlogs(): Promise<Blog[]> {
-  try {
-    const res = await fetch(`${API}/api/blog`, { cache: "no-store" });
-    if (!res.ok) return [];
-    return res.json();
-  } catch {
-    return [];
+// Returns `null` on failure — deliberately distinct from an empty list — so a
+// dead API is reported loudly instead of silently shipping a truncated sitemap.
+async function fetchJson<T>(path: string): Promise<T[] | null> {
+  if (!API) {
+    console.error(
+      `[sitemap] NEXT_PUBLIC_API_BASE_URL is not set — ${path} URLs omitted.`,
+    );
+    return null;
   }
-}
 
-// Same endpoint SecuredProperties.tsx reads from (`/api/secured-properties`).
-async function getSecuredProperties(): Promise<SecuredProperty[]> {
   try {
-    const res = await fetch(`${API}/api/secured-properties`, {
-      cache: "no-store",
-    });
-    if (!res.ok) return [];
-    return res.json();
-  } catch {
-    return [];
+    const res = await fetch(`${API}${path}`, { next: { revalidate } });
+
+    if (!res.ok) {
+      console.error(
+        `[sitemap] ${path} responded ${res.status} — URLs omitted.`,
+      );
+      return null;
+    }
+
+    return (await res.json()) as T[];
+  } catch (err) {
+    console.error(`[sitemap] ${path} fetch failed — URLs omitted.`, err);
+    return null;
   }
 }
 
@@ -53,13 +60,14 @@ function latestTimestamp(
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [blogs, properties] = await Promise.all([
-    getBlogs(),
-    getSecuredProperties(),
+    fetchJson<Blog>("/api/blog"),
+    fetchJson<SecuredProperty>("/api/secured-properties"),
   ]);
 
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      // Trailing slash to match the homepage canonical exactly.
+      url: `${BASE_URL}/`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1.0,
@@ -68,13 +76,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       // Properties render on a single listing page (no per-property routes),
       // so its lastModified tracks the most recently updated property.
       url: `${BASE_URL}/properties`,
-      lastModified: latestTimestamp(properties),
+      lastModified: latestTimestamp(properties ?? []),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/blog`,
-      lastModified: latestTimestamp(blogs),
+      lastModified: latestTimestamp(blogs ?? []),
       changeFrequency: "weekly",
       priority: 0.8,
     },
@@ -116,13 +124,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamically pulled blog slugs with their real lastModified timestamps.
-  const blogPages: MetadataRoute.Sitemap = blogs.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.updatedAt ?? post.createdAt),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  if (blogs === null) {
+    console.error(
+      "[sitemap] Serving static pages only — blog URLs are MISSING. Check the " +
+        "API; the sitemap self-repairs on the next revalidation.",
+    );
+  }
+
+  // `/api/blog` returns published posts only, so drafts never reach the sitemap.
+  const blogPages: MetadataRoute.Sitemap = (blogs ?? [])
+    .filter((post) => Boolean(post.slug))
+    .map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt ?? post.createdAt),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }));
 
   return [...staticPages, ...blogPages];
 }

@@ -144,18 +144,19 @@ export default function HeroSection({ onLoaded }: { onLoaded?: () => void }) {
             Free Webinar
           </button>
 
+          {/* The anchor carries the button styling directly. <a><button> is
+              invalid interactive nesting, which the HTML parser re-parents,
+              so the hydrated DOM never matched the server HTML. inline-block
+              matches the other CTA anchors in the app. */}
           <a
             href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
             target="_blank"
             rel="noopener noreferrer"
-          >
-            <button
-              className="px-9 py-3 text-[11px]  font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
-            hover:bg-[#E7C89C] hover:text-[#221F1F] 
+            className="inline-block px-9 py-3 text-[11px]  font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C]
+            hover:bg-[#E7C89C] hover:text-[#221F1F]
             transition-all duration-300 hover:scale-[1.03]"
-            >
-              Consultation
-            </button>
+          >
+            Consultation
           </a>
         </div>
 

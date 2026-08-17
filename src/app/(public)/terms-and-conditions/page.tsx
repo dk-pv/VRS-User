@@ -4,26 +4,15 @@ import { useEffect, useState } from "react";
 import PageLoader from "@/components/common/PageLoader";
 
 export default function TermsPage() {
-  const [loading, setLoading] = useState(true);
+  // PageLoader is a fixed full-screen overlay, so page content renders (and
+  // server-renders) underneath it instead of being gated behind `loading`.
+  // 1300ms preserves the previous 800ms + 500ms loader timing exactly.
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 800);
-
+    const timer = setTimeout(() => setShowLoader(false), 1300);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (!loading) {
-      const t = setTimeout(() => {
-        setShowLoader(false);
-      }, 500);
-
-      return () => clearTimeout(t);
-    }
-  }, [loading]);
 
   return (
     <>
@@ -31,8 +20,7 @@ export default function TermsPage() {
       <PageLoader visible={showLoader} />
 
       {/* PAGE CONTENT */}
-      {!loading && (
-        <>
+      <>
           {/* ================= HERO ================= */}
           <section className="pt-28 pb-12 px-6 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(231,200,156,0.08),transparent_60%)] pointer-events-none" />
@@ -177,8 +165,7 @@ export default function TermsPage() {
               </Section>
             </div>
           </main>
-        </>
-      )}
+      </>
     </>
   );
 }

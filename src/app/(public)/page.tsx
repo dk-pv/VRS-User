@@ -10,7 +10,6 @@ import TeamSection from "@/components/sections/TeamSection";
 import NationwideCoverage from "@/components/sections/NationwideCoverage";
 
 export default function HomePage() {
-  const [loading, setLoading] = useState(true);
   const [heroReady, setHeroReady] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
 
@@ -21,21 +20,13 @@ export default function HomePage() {
         setShowLoader(false);
       }, 600); // smooth overlap
 
-      const remove = setTimeout(() => {
-        setLoading(false);
-      }, 1400); // match animation duration
-
-      return () => {
-        clearTimeout(timer);
-        clearTimeout(remove);
-      };
+      return () => clearTimeout(timer);
     }
   }, [heroReady]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowLoader(false);
-      setLoading(false);
     }, 6000);
 
     return () => clearTimeout(timeout);
@@ -50,40 +41,36 @@ export default function HomePage() {
       <link rel="canonical" href="https://vrsrealinvest.com.au/" />
       <PageLoader visible={showLoader} />
 
-      {!loading && (
-        <>
-          <HeroSection onLoaded={() => setHeroReady(true)} />
-          <SecuredProperties />
-          <DiscoverVideoSection />
-          <NationwideCoverage />
-          <TeamSection />
-          <TestimonialsSection />
+      <HeroSection onLoaded={() => setHeroReady(true)} />
+      <SecuredProperties />
+      <DiscoverVideoSection />
+      <NationwideCoverage />
+      <TeamSection />
+      <TestimonialsSection />
 
-          <section className="py-14 px-6">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 md:p-12 text-center shadow-xl">
-                <h3 className="text-xl md:text-3xl text-white font-semibold mb-4">
-                  Ready to Start Your Investment Journey?
-                </h3>
+      <section className="py-14 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 md:p-12 text-center shadow-xl">
+            <h3 className="text-xl md:text-3xl text-white font-semibold mb-4">
+              Ready to Start Your Investment Journey?
+            </h3>
 
-                <p className="text-gray-400 mb-6 text-sm md:text-base max-w-xl mx-auto">
-                  Partner with VRS Real Invest and secure premium real estate
-                  opportunities today.
-                </p>
+            <p className="text-gray-400 mb-6 text-sm md:text-base max-w-xl mx-auto">
+              Partner with VRS Real Invest and secure premium real estate
+              opportunities today.
+            </p>
 
-                <a
-                  href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-7 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition duration-300"
-                >
-                  Get Consultation
-                </a>
-              </div>
-            </div>
-          </section>
-        </>
-      )}
+            <a
+              href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-7 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition duration-300"
+            >
+              Get Consultation
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
