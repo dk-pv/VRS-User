@@ -131,6 +131,8 @@ export default function DiscoverVideoSection() {
               {/* Thumbnail Video */}
               <iframe
                 ref={iframeRef}
+                title="Discover VRS Realinvest — video"
+                loading="lazy"
                 src={embedUrl}
                 className="absolute inset-0 w-full h-full transition-transform duration-[1200ms] group-hover:scale-105"
                 allow="autoplay; encrypted-media"

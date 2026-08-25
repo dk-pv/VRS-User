@@ -247,6 +247,8 @@ export default function TestimonialsSection() {
                     >
                       <iframe
                         id={iframeId}
+                        title={`${video.name} — video testimonial`}
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full"
                         src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1&controls=0&rel=0&modestbranding=1&mute=1`}
                         allow="autoplay; encrypted-media"

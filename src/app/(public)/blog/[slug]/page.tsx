@@ -248,6 +248,8 @@ export default async function BlogDetail({
           <img
             src={blog.image}
             alt={blog.title}
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-[350px] md:h-[450px] object-cover rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
           />
         </div>

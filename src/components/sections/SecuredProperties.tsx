@@ -15,10 +15,16 @@ interface SecuredProperty {
   currentPrice: string;
 }
 
+// ponytail: module-level cache — the section renders on both / and /properties,
+// so navigating between them reuses the data instead of refetching. Refreshes on
+// full page load; fine for admin-curated data that changes rarely.
+let propertiesCache: SecuredProperty[] | null = null;
+
 export default function SecuredProperties() {
   const [securedProperties, setSecuredProperties] = useState<SecuredProperty[]>(
-    [],
+    propertiesCache ?? [],
   );
+  const [loading, setLoading] = useState(propertiesCache === null);
   const [selectedProperty, setSelectedProperty] =
     useState<SecuredProperty | null>(null);
   const [currentImage, setCurrentImage] = useState<number>(0);
@@ -32,12 +38,17 @@ export default function SecuredProperties() {
 
   // ================= FETCH =================
   useEffect(() => {
+    if (propertiesCache) return;
+
     const fetchProperties = async () => {
       try {
         const res = await axios.get(`${API}/api/secured-properties`);
+        propertiesCache = res.data;
         setSecuredProperties(res.data);
       } catch (error) {
         console.error("Error fetching secured properties:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -134,6 +145,16 @@ export default function SecuredProperties() {
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing pl-6 pr-6 md:pl-10 md:pr-10"
           >
+            {/* Skeletons match the card dimensions exactly, so the section
+                keeps its height and nothing shifts when data arrives. */}
+            {loading &&
+              [0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="min-w-[320px] md:min-w-[340px] h-[300px] md:h-[320px] rounded-2xl flex-shrink-0 border border-[var(--card-border)] bg-white/5 animate-pulse"
+                />
+              ))}
+
             {securedProperties.map((property) => (
               <div
                 key={property._id}

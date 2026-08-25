@@ -5,8 +5,18 @@ import { Calendar, Clock, Video } from "lucide-react";
 
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+interface Webinar {
+  _id: string;
+  title: string;
+  day: string;
+  time: string;
+  australiaTimeZone: string;
+  description: string;
+  meetLink: string;
+}
+
 export default function WebinarSection() {
-  const [webinars, setWebinars] = useState<any[]>([]);
+  const [webinars, setWebinars] = useState<Webinar[]>([]);
 
   useEffect(() => {
     const fetchWebinars = async () => {
@@ -109,7 +119,7 @@ export default function WebinarSection() {
                   href={webinar.meetLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-7 py-2.5 rounded-lg text-[11px]  font-medium tracking-[0.18em] uppercase transition hover:opacity-90 hover:scale-[1.03] hover:scale-[1.03]"
+                  className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-7 py-2.5 rounded-lg text-[11px]  font-medium tracking-[0.18em] uppercase transition hover:opacity-90 hover:scale-[1.03]"
                 >
                   Register Now
                 </a>

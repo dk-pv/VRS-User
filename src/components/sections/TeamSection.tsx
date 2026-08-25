@@ -12,18 +12,29 @@ interface TeamMember {
 export default function TeamSection() {
   const API = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTeam = async () => {
-      const res = await fetch(`${API}/api/team`);
-      const data = await res.json();
-      setTeamMembers(data);
+      try {
+        const res = await fetch(`${API}/api/team`);
+        const data = await res.json();
+        setTeamMembers(data);
+      } catch (error) {
+        console.error("Error fetching team:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     if (API) fetchTeam();
+    else setLoading(false);
   }, [API]);
 
-  if (teamMembers.length === 0) return null;
+  // Hide the section only once we know there is genuinely no data. While
+  // loading, the header + skeletons render (and server-render) so the page
+  // has stable structure and real headings for crawlers.
+  if (!loading && teamMembers.length === 0) return null;
 
   const isScrollable = teamMembers.length > 4;
 
@@ -44,7 +55,16 @@ export default function TeamSection() {
           </p>
         </div>
         {/* SCROLL / GRID */}
-        {isScrollable ? (
+        {loading ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[0, 1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="h-[340px] md:h-[360px] rounded-2xl border border-[var(--card-border)] bg-white/5 animate-pulse"
+              />
+            ))}
+          </div>
+        ) : isScrollable ? (
           <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
             {teamMembers.map((member) => (
               <div
@@ -60,6 +80,8 @@ export default function TeamSection() {
                 <img
                   src={member.image}
                   alt={member.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[340px] md:h-[360px] object-cover
                   group-hover:scale-105 transition duration-700"
                 />
@@ -97,6 +119,8 @@ export default function TeamSection() {
                 <img
                   src={member.image}
                   alt={member.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[340px] md:h-[360px] object-cover
                   group-hover:scale-105 transition duration-700"
                 />

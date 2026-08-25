@@ -78,6 +78,9 @@ export default function HeroSection({ onLoaded }: { onLoaded?: () => void }) {
             key={img._id}
             src={img.url}
             alt="hero"
+            // First slide is the LCP once data arrives; later slides can wait.
+            fetchPriority={index === 0 ? "high" : "low"}
+            decoding="async"
             onLoad={() => setMediaReady(true)}
             className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2200ms] ease-out ${
               index === current
