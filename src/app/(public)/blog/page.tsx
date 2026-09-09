@@ -7,6 +7,10 @@ interface BlogPost {
   slug: string;
   excerpt: string;
   image: string;
+  author?: string;
+  imageAlt?: string;
+  imageTitle?: string;
+  publishDate?: string;
   createdAt: string;
 }
 
@@ -82,7 +86,8 @@ export default async function BlogPage() {
                     <div className="relative overflow-hidden">
                       <img
                         src={post.image}
-                        alt={post.title}
+                        alt={post.imageAlt || post.title}
+                        title={post.imageTitle || undefined}
                         loading="lazy"
                         decoding="async"
                         className="w-full h-60 object-cover group-hover:scale-105 transition duration-700"
@@ -94,7 +99,19 @@ export default async function BlogPage() {
                     {/* CONTENT */}
                     <div className="p-6">
                       <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">
-                        {new Date(post.createdAt).toLocaleDateString()}
+                        {new Date(
+                          post.publishDate || post.createdAt,
+                        ).toLocaleDateString("en-AU", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                        {post.author && (
+                          <span className="normal-case tracking-normal">
+                            {" "}
+                            · By {post.author}
+                          </span>
+                        )}
                       </p>
 
                       <h2 className="text-lg font-medium mb-3 group-hover:text-[var(--primary-gold)] transition">

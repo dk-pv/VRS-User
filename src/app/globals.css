@@ -353,3 +353,145 @@ body.page-exit {
 .react-tel-input.vrs-phone .country-list .no-entries-message {
   color: #9ca3af;
 }
+
+/* ============================= */
+/* BLOG ARTICLE TYPOGRAPHY */
+/* ============================= */
+
+/* @tailwindcss/typography is not installed, so the prose-* utilities that used
+   to be on the article were inert. These rules style the sanitised blog HTML
+   on the dark VRS background instead. */
+
+.blog-content {
+  color: #d1d5db;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.blog-content > * + * {
+  margin-top: 1.15rem;
+}
+
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  line-height: 1.3;
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.blog-content h2 { font-size: 1.6rem; font-weight: 600; }
+.blog-content h3 { font-size: 1.3rem; font-weight: 600; }
+.blog-content h4 { font-size: 1.1rem; font-weight: 600; }
+.blog-content h5,
+.blog-content h6 { font-size: 1rem; font-weight: 600; }
+
+.blog-content p { margin: 1.15rem 0; }
+
+.blog-content strong,
+.blog-content b { color: #ffffff; font-weight: 600; }
+
+.blog-content em,
+.blog-content i { font-style: italic; }
+
+.blog-content u { text-decoration: underline; }
+
+.blog-content s,
+.blog-content del { text-decoration: line-through; opacity: 0.8; }
+
+.blog-content a {
+  color: var(--primary-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.blog-content a:hover { opacity: 0.8; }
+
+.blog-content ul,
+.blog-content ol {
+  margin: 1.15rem 0;
+  padding-left: 1.5rem;
+}
+
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li { margin: 0.45rem 0; }
+.blog-content li::marker { color: var(--primary-gold); }
+
+/* The editor wraps list items as <li><p>...</p></li>; without this the
+   paragraph margin would double the spacing inside every list. */
+.blog-content li > p { margin: 0; }
+
+/* Same for blockquote, whose content is also a paragraph. */
+.blog-content blockquote > p:first-child { margin-top: 0; }
+.blog-content blockquote > p:last-child { margin-bottom: 0; }
+
+/* Tiptap leaves a trailing empty paragraph; don't let it add dead space. */
+.blog-content p:empty { display: none; }
+
+.blog-content blockquote {
+  margin: 1.75rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 2px solid var(--primary-gold);
+  color: #e5e7eb;
+  font-style: italic;
+}
+
+.blog-content code {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 0.12rem 0.38rem;
+  font-size: 0.9em;
+}
+
+.blog-content pre {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  overflow-x: auto;
+}
+
+.blog-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Images and tables must never push the article wider than the column. */
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.75rem 0;
+}
+
+.blog-content hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--card-border);
+}
+
+.blog-content table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid var(--card-border);
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+}
+
+.blog-content th { color: #ffffff; font-weight: 600; }

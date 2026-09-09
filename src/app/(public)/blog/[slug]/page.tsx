@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import React from "react";
+import { looksLikeHtml, sanitizeBlogHtml } from "@/lib/blogHtml";
 
 interface Blog {
   _id: string;
@@ -12,6 +13,10 @@ interface Blog {
   image: string;
   metaTitle?: string;
   metaDescription?: string;
+  author?: string;
+  imageAlt?: string;
+  imageTitle?: string;
+  publishDate?: string;
   createdAt: string;
   updatedAt?: string;
 }
@@ -32,7 +37,9 @@ async function getBlog(slug: string): Promise<Blog | null> {
   }
 }
 
-// ✅ FORMAT FUNCTION (IMPROVED)
+// Legacy renderer for articles written before the rich text editor, which are
+// stored as plain text with "## " headings, "-" bullets and **bold**. New
+// articles are HTML and take the sanitised path instead.
 function formatBlogContent(content: string): React.ReactNode[] {
   const lines = content.split("\n");
   const elements: React.ReactNode[] = [];
@@ -140,9 +147,14 @@ export async function generateMetadata({
 
   const canonical = `/blog/${blog.slug}`;
   const description = blog.metaDescription || blog.excerpt;
+  const published = blog.publishDate || blog.createdAt;
 
   return {
-    title: blog.metaTitle || blog.title,
+    // A hand-written metaTitle is the complete <title>: the root layout's
+    // "%s | VRS Real Invest" template would otherwise append the brand a
+    // second time for any metaTitle that already ends with it. Without one,
+    // fall back to the blog title and let the template add the brand.
+    title: blog.metaTitle ? { absolute: blog.metaTitle } : blog.title,
     description,
     alternates: {
       canonical,
@@ -154,12 +166,12 @@ export async function generateMetadata({
       siteName: "VRS Real Invest",
       locale: "en_AU",
       type: "article",
-      publishedTime: blog.createdAt,
-      modifiedTime: blog.updatedAt || blog.createdAt,
+      publishedTime: published,
+      modifiedTime: blog.updatedAt || published,
       images: [
         {
           url: blog.image,
-          alt: blog.title,
+          alt: blog.imageAlt || blog.title,
         },
       ],
     },
@@ -192,17 +204,19 @@ export default async function BlogDetail({
     headline: blog.title,
     description: blog.metaDescription || blog.excerpt,
     image: blog.image,
-    datePublished: blog.createdAt,
-    dateModified: blog.updatedAt || blog.createdAt,
+    datePublished: blog.publishDate || blog.createdAt,
+    dateModified: blog.updatedAt || blog.publishDate || blog.createdAt,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${blog.slug}`,
     },
-    author: {
-      "@type": "Organization",
-      name: "VRS Real Invest",
-      url: SITE_URL,
-    },
+    author: blog.author
+      ? { "@type": "Person", name: blog.author }
+      : {
+          "@type": "Organization",
+          name: "VRS Real Invest",
+          url: SITE_URL,
+        },
     publisher: {
       "@type": "Organization",
       name: "VRS Real Invest",
@@ -237,7 +251,17 @@ export default async function BlogDetail({
           </h1>
 
           <p className="text-gray-500 text-sm mt-4">
-            Published on {new Date(blog.createdAt).toLocaleDateString()}
+            {blog.author && (
+              <>
+                <span className="text-gray-400">By {blog.author}</span>
+                <span className="mx-2">·</span>
+              </>
+            )}
+            Published on{" "}
+            {new Date(blog.publishDate || blog.createdAt).toLocaleDateString(
+              "en-AU",
+              { day: "numeric", month: "long", year: "numeric" },
+            )}
           </p>
         </div>
       </section>
@@ -247,7 +271,8 @@ export default async function BlogDetail({
         <div className="max-w-5xl mx-auto">
           <img
             src={blog.image}
-            alt={blog.title}
+            alt={blog.imageAlt || blog.title}
+            title={blog.imageTitle || undefined}
             fetchPriority="high"
             decoding="async"
             className="w-full h-[350px] md:h-[450px] object-cover rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
@@ -258,15 +283,18 @@ export default async function BlogDetail({
       {/* CONTENT */}
       <section className="px-6 pb-24">
         <div className="max-w-3xl mx-auto">
-          <article
-            className="prose prose-invert max-w-none
-            prose-headings:text-white 
-            prose-p:text-gray-300 
-            prose-strong:text-white 
-            prose-a:text-[var(--primary-gold)] 
-            prose-li:text-gray-300"
-          >
-            {formatBlogContent(blog.content)}
+          {/* The prose-* utilities need @tailwindcss/typography, which is not
+              installed, so .blog-content in globals.css does the styling. */}
+          <article className="blog-content max-w-none">
+            {looksLikeHtml(blog.content) ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeBlogHtml(blog.content),
+                }}
+              />
+            ) : (
+              formatBlogContent(blog.content)
+            )}
           </article>
         </div>
       </section>
