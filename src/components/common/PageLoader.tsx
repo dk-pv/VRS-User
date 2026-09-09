@@ -8,6 +8,9 @@ export default function PageLoader({ visible }: { visible: boolean }) {
       {visible && (
         <motion.div
           key="loader"
+          // Marks the full-screen loading overlay so other overlays (the
+          // enquiry popup) can wait for it to clear instead of opening behind it.
+          data-page-loader
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
