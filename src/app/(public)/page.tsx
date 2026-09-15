@@ -61,7 +61,7 @@ export default function HomePage() {
             </p>
 
             <a
-              href="https://learn.vrsrealinvest.com.au/web/lite/events/68b9e85ce4cad97bc9d8d657"
+              href="https://calendly.com/sudhesh-vrsrealinvest/one-on-one-session"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[var(--primary-gold)] text-[#221F1F] px-7 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition duration-300"
