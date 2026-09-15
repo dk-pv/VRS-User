@@ -139,10 +139,16 @@ export default function HeroSection({ onLoaded }: { onLoaded?: () => void }) {
         {/* CTA */}
         <div className="mt-14 flex gap-6 flex-wrap justify-center">
           <button
-            onClick={() => router.push("/webinar")}
-            className="px-9 py-3 text-[11px]  font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
-            hover:bg-[#E7C89C] hover:text-[#221F1F] 
-            transition-all duration-300 hover:scale-[1.03]"
+            onClick={() =>
+              window.open(
+                "https://event.webinarjam.com/64lkl/register/kk7r7hn",
+                "_blank",
+                "noopener,noreferrer",
+              )
+            }
+            className="px-9 py-3 text-[11px] font-medium tracking-[0.22em] uppercase rounded-md border border-[#E7C89C] text-[#E7C89C] 
+  hover:bg-[#E7C89C] hover:text-[#221F1F] 
+  transition-all duration-300 hover:scale-[1.03]"
           >
             Free Webinar
           </button>
