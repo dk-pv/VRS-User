@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "About Us | VRS Real Invest",
     description:
       "Learn about VRS Real Invest — an Australian buyer's agency helping busy professionals build wealth through strategic property investment.",
-    url: "https://vrsrealinvest.com.au/about",
+    url: "https://www.vrsrealinvest.com.au/about",
     siteName: "VRS Real Invest",
     locale: "en_AU",
     type: "website",

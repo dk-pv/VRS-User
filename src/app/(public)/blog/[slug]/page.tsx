@@ -21,7 +21,7 @@ interface Blog {
   updatedAt?: string;
 }
 
-const SITE_URL = "https://vrsrealinvest.com.au";
+const SITE_URL = "https://www.vrsrealinvest.com.au";
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {

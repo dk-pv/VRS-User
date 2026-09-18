@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Real Estate Blog | VRS Real Invest",
     description:
       "Explore premium real estate insights, luxury investment strategies, and expert market analysis from VRS Real Invest.",
-    url: "https://vrsrealinvest.com.au/blog",
+    url: "https://www.vrsrealinvest.com.au/blog",
     siteName: "VRS Real Invest",
     locale: "en_AU",
     type: "website",

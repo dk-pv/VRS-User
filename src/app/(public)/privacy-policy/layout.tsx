@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy | VRS Real Invest",
     description:
       "Read the VRS Real Invest privacy policy to understand how we collect, use, and protect your personal information.",
-    url: "https://vrsrealinvest.com.au/privacy-policy",
+    url: "https://www.vrsrealinvest.com.au/privacy-policy",
     siteName: "VRS Real Invest",
     locale: "en_AU",
     type: "website",

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = "https://vrsrealinvest.com.au";
+const BASE_URL = "https://www.vrsrealinvest.com.au";
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // Regenerate hourly so newly published blogs appear without a redeploy, and so a

@@ -21,7 +21,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vrsrealinvest.com.au"),
+  metadataBase: new URL("https://www.vrsrealinvest.com.au"),
 
   title: {
     default: "VRS Real Invest",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "VRS Real Invest",
     description:
       "Premium real estate investment portfolio website in Australia.",
-    url: "https://vrsrealinvest.com.au",
+    url: "https://www.vrsrealinvest.com.au",
     siteName: "VRS Real Invest",
     locale: "en_AU",
     type: "website",
@@ -57,10 +57,10 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://vrsrealinvest.com.au/#organization",
+      "@id": "https://www.vrsrealinvest.com.au/#organization",
       "name": "VRS RealInvest",
-      "url": "https://vrsrealinvest.com.au",
-      "logo": "https://vrsrealinvest.com.au/logo.png",
+      "url": "https://www.vrsrealinvest.com.au",
+      "logo": "https://www.vrsrealinvest.com.au/logo.png",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+61-412-864-050",
@@ -72,10 +72,10 @@ const jsonLd = {
     },
     {
       "@type": "RealEstateAgent",
-      "@id": "https://vrsrealinvest.com.au/#realestateagent",
+      "@id": "https://www.vrsrealinvest.com.au/#realestateagent",
       "name": "VRS RealInvest",
-      "url": "https://vrsrealinvest.com.au",
-      "logo": "https://vrsrealinvest.com.au/logo.png",
+      "url": "https://www.vrsrealinvest.com.au",
+      "logo": "https://www.vrsrealinvest.com.au/logo.png",
       "telephone": "+61-412-864-050",
       "email": "sudhesh@vrsrealinvest.com.au",
       "description": "Premium buyer's agency and real estate coaching business. We represent buyers and help busy professionals build wealth through strategic Australian real estate investing, providing end-to-end guidance from strategy to settlement.",
@@ -91,10 +91,10 @@ const jsonLd = {
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://vrsrealinvest.com.au/#localbusiness",
+      "@id": "https://www.vrsrealinvest.com.au/#localbusiness",
       "name": "VRS RealInvest",
-      "url": "https://vrsrealinvest.com.au",
-      "logo": "https://vrsrealinvest.com.au/logo.png",
+      "url": "https://www.vrsrealinvest.com.au",
+      "logo": "https://www.vrsrealinvest.com.au/logo.png",
       "telephone": "+61-412-864-050",
       "email": "sudhesh@vrsrealinvest.com.au",
       "description": "VRS RealInvest is an Australian buyer's agency and real estate coaching business helping busy professionals purchase the right investment property with clarity and confidence.",

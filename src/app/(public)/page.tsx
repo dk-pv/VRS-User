@@ -38,7 +38,7 @@ export default function HomePage() {
           (metadata resolver returns origin for pathname "/"), so it's rendered
           directly here. Root layout's alternates.canonical was removed to avoid
           a duplicate. */}
-      <link rel="canonical" href="https://vrsrealinvest.com.au/" />
+      <link rel="canonical" href="https://www.vrsrealinvest.com.au/" />
       <PageLoader visible={showLoader} />
 
       <HeroSection onLoaded={() => setHeroReady(true)} />

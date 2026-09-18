@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /cdn-cgi/
 
-Sitemap: https://vrsrealinvest.com.au/sitemap.xml
+Sitemap: https://www.vrsrealinvest.com.au/sitemap.xml
